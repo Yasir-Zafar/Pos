@@ -17,10 +17,13 @@
         llvm = p.llvmPackages_latest;
       in {
         devShell = p.mkShell.override { stdenv = p.clangStdenv; } rec {
+          name = "Piece of shit";
+          
           packages = with p; [
             # builder
             gnumake
             cmake
+            bear
 
             # debugger
             gdb
@@ -35,11 +38,17 @@
             # stdlib for cpp
             llvm.libcxx
 
-            #QT
+            #sql
+            sqlite
+
+            #qt
             qt5.full
             qtcreator
           ];
-          name = "Piece of shit";
+
+          shellHook = ''
+        '';
+
         };
       }
     );

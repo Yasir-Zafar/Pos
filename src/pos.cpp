@@ -1,4 +1,4 @@
-#include "../include/pos.h"
+#include "pos.h"
 #include <iostream>
 
 PointOfSale::PointOfSale ()

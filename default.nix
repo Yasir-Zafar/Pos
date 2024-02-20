@@ -11,12 +11,14 @@ lib.mkShell {
     mkdir -p src lib include
 
     # Optionally set additional environment variables
+    export MY_PROJECT_VAR="my_value"
 
     # Run any additional setup commands here
 
     # Example: Configure and build the project with CMake
     mkdir -p build
     cd build
-    cmake
+    cmake ..
+    make
   '';
 }
