@@ -43,7 +43,6 @@
               
               #qt
               qt5.full
-              qtcreator
             ];
             
             shellHook = ''

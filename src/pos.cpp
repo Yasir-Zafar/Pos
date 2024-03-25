@@ -1,6 +1,5 @@
 #include "pos.h"
 #include <iostream>
-#include <sqlite3.h>
 
 PointOfSale::PointOfSale ()
 {
