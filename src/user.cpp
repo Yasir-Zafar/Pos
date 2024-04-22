@@ -30,3 +30,38 @@ bool user::loggin(string u, string p) {
     cout << "Incorrect Username or Password\n";
     return false;
 }
+void user::setPassword(string old) {
+	if (old == password) {
+		cout << "Enter new Password(minimum 8 characters, no spaces): ";
+		string newPass;
+		cin >> newPass;
+		cout << "Confirm Password: ";
+		string temp;
+		cin >> temp;
+		if (temp == newPass) {
+			password = newPass;
+			sqlite3* db;
+			sqlite3_stmt* stmt;
+			char* error;
+			sqlite3_open("accounts.db", &db);
+			string query = "UPDATE data SET password = '";
+			query += password;
+			query += "' WHERE username = '";
+			query += username;
+			query += "';";
+			int rc = sqlite3_exec(db, query.c_str(), NULL, NULL, &error);
+			if (rc != SQLITE_OK) {
+				cout << "Error: " << error << endl;
+			}
+			else {
+				cout << "Password Updated!\n";
+			}
+		}
+		else {
+			cout << "Both Passwords dont match\n";
+		}
+	}
+	else {
+		cout << "Access Denied!\n";
+	}
+}
