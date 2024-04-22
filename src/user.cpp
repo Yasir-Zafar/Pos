@@ -65,3 +65,6 @@ void user::setPassword(string old) {
 		cout << "Access Denied!\n";
 	}
 }
+user::~user() {
+	cout << "Logging Out of account " << username << endl;
+}
