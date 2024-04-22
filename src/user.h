@@ -8,5 +8,5 @@ private:
 	string login;
 	string password;
 public:
-	bool login(string l, string p);
+	bool loggin(string l, string p);
 };
