@@ -10,4 +10,5 @@ private:
 public:
 	bool loggin(string l, string p);
 	void setPassword(string old);
+	~user();
 };
