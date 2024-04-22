@@ -9,4 +9,5 @@ private:
 	string password;
 public:
 	bool loggin(string l, string p);
+	void setPassword(string old);
 };
