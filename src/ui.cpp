@@ -17,5 +17,5 @@ MainWindow::~MainWindow () { delete ui; }
 
 void MainWindow::onButtonClick ()
 {
-    QMessageBox::information ( this, "Button Clicked", "Niggers" );
+    QMessageBox::information ( this, "Button Clicked", "real" );
 }

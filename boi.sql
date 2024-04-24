@@ -236,3 +236,166 @@ VALUES ('National', 'Pantry', 'Sugar', 400, 1, 0, 40);
 
 INSERT INTO products (Brand, Category, Name, Price, Unit, Sold, Inventory)
 VALUES ('National', 'Pantry', 'Salt', 400, 1, 0, 40);
+
+--Snacks
+
+INSERT INTO products (
+                         Inventory,
+                         Sold,
+                         Unit,
+                         Price,
+                         Category,
+                         Brand,
+                         Name,
+                         id
+                     )
+                     VALUES (
+                         50,
+                         0,
+                         1,
+                         60,
+                         'Snacks',
+                         'PepsiCo',
+                         'Kurkure',
+                         71
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         80,
+                         'Snacks',
+                         'Simba Foods',
+                         'Macho Nachos',
+                         72
+                     ),
+                     (
+                         20,
+                         0,
+                         1,
+                         800,
+                         'Snacks',
+                         'PepsiCo',
+                         'Pringles',
+                         73
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         60,
+                         'Snacks',
+                         'Pepsico',
+                         'Lays Masala',
+                         74
+                     ),
+                     (
+                         25,
+                         0,
+                         1,
+                         480,
+                         'Snacks',
+                         'PepsiCo',
+                         'Doritos',
+                         75
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         100,
+                         'Snacks',
+                         'PepsiCo',
+                         'Cheetos',
+                         76
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         180,
+                         'Snacks',
+                         'Nutribel',
+                         'Noms Nachos',
+                         77
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         40,
+                         'Snacks',
+                         'Kraft Food',
+                         'Oreos',
+                         78
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         40,
+                         'Snacks',
+                         'EBM',
+                         'Peanut Pik',
+                         79
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         40,
+                         'Snacks',
+                         'Lu',
+                         'Gluco',
+                         80
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         40,
+                         'Snacks',
+                         'Lu',
+                         'Chocolato',
+                         81
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         50,
+                         'Snacks',
+                         'Super Crisps',
+                         'Catty Chins',
+                         82
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         25,
+                         'Snacks',
+                         'Peak Freans',
+                         'Cocomo',
+                         83
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         40,
+                         'Snacks',
+                         'Lu',
+                         'Super',
+                         84
+                     ),
+                     (
+                         50,
+                         0,
+                         1,
+                         40,
+                         'Snacks',
+                         'Peak Freans',
+                         'Marie',
+                         85
+                     );
