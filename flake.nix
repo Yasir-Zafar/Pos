@@ -23,25 +23,17 @@
               #builder
               gnumake
               cmake
-              bear
               
-              #debugger
-              gdb
-
               #fix headers not found
               clang-tools_17
-              llvm.libllvm
-              
-              #LSP and compiler
-              llvm.libstdcxxClang
-              
+
               #stdlib for cpp
               llvm.libcxx
               
               #sql
               sqlite
               
-              #qt
+              llvm.libcxxabi
               qt5.full
             ];
             

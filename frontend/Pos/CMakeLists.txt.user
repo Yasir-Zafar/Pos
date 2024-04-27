@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 12.0.2, 2024-03-10T17:36:12. -->
+<!-- Written by QtCreator 12.0.2, 2024-04-28T01:03:12. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -40,13 +40,13 @@
    <value type="int" key="EditorConfiguration.PreferAfterWhitespaceComments">0</value>
    <value type="bool" key="EditorConfiguration.PreferSingleLineComments">false</value>
    <value type="bool" key="EditorConfiguration.ScrollWheelZooming">true</value>
-   <value type="bool" key="EditorConfiguration.ShowMargin">false</value>
+   <value type="bool" key="EditorConfiguration.ShowMargin">true</value>
    <value type="int" key="EditorConfiguration.SmartBackspaceBehavior">0</value>
    <value type="bool" key="EditorConfiguration.SmartSelectionChanging">true</value>
    <value type="bool" key="EditorConfiguration.SpacesForTabs">true</value>
    <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
    <value type="int" key="EditorConfiguration.TabSize">8</value>
-   <value type="bool" key="EditorConfiguration.UseGlobal">true</value>
+   <value type="bool" key="EditorConfiguration.UseGlobal">false</value>
    <value type="bool" key="EditorConfiguration.UseIndenter">false</value>
    <value type="int" key="EditorConfiguration.Utf8BomBehavior">1</value>
    <value type="bool" key="EditorConfiguration.addFinalNewLine">true</value>
@@ -78,10 +78,34 @@
     <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.DefaultTidyAndClazy</value>
     <value type="int" key="ClangTools.ParallelJobs">2</value>
     <value type="bool" key="ClangTools.PreferConfigFile">true</value>
-    <valuelist type="QVariantList" key="ClangTools.SelectedDirs"/>
+    <valuelist type="QVariantList" key="ClangTools.SelectedDirs">
+     <value type="QString">/home/boi/Projects/C++/Uni/OOP/OOP-POS/frontend/Pos/CMakeLists.txt</value>
+    </valuelist>
     <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
     <value type="bool" key="ClangTools.UseGlobalSettings">true</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="ClangdSettings">
+    <value type="int" key="ClangdCompletionRankingModel">0</value>
+    <value type="int" key="ClangdDocumentThreshold">500</value>
+    <value type="bool" key="ClangdHeaderInsertion">false</value>
+    <value type="int" key="ClangdHeaderSourceSwitchMode">2</value>
+    <value type="bool" key="ClangdIndexing">true</value>
+    <value type="int" key="ClangdIndexingPriority">3</value>
+    <value type="QString" key="ClangdPath"></value>
+    <value type="qlonglong" key="ClangdSizeThreshold">1024</value>
+    <value type="bool" key="ClangdSizeThresholdEnabled">false</value>
+    <value type="int" key="ClangdThreadLimit">0</value>
+    <valuelist type="QVariantList" key="SessionsWithOneClangd"/>
+    <value type="bool" key="UseClangdV7">true</value>
+    <value type="bool" key="blockIndexing">false</value>
+    <value type="bool" key="checkedHardware">true</value>
+    <value type="int" key="completionResults">100</value>
+    <value type="QString" key="diagnosticConfigId">Builtin.BuildSystem</value>
+    <value type="bool" key="useGlobalSettings">false</value>
+   </valuemap>
+   <valuemap type="QVariantMap" key="CppEditor.QuickFix">
+    <value type="bool" key="UseGlobalSettings">true</value>
    </valuemap>
   </valuemap>
  </data>
@@ -144,7 +168,7 @@
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.BuildSteps.Clean</value>
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
-    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
+    <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">true</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
@@ -390,13 +414,15 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+    <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">true</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Pos</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.Pos</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">Pos</value>
+    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseTerminal">true</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
