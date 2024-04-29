@@ -107,6 +107,9 @@ void setupMenu(QWidget* menu) {
     QVBoxLayout* topLayout = new QVBoxLayout(topWidget);
     topLayout->setContentsMargins(20, 20, 20, 20);
 
+    QHBoxLayout* labelsAndSearchLayout = new QHBoxLayout;
+    QVBoxLayout* labelsLayout = new QVBoxLayout;
+
     QLabel* welcomeLabel = new QLabel;
     welcomeLabel->setText("Welcome");
     QFont welcomeFont = welcomeLabel->font();
@@ -121,19 +124,114 @@ void setupMenu(QWidget* menu) {
     QFont discoverFont = discoverLabel->font();
     discoverFont.setPointSize(12);
     discoverLabel->setFont(discoverFont);
+    discoverLabel->setContentsMargins(0, 0, 0, 0);
     discoverLabel->setStyleSheet("color: #878383;");
-
-    QLineEdit* searchBar = new QLineEdit;
-    searchBar->setStyleSheet("border-radius: 10px; padding: 5px;");
-    searchBar->setPlaceholderText("Search");
 
     welcomeLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     discoverLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    searchBar->setAlignment(Qt::AlignTop | Qt::AlignRight);
 
-    topLayout->addWidget(welcomeLabel);
-    topLayout->addWidget(discoverLabel);
-    topLayout->addWidget(searchBar);
+    labelsLayout->addWidget(welcomeLabel);
+    labelsLayout->addWidget(discoverLabel);
+
+    QLineEdit* searchBar = new QLineEdit;
+    searchBar->setStyleSheet("border: 2px solid #CCCCCC; border-radius: 10px; padding: 5px;");
+    searchBar->setPlaceholderText("Slave auction search");
+
+    labelsAndSearchLayout->addLayout(labelsLayout);
+    labelsAndSearchLayout->addStretch();
+    labelsAndSearchLayout->addWidget(searchBar, 0, Qt::AlignTop | Qt::AlignRight);
+
+    topLayout->addLayout(labelsAndSearchLayout);
+
+    QLabel* categoriesLabel = new QLabel("Categories");
+    categoriesLabel->setFont(QFont("Arial", 16, QFont::Bold));
+    categoriesLabel->setContentsMargins(0, 40, 0, 0);
+    topLayout->addWidget(categoriesLabel, 0, Qt::AlignTop | Qt::AlignLeft);
+
+    QHBoxLayout* buttonsLayout = new QHBoxLayout;
+    buttonsLayout->setContentsMargins(0, 0, 0, 0);
+    // Button 1
+    QPushButton* button1 = new QPushButton;
+    QIcon icon1("/home/boi/Projects/C++/Uni/OOP/Pos/img/n.png");
+    button1->setIcon(icon1);
+    button1->setIconSize(QSize(40, 40));
+    button1->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+
+    QVBoxLayout* buttonLayout1 = new QVBoxLayout;
+    buttonLayout1->setAlignment(Qt::AlignCenter);
+    buttonLayout1->addWidget(button1);
+    QLabel* captionLabel1 = new QLabel("Caption 1");
+    captionLabel1->setStyleSheet("font-size: 10px; color: #333333;");
+    captionLabel1->setAlignment(Qt::AlignCenter);
+    buttonLayout1->addWidget(captionLabel1);
+
+    // Button 2
+    QPushButton* button2 = new QPushButton;
+    QIcon icon2("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png");
+    button2->setIcon(icon2);
+    button2->setIconSize(QSize(50, 50));
+    button2->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+
+    QVBoxLayout* buttonLayout2 = new QVBoxLayout;
+    buttonLayout2->setAlignment(Qt::AlignCenter);
+    buttonLayout2->addWidget(button2);
+    QLabel* captionLabel2 = new QLabel("Caption 2");
+    captionLabel2->setStyleSheet("font-size: 10px; color: #333333;");
+    captionLabel2->setAlignment(Qt::AlignCenter);
+    buttonLayout2->addWidget(captionLabel2);
+
+    // Button 3
+    QPushButton* button3 = new QPushButton;
+    QIcon icon3("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png");
+    button3->setIcon(icon3);
+    button3->setIconSize(QSize(50, 50));
+    button3->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+
+    QVBoxLayout* buttonLayout3 = new QVBoxLayout;
+    buttonLayout3->setAlignment(Qt::AlignCenter);
+    buttonLayout3->addWidget(button3);
+    QLabel* captionLabel3 = new QLabel("Caption 3");
+    captionLabel3->setStyleSheet("font-size: 10px; color: #333333;");
+    captionLabel3->setAlignment(Qt::AlignCenter);
+    buttonLayout3->addWidget(captionLabel3);
+
+    // Button 4
+    QPushButton* button4 = new QPushButton;
+    QIcon icon4("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png");
+    button4->setIcon(icon4);
+    button4->setIconSize(QSize(50, 50));
+    button4->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+
+    QVBoxLayout* buttonLayout4 = new QVBoxLayout;
+    buttonLayout4->setAlignment(Qt::AlignCenter);
+    buttonLayout4->addWidget(button4);
+    QLabel* captionLabel4 = new QLabel("Caption 4");
+    captionLabel4->setStyleSheet("font-size: 10px; color: #333333;");
+    captionLabel4->setAlignment(Qt::AlignCenter);
+    buttonLayout4->addWidget(captionLabel4);
+
+    // Button 5
+    QPushButton* button5 = new QPushButton;
+    QIcon icon5("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png");
+    button5->setIcon(icon5);
+    button5->setIconSize(QSize(50, 50));
+    button5->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+
+    QVBoxLayout* buttonLayout5 = new QVBoxLayout;
+    buttonLayout5->setAlignment(Qt::AlignCenter);
+    buttonLayout5->addWidget(button5);
+    QLabel* captionLabel5 = new QLabel("Caption 5");
+    captionLabel5->setStyleSheet("font-size: 10px; color: #333333;");
+    captionLabel5->setAlignment(Qt::AlignCenter);
+    buttonLayout5->addWidget(captionLabel5);
+
+    buttonsLayout->addLayout(buttonLayout1);
+    buttonsLayout->addLayout(buttonLayout2);
+    buttonsLayout->addLayout(buttonLayout3);
+    buttonsLayout->addLayout(buttonLayout4);
+    buttonsLayout->addLayout(buttonLayout5);
+
+    topLayout->addLayout(buttonsLayout);
 
     topWidget->setLayout(topLayout);
     menuLayout->addWidget(topWidget);
