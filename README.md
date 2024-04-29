@@ -10,6 +10,7 @@ Team Members:
 
 Technologies:
 - QT Framework
+- QT Creator
 - SQLite3
 - C++
 
@@ -18,8 +19,9 @@ Download the POS Windows executable and run to initialize and run the applicatio
 
 If you wish to change the source code, then clone this repo and open it in Visual Studio
 Compilation Libraries:
-- QT 6.0
+- QT 6.7
 - SQLite 3
+
 # ABOUT:
 Our Point of Sales (POS) system is a cutting-edge addition to the realm of retail solutions,
 acting as a standalone product designed to revolutionise sales operations. This innovative

@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QLineEdit>
 
 void setupSidebar(QWidget* sidebar);
 void setupMenu(QWidget* menu);

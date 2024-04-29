@@ -103,20 +103,48 @@ void setupMenu(QWidget* menu) {
     QVBoxLayout* menuLayout = new QVBoxLayout(menu);
     menu->setStyleSheet("background-color: #ECECEC; border-radius: 20px;");
 
-    // Create top and bottom widgets
     QWidget* topWidget = new QWidget;
-    QWidget* bottomWidget = new QWidget;
+    QVBoxLayout* topLayout = new QVBoxLayout(topWidget);
+    topLayout->setContentsMargins(20, 20, 20, 20);
 
-    // Set background colors for clarity
-    topWidget->setStyleSheet("background-color: lightblue;");
+    QLabel* welcomeLabel = new QLabel;
+    welcomeLabel->setText("Welcome");
+    QFont welcomeFont = welcomeLabel->font();
+    welcomeFont.setPointSize(18);
+    welcomeFont.setBold(true);
+    welcomeLabel->setFont(welcomeFont);
+    welcomeLabel->setFixedSize(230, 40);
+    welcomeLabel->setStyleSheet("color: #333333;");
+
+    QLabel* discoverLabel = new QLabel;
+    discoverLabel->setText("Discover any items you need");
+    QFont discoverFont = discoverLabel->font();
+    discoverFont.setPointSize(12);
+    discoverLabel->setFont(discoverFont);
+    discoverLabel->setStyleSheet("color: #878383;");
+
+    QLineEdit* searchBar = new QLineEdit;
+    searchBar->setStyleSheet("border-radius: 10px; padding: 5px;");
+    searchBar->setPlaceholderText("Search");
+
+    welcomeLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    discoverLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    searchBar->setAlignment(Qt::AlignTop | Qt::AlignRight);
+
+    topLayout->addWidget(welcomeLabel);
+    topLayout->addWidget(discoverLabel);
+    topLayout->addWidget(searchBar);
+
+    topWidget->setLayout(topLayout);
+    menuLayout->addWidget(topWidget);
+
+    QWidget* bottomWidget = new QWidget;
     bottomWidget->setStyleSheet("background-color: lightgreen;");
 
-    // Set fixed size for the top widget (one-third of the total height)
     int totalHeight = menu->height();
     int topWidgetHeight = totalHeight / 2;
     topWidget->setFixedHeight(350);
 
-    // Add widgets to the layout
     menuLayout->addWidget(topWidget);
     menuLayout->addWidget(bottomWidget);
 
