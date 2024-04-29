@@ -21,7 +21,7 @@ void setupCheckoutBar(QWidget* checkoutBar) {
 
 void setupSidebar(QWidget* sidebar) {
     QVBoxLayout* sidebarLayout = new QVBoxLayout(sidebar);
-    sidebar->setFixedWidth(20);
+    sidebar->setFixedWidth(150);
     sidebar->setStyleSheet("background-color: #f9f9f9; color: #333333; border-radius: 20px;");
     QSize buttonSize(75, 75);
     QString hoverStyleSheet = "QPushButton:hover { background-color: #ECECEC; }";
@@ -99,6 +99,65 @@ void setupSidebar(QWidget* sidebar) {
     sidebar->setLayout(sidebarLayout);
 }
 
+void setupCards(QWidget* bottomWidget) {
+
+    QScrollArea* scrollArea = new QScrollArea(bottomWidget);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    QWidget* cardsWidget = new QWidget(scrollArea);
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("/home/boi/Projects/C++/Uni/OOP/Pos/SQL/products.db");
+
+    if (!db.open()) {
+        qDebug() << "Error: Unable to open database";
+        return;
+    }
+
+    QSqlQuery query("SELECT Name, Brand, Category, Price FROM products");
+
+    QGridLayout* gridLayout = new QGridLayout(cardsWidget);
+    gridLayout->setContentsMargins(10, 10, 10, 10);
+    gridLayout->setSpacing(30);
+    gridLayout->setColumnStretch(4, 1);
+
+    int row = 0;
+    int column = 0;
+    while (query.next()) {
+        QString productName = query.value("Name").toString();
+        QString brand = query.value("Brand").toString();
+        double price = query.value("Price").toDouble();
+
+        QLabel* cardLabel = new QLabel;
+        cardLabel->setText(QString("<h3>%1</h3><br>%2<br><br><span style=\"font-size: small;\">$%3</span>")
+                               .arg(productName)
+                               .arg(brand)
+                               .arg(QString::number(price, 'f', 2)));
+        cardLabel->setStyleSheet("background-color: #f0f0f0; border: 5px solid #333333; padding: 10px;");
+        cardLabel->setWordWrap(true);
+        cardLabel->setFixedSize(200, 120);
+
+        gridLayout->addWidget(cardLabel, row, column);
+        column++;
+        if (column == 4) {
+            row++;
+            column = 0;
+        }
+    }
+
+    db.close();
+
+    cardsWidget->setLayout(gridLayout);
+
+    scrollArea->setWidget(cardsWidget);
+
+    QVBoxLayout* layout = new QVBoxLayout(bottomWidget);
+    layout->addWidget(scrollArea);
+    bottomWidget->setLayout(layout);
+}
+
 void setupMenu(QWidget* menu) {
     QVBoxLayout* menuLayout = new QVBoxLayout(menu);
     menu->setStyleSheet("background-color: #ECECEC; border-radius: 20px;");
@@ -154,7 +213,7 @@ void setupMenu(QWidget* menu) {
     QPushButton* button1 = new QPushButton;
     QIcon icon1("/home/boi/Projects/C++/Uni/OOP/Pos/img/n.png");
     button1->setIcon(icon1);
-    button1->setIconSize(QSize(40, 40));
+    button1->setIconSize(QSize(50, 50));
     button1->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
 
     QVBoxLayout* buttonLayout1 = new QVBoxLayout;
@@ -167,7 +226,7 @@ void setupMenu(QWidget* menu) {
 
     // Button 2
     QPushButton* button2 = new QPushButton;
-    QIcon icon2("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png");
+    QIcon icon2("/home/boi/Projects/C++/Uni/OOP/Pos/img/i.png");
     button2->setIcon(icon2);
     button2->setIconSize(QSize(50, 50));
     button2->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
@@ -182,7 +241,7 @@ void setupMenu(QWidget* menu) {
 
     // Button 3
     QPushButton* button3 = new QPushButton;
-    QIcon icon3("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png");
+    QIcon icon3("/home/boi/Projects/C++/Uni/OOP/Pos/img/g.png");
     button3->setIcon(icon3);
     button3->setIconSize(QSize(50, 50));
     button3->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
@@ -197,7 +256,7 @@ void setupMenu(QWidget* menu) {
 
     // Button 4
     QPushButton* button4 = new QPushButton;
-    QIcon icon4("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png");
+    QIcon icon4("/home/boi/Projects/C++/Uni/OOP/Pos/img/g.png");
     button4->setIcon(icon4);
     button4->setIconSize(QSize(50, 50));
     button4->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
@@ -212,7 +271,7 @@ void setupMenu(QWidget* menu) {
 
     // Button 5
     QPushButton* button5 = new QPushButton;
-    QIcon icon5("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png");
+    QIcon icon5("/home/boi/Projects/C++/Uni/OOP/Pos/img/a.png");
     button5->setIcon(icon5);
     button5->setIconSize(QSize(50, 50));
     button5->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
@@ -237,11 +296,12 @@ void setupMenu(QWidget* menu) {
     menuLayout->addWidget(topWidget);
 
     QWidget* bottomWidget = new QWidget;
-    bottomWidget->setStyleSheet("background-color: lightgreen;");
 
     int totalHeight = menu->height();
     int topWidgetHeight = totalHeight / 2;
     topWidget->setFixedHeight(350);
+
+    setupCards(bottomWidget);
 
     menuLayout->addWidget(topWidget);
     menuLayout->addWidget(bottomWidget);
