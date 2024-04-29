@@ -1,15 +1,6 @@
-CREATE TABLE products (
-    id INTEGER PRIMARY KEY,
-    Name TEXT,
-    Brand TEXT,
-    Category TEXT,
-    Price REAL,
-    Unit INTEGER,
-    Sold INTEGER,
-    Inventory INTEGER
-);
+
 INSERT INTO products (Brand, Category, Name, Price, Unit, Sold, Inventory)
-VALUES ('Ariel, 'Surf', 'Ariel Front load', 1000, 1, 0, 47);
+VALUES ('Ariel', 'Surf', 'Ariel Front load', 1000, 1, 0, 47);
 
 INSERT INTO products (Brand, Category, Name, Price, Unit, Sold, Inventory)
 VALUES ('Ariel', 'Surf', 'Ariel Top load', 1000, 1, 0, 47);
