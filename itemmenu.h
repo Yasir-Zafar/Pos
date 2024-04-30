@@ -12,10 +12,11 @@
 #include <QDebug>
 #include <QGridLayout>
 #include <QScrollArea>
+#include <QPalette>
 
 void setupSidebar(QWidget* sidebar);
 void setupMenu(QWidget* menu);
 void setupCheckoutBar(QWidget* checkoutBar);
-void setupCards(QWidget* bottomWidget);
+void setupCards(QWidget* bottomWidget, QObject* eventFilter);
 
 #endif // ITEMMENU_H

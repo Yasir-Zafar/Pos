@@ -1,7 +1,6 @@
 #include "itemmenu.h"
 
 void setupCheckoutBar(QWidget* checkoutBar) {
-    // Create a vertical layout for the checkout bar
     QVBoxLayout* checkoutLayout = new QVBoxLayout(checkoutBar);
     checkoutBar->setFixedWidth(350);
 
@@ -100,7 +99,6 @@ void setupSidebar(QWidget* sidebar) {
 }
 
 void setupCards(QWidget* bottomWidget) {
-
     QScrollArea* scrollArea = new QScrollArea(bottomWidget);
     scrollArea->setWidgetResizable(true);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -119,9 +117,9 @@ void setupCards(QWidget* bottomWidget) {
     QSqlQuery query("SELECT Name, Brand, Category, Price FROM products");
 
     QGridLayout* gridLayout = new QGridLayout(cardsWidget);
-    gridLayout->setContentsMargins(10, 10, 10, 10);
-    gridLayout->setSpacing(30);
-    gridLayout->setColumnStretch(4, 1);
+    gridLayout->setContentsMargins(15, 15, 15, 15);
+    gridLayout->setSpacing(63);
+    gridLayout->setColumnStretch(6, 1);
 
     int row = 0;
     int column = 0;
@@ -130,18 +128,42 @@ void setupCards(QWidget* bottomWidget) {
         QString brand = query.value("Brand").toString();
         double price = query.value("Price").toDouble();
 
-        QLabel* cardLabel = new QLabel;
-        cardLabel->setText(QString("<h3>%1</h3><br>%2<br><br><span style=\"font-size: small;\">$%3</span>")
-                               .arg(productName)
-                               .arg(brand)
-                               .arg(QString::number(price, 'f', 2)));
-        cardLabel->setStyleSheet("background-color: #f0f0f0; border: 5px solid #333333; padding: 10px;");
-        cardLabel->setWordWrap(true);
-        cardLabel->setFixedSize(200, 120);
+        QWidget* cardWidget = new QWidget;
+        cardWidget->setFixedSize(170, 170);
+        QVBoxLayout* cardLayout = new QVBoxLayout(cardWidget);
+        cardLayout->setContentsMargins(10, 10, 10, 10);
+        cardLayout->setSpacing(0);
 
-        gridLayout->addWidget(cardLabel, row, column);
+        QLabel* nameLabel = new QLabel(productName);
+        QLabel* brandLabel = new QLabel(brand);
+        QLabel* priceLabel = new QLabel(QString("$%1").arg(QString::number(price, 'f', 2)));
+
+        nameLabel->setStyleSheet("font-size: 16px; font-weight: bold; border: none; padding: 0;");
+        brandLabel->setStyleSheet("color: #333333; border: none; padding: 0;");
+        priceLabel->setStyleSheet("color: #333333; border: none; padding: 0;");
+
+        nameLabel->setFixedHeight(45);
+        brandLabel->setFixedHeight(15);
+        priceLabel->setFixedHeight(15);
+
+        nameLabel->setWordWrap(true);
+
+        nameLabel->setAlignment(Qt::AlignHCenter);
+        brandLabel->setAlignment(Qt::AlignHCenter);
+        priceLabel->setAlignment(Qt::AlignHCenter);
+
+        cardLayout->addWidget(nameLabel);
+        cardLayout->addWidget(brandLabel);
+        cardLayout->addWidget(priceLabel);
+
+        cardWidget->setLayout(cardLayout);
+
+        cardWidget->setStyleSheet("background-color: #f0f0f0; border: 7px solid #333333;");
+
+        gridLayout->addWidget(cardWidget, row, column);
+
         column++;
-        if (column == 4) {
+        if (column == 6) {
             row++;
             column = 0;
         }
