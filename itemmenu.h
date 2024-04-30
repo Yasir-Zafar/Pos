@@ -12,7 +12,6 @@
 #include <QDebug>
 #include <QGridLayout>
 #include <QScrollArea>
-#include <QPalette>
 
 void setupSidebar(QWidget* sidebar);
 void setupMenu(QWidget* menu);

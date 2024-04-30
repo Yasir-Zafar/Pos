@@ -1,4 +1,7 @@
 #include "itemmenu.h"
+#include "product.h"
+
+QVector<Product> productsArray;
 
 void setupCheckoutBar(QWidget* checkoutBar) {
     QVBoxLayout* checkoutLayout = new QVBoxLayout(checkoutBar);
@@ -98,7 +101,23 @@ void setupSidebar(QWidget* sidebar) {
     sidebar->setLayout(sidebarLayout);
 }
 
-void setupCards(QWidget* bottomWidget) {
+void filterCards(const QString& searchText, QWidget* cardsWidget, QScrollArea* scrollArea) {
+    if (!cardsWidget) return;
+
+    for (int i = 0; i < cardsWidget->layout()->count(); ++i) {
+        QWidget* cardWidget = cardsWidget->layout()->itemAt(i)->widget();
+        if (!cardWidget) continue;
+
+        QLabel* nameLabel = cardWidget->findChild<QLabel*>("nameLabel");
+        if (!nameLabel) continue;
+
+        bool match = nameLabel->text().contains(searchText, Qt::CaseInsensitive);
+
+        cardWidget->setVisible(match);
+    }
+}
+
+void setupCards(QWidget* bottomWidget, QLineEdit* searchBar) {
     QScrollArea* scrollArea = new QScrollArea(bottomWidget);
     scrollArea->setWidgetResizable(true);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -128,13 +147,14 @@ void setupCards(QWidget* bottomWidget) {
         QString brand = query.value("Brand").toString();
         double price = query.value("Price").toDouble();
 
-        QWidget* cardWidget = new QWidget;
-        cardWidget->setFixedSize(170, 170);
-        QVBoxLayout* cardLayout = new QVBoxLayout(cardWidget);
-        cardLayout->setContentsMargins(10, 10, 10, 10);
-        cardLayout->setSpacing(0);
+        QPushButton* cardButton = new QPushButton;
+        cardButton->setFixedSize(170, 170); // Set the size of each button
+        QVBoxLayout* buttonLayout = new QVBoxLayout(cardButton);
+        buttonLayout->setContentsMargins(10, 10, 10, 10);
+        buttonLayout->setSpacing(0);
 
         QLabel* nameLabel = new QLabel(productName);
+        nameLabel->setObjectName("nameLabel");
         QLabel* brandLabel = new QLabel(brand);
         QLabel* priceLabel = new QLabel(QString("$%1").arg(QString::number(price, 'f', 2)));
 
@@ -152,15 +172,16 @@ void setupCards(QWidget* bottomWidget) {
         brandLabel->setAlignment(Qt::AlignHCenter);
         priceLabel->setAlignment(Qt::AlignHCenter);
 
-        cardLayout->addWidget(nameLabel);
-        cardLayout->addWidget(brandLabel);
-        cardLayout->addWidget(priceLabel);
+        buttonLayout->addWidget(nameLabel);
+        buttonLayout->addWidget(brandLabel);
+        buttonLayout->addWidget(priceLabel);
 
-        cardWidget->setLayout(cardLayout);
+        cardButton->setLayout(buttonLayout);
 
-        cardWidget->setStyleSheet("background-color: #f0f0f0; border: 7px solid #333333;");
+        cardButton->setStyleSheet("background-color: #f0f0f0;");
+        cardButton->setStyleSheet("QPushButton { border: 7px solid #333333; } QPushButton:hover { border: 7px solid #28A4A6; }");
 
-        gridLayout->addWidget(cardWidget, row, column);
+        gridLayout->addWidget(cardButton, row, column);
 
         column++;
         if (column == 6) {
@@ -178,6 +199,10 @@ void setupCards(QWidget* bottomWidget) {
     QVBoxLayout* layout = new QVBoxLayout(bottomWidget);
     layout->addWidget(scrollArea);
     bottomWidget->setLayout(layout);
+
+    QObject::connect(searchBar, &QLineEdit::textChanged, [=](const QString &text) {
+        filterCards(text, cardsWidget, scrollArea);
+    });
 }
 
 void setupMenu(QWidget* menu) {
@@ -319,11 +344,9 @@ void setupMenu(QWidget* menu) {
 
     QWidget* bottomWidget = new QWidget;
 
-    int totalHeight = menu->height();
-    int topWidgetHeight = totalHeight / 2;
     topWidget->setFixedHeight(350);
 
-    setupCards(bottomWidget);
+    setupCards(bottomWidget, searchBar);
 
     menuLayout->addWidget(topWidget);
     menuLayout->addWidget(bottomWidget);
