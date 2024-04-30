@@ -26,6 +26,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         itemmenu.h itemmenu.cpp
         product.h
         product.cpp
+        sidebar.h
+        sidebar.cpp
+        employeePage.h
+        employeeePage.cpp
 
 
 

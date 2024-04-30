@@ -269,6 +269,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/boi/Projects/C++/Uni/OOP/Pos/employeePage.h",
+			"MU",
+			"EWIEGA46WW/moc_employeePage.cpp",
+			null
+		],
+		[
 			"/home/boi/Projects/C++/Uni/OOP/Pos/itemmenu.h",
 			"MU",
 			"EWIEGA46WW/moc_itemmenu.cpp",
@@ -278,6 +284,18 @@
 			"/home/boi/Projects/C++/Uni/OOP/Pos/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"/home/boi/Projects/C++/Uni/OOP/Pos/product.h",
+			"MU",
+			"EWIEGA46WW/moc_product.cpp",
+			null
+		],
+		[
+			"/home/boi/Projects/C++/Uni/OOP/Pos/sidebar.h",
+			"MU",
+			"EWIEGA46WW/moc_sidebar.cpp",
 			null
 		]
 	],
@@ -342,9 +360,12 @@
 	"SETTINGS_FILE" : "/home/boi/Projects/C++/Uni/OOP/Pos/build/Desktop-Debug/CMakeFiles/Pos_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/boi/Projects/C++/Uni/OOP/Pos/employeeePage.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/OOP/Pos/itemmenu.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/OOP/Pos/main.cpp", "MU", null ],
-		[ "/home/boi/Projects/C++/Uni/OOP/Pos/mainwindow.cpp", "MU", null ]
+		[ "/home/boi/Projects/C++/Uni/OOP/Pos/mainwindow.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/OOP/Pos/product.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/OOP/Pos/sidebar.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

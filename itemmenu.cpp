@@ -2,6 +2,7 @@
 #include "product.h"
 
 QVector<Product> productsArray;
+QVector<QPushButton*> cardButtons;
 
 void setupCheckoutBar(QWidget* checkoutBar) {
     QVBoxLayout* checkoutLayout = new QVBoxLayout(checkoutBar);
@@ -19,86 +20,6 @@ void setupCheckoutBar(QWidget* checkoutBar) {
     checkoutBar->setLayout(checkoutLayout);
 
     checkoutBar->setStyleSheet("background-color: #f0f0f0;");
-}
-
-void setupSidebar(QWidget* sidebar) {
-    QVBoxLayout* sidebarLayout = new QVBoxLayout(sidebar);
-    sidebar->setFixedWidth(150);
-    sidebar->setStyleSheet("background-color: #f9f9f9; color: #333333; border-radius: 20px;");
-    QSize buttonSize(75, 75);
-    QString hoverStyleSheet = "QPushButton:hover { background-color: #ECECEC; }";
-
-    QLabel* logoLabel = new QLabel;
-    logoLabel->setText("POS");
-    QFont font = logoLabel->font();
-    font.setPointSize(25);
-    font.setBold(true);
-    logoLabel->setFont(font);
-    logoLabel->setStyleSheet("color: #28A4A6;");
-    logoLabel->setFixedSize(buttonSize);
-
-    sidebarLayout->addSpacing(40);
-    sidebarLayout->addWidget(logoLabel, 0, Qt::AlignHCenter);
-    sidebarLayout->addSpacing(40);
-
-    QPushButton* button1 = new QPushButton;
-    button1->setIcon(QIcon("/home/boi/Projects/C++/Uni/OOP/Pos/img/shopping-bag.png"));
-    button1->setIconSize(QSize(60, 60));
-    QVBoxLayout* layout1 = new QVBoxLayout;
-    layout1->addWidget(button1);
-
-    QPushButton* button2 = new QPushButton;
-    button2->setIcon(QIcon("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png"));
-    button2->setIconSize(QSize(60, 60));
-    QVBoxLayout* layout2 = new QVBoxLayout;
-    layout2->addWidget(button2);
-
-    QPushButton* button3 = new QPushButton;
-    button3->setIcon(QIcon("/home/boi/Projects/C++/Uni/OOP/Pos/img/user.png"));
-    button3->setIconSize(QSize(60, 60));
-    QVBoxLayout* layout3 = new QVBoxLayout;
-    layout3->addWidget(button3);
-
-    QPushButton* button4 = new QPushButton;
-    button4->setIcon(QIcon("/home/boi/Projects/C++/Uni/OOP/Pos/img/settings.png"));
-    button4->setIconSize(QSize(60, 60));
-    QVBoxLayout* layout4 = new QVBoxLayout;
-    layout4->addWidget(button4);
-
-    button1->setStyleSheet(hoverStyleSheet);
-    button2->setStyleSheet(hoverStyleSheet);
-    button3->setStyleSheet(hoverStyleSheet);
-    button4->setStyleSheet(hoverStyleSheet);
-
-    button1->setFixedSize(buttonSize);
-    button2->setFixedSize(buttonSize);
-    button3->setFixedSize(buttonSize);
-    button4->setFixedSize(buttonSize);
-
-    sidebarLayout->addLayout(layout1);
-    sidebarLayout->addLayout(layout2);
-    sidebarLayout->addLayout(layout3);
-    sidebarLayout->addLayout(layout4);
-
-    sidebarLayout->addSpacing(40);
-    sidebarLayout->addWidget(button1, 0, Qt::AlignHCenter);
-    sidebarLayout->addSpacing(40);
-
-    sidebarLayout->addSpacing(40);
-    sidebarLayout->addWidget(button2, 0, Qt::AlignHCenter);
-    sidebarLayout->addSpacing(40);
-
-    sidebarLayout->addSpacing(40);
-    sidebarLayout->addWidget(button3, 0, Qt::AlignHCenter);
-    sidebarLayout->addSpacing(40);
-
-    sidebarLayout->addStretch();
-
-    sidebarLayout->addSpacing(40);
-    sidebarLayout->addWidget(button4, 0, Qt::AlignHCenter);
-    sidebarLayout->addSpacing(40);
-
-    sidebar->setLayout(sidebarLayout);
 }
 
 void filterCards(const QString& searchText, QWidget* cardsWidget, QScrollArea* scrollArea) {
@@ -190,9 +111,11 @@ void setupCards(QWidget* bottomWidget, QLineEdit* searchBar) {
         cardButton->setLayout(buttonLayout);
 
         cardButton->setStyleSheet("background-color: #f0f0f0;");
-        cardButton->setStyleSheet("QPushButton { border: 7px solid #333333; } QPushButton:hover { border: 7px solid #28A4A6; }");
+        cardButton->setStyleSheet("QPushButton { border: 6px solid #333333; } QPushButton:hover { border: 5px solid #28A4A6; }");
 
         gridLayout->addWidget(cardButton, row, column);
+
+        cardButtons.append(cardButton);
 
         column++;
         if (column == 6) {
@@ -251,7 +174,7 @@ void setupMenu(QWidget* menu) {
     labelsLayout->addWidget(discoverLabel);
 
     QLineEdit* searchBar = new QLineEdit;
-    searchBar->setStyleSheet("border: 2px solid #CCCCCC; border-radius: 10px; padding: 5px;");
+    searchBar->setStyleSheet("border: 5px solid #CCCCCC; border-radius: 10px; padding: 5px;");
     searchBar->setPlaceholderText("Slave auction search");
 
     labelsAndSearchLayout->addLayout(labelsLayout);
@@ -272,7 +195,7 @@ void setupMenu(QWidget* menu) {
     QIcon icon1("/home/boi/Projects/C++/Uni/OOP/Pos/img/n.png");
     button1->setIcon(icon1);
     button1->setIconSize(QSize(50, 50));
-    button1->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+    button1->setStyleSheet("QPushButton { border: 5px solid #333333; padding: 10px; }");
 
     QVBoxLayout* buttonLayout1 = new QVBoxLayout;
     buttonLayout1->setAlignment(Qt::AlignCenter);
@@ -287,7 +210,7 @@ void setupMenu(QWidget* menu) {
     QIcon icon2("/home/boi/Projects/C++/Uni/OOP/Pos/img/i.png");
     button2->setIcon(icon2);
     button2->setIconSize(QSize(50, 50));
-    button2->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+    button2->setStyleSheet("QPushButton { border: 5px solid #333333; padding: 10px; }");
 
     QVBoxLayout* buttonLayout2 = new QVBoxLayout;
     buttonLayout2->setAlignment(Qt::AlignCenter);
@@ -302,7 +225,7 @@ void setupMenu(QWidget* menu) {
     QIcon icon3("/home/boi/Projects/C++/Uni/OOP/Pos/img/g.png");
     button3->setIcon(icon3);
     button3->setIconSize(QSize(50, 50));
-    button3->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+    button3->setStyleSheet("QPushButton { border: 5px solid #333333; padding: 10px; }");
 
     QVBoxLayout* buttonLayout3 = new QVBoxLayout;
     buttonLayout3->setAlignment(Qt::AlignCenter);
@@ -317,7 +240,7 @@ void setupMenu(QWidget* menu) {
     QIcon icon4("/home/boi/Projects/C++/Uni/OOP/Pos/img/g.png");
     button4->setIcon(icon4);
     button4->setIconSize(QSize(50, 50));
-    button4->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+    button4->setStyleSheet("QPushButton { border: 5px solid #333333; padding: 10px; }");
 
     QVBoxLayout* buttonLayout4 = new QVBoxLayout;
     buttonLayout4->setAlignment(Qt::AlignCenter);
@@ -332,7 +255,7 @@ void setupMenu(QWidget* menu) {
     QIcon icon5("/home/boi/Projects/C++/Uni/OOP/Pos/img/a.png");
     button5->setIcon(icon5);
     button5->setIconSize(QSize(50, 50));
-    button5->setStyleSheet("QPushButton { border: 2px solid #333333; padding: 10px; }");
+    button5->setStyleSheet("QPushButton { border: 5px solid #333333; padding: 10px; }");
 
     QVBoxLayout* buttonLayout5 = new QVBoxLayout;
     buttonLayout5->setAlignment(Qt::AlignCenter);
