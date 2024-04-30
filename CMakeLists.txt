@@ -25,6 +25,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         itemmenu.h itemmenu.cpp
         product.h
+        product.cpp
 
 
 

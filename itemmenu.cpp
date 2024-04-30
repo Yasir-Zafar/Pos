@@ -133,7 +133,22 @@ void setupCards(QWidget* bottomWidget, QLineEdit* searchBar) {
         return;
     }
 
-    QSqlQuery query("SELECT Name, Brand, Category, Price FROM products");
+    QSqlQuery query("SELECT id, Name, Brand, Category, Price, Unit, Sold, Inventory FROM products");
+
+    while (query.next()) {
+        int id = query.value("id").toInt();
+        QString productName = query.value("Name").toString();
+        QString brand = query.value("Brand").toString();
+        QString category = query.value("Category").toString();
+        double price = query.value("Price").toDouble();
+        int unit = query.value("Unit").toInt();
+        int sold = query.value("Sold").toInt();
+        int inventory = query.value("Inventory").toInt();
+
+        // Create Product object and add it to the vector
+        Product product(id, productName, brand, price, category, unit, sold, inventory);
+        productsArray.push_back(product);
+    }
 
     QGridLayout* gridLayout = new QGridLayout(cardsWidget);
     gridLayout->setContentsMargins(15, 15, 15, 15);
@@ -142,21 +157,17 @@ void setupCards(QWidget* bottomWidget, QLineEdit* searchBar) {
 
     int row = 0;
     int column = 0;
-    while (query.next()) {
-        QString productName = query.value("Name").toString();
-        QString brand = query.value("Brand").toString();
-        double price = query.value("Price").toDouble();
-
+    for (const Product& product : productsArray) {
         QPushButton* cardButton = new QPushButton;
         cardButton->setFixedSize(170, 170); // Set the size of each button
         QVBoxLayout* buttonLayout = new QVBoxLayout(cardButton);
         buttonLayout->setContentsMargins(10, 10, 10, 10);
         buttonLayout->setSpacing(0);
 
-        QLabel* nameLabel = new QLabel(productName);
+        QLabel* nameLabel = new QLabel(product.name());
         nameLabel->setObjectName("nameLabel");
-        QLabel* brandLabel = new QLabel(brand);
-        QLabel* priceLabel = new QLabel(QString("$%1").arg(QString::number(price, 'f', 2)));
+        QLabel* brandLabel = new QLabel(product.brand());
+        QLabel* priceLabel = new QLabel(QString("$%1").arg(QString::number(product.price(), 'f', 2)));
 
         nameLabel->setStyleSheet("font-size: 16px; font-weight: bold; border: none; padding: 0;");
         brandLabel->setStyleSheet("color: #333333; border: none; padding: 0;");
