@@ -55,13 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     mainLayout->addWidget(checkoutBar);
 
     mainWidget->setLayout(mainLayout);
-    //add the scrollable cart items(change in ui is necessary)
-    layout = new QVBoxLayout(this);
-    ui->scrollAreaWidgetContents->setLayout(layout);
-    totalAmount = 0;
-    ui->label_6->setText(QString::number(totalAmount));
- mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("C:/Users/razaa/OneDrive/Desktop/raza.db");
+    
 }
 
 MainWindow::~MainWindow()
@@ -70,8 +64,11 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_pushButton_clicked()
 {
+   QPushButton* senderButton = qobject_cast<QPushButton*>(sender());
     ui->scrollAreaWidgetContents->show();
-    cartItem* newWid = new cartItem(this, "Apples", "50");
+    QString name = senderButton->property("Label1").toString();
+    QString price = senderButton->property("Label2").toString();
+    cartItem* newWid = new cartItem(this, name, price);
     QVBoxLayout *top = new QVBoxLayout;
     top->addWidget(newWid);
     layout->addLayout(top);
