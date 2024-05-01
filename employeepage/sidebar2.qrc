@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/new">
+        <file>user.svg</file>
+        <file>shopping-bag.svg</file>
+        <file>settings.svg</file>
+        <file>pie-chart.svg</file>
+    </qresource>
+</RCC>
