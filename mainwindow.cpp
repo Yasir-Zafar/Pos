@@ -55,10 +55,42 @@ MainWindow::MainWindow(QWidget *parent)
     mainLayout->addWidget(checkoutBar);
 
     mainWidget->setLayout(mainLayout);
+    //add the scrollable cart items(change in ui is necessary)
+    layout = new QVBoxLayout(this);
+    ui->scrollAreaWidgetContents->setLayout(layout);
+    totalAmount = 0;
+    ui->label_6->setText(QString::number(totalAmount));
+ mydb = QSqlDatabase::addDatabase("QSQLITE");
+    mydb.setDatabaseName("C:/Users/razaa/OneDrive/Desktop/raza.db");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::on_pushButton_clicked()
+{
+    ui->scrollAreaWidgetContents->show();
+    cartItem* newWid = new cartItem(this, "Apples", "50");
+    QVBoxLayout *top = new QVBoxLayout;
+    top->addWidget(newWid);
+    layout->addLayout(top);
+}
+void MainWindow::on_checkout_clicked()
+{
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Member Check", "Are You A Member", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        qDebug() << "Discount Added!";
+        totalAmount = totalAmount * (0.9);
+        ui->label_6->setText(QString::number(totalAmount));
+    }
+    QLayoutItem *child;
+    while ((child = layout->takeAt(0)) != nullptr) {
+        if (child->widget()) {
+            delete child->widget();
+        }
+        delete child;
+    }
+    ui->scrollAreaWidgetContents->hide();
 }
 
