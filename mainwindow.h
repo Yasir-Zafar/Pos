@@ -20,14 +20,15 @@ public:
     ~MainWindow();
     QSqlDatabase salesDb;
     float totalAmount;
+    QVBoxLayout *layout;
 
 private slots:
     void setupEmployeePage(QHBoxLayout *mainLayout);
-    void on_pushButton_clicked();//add to cart button
-    void on_checkout_clicked();
     void clearLayout(QLayout *layout);
+    void on_pushButton_clicked();
+    void on_checkout_clicked();
 
 private:
-    Ui::MainWindow *ui;
+Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
