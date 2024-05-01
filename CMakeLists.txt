@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         sidebar.cpp
         employeePage.h
         employeeePage.cpp
+        cartitem.h cartitem.cpp
 
 
 
