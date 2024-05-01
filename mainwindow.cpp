@@ -2,6 +2,8 @@
 #include "./ui_mainwindow.h"
 #include "itemmenu.h"
 #include "sidebar.h"
+#include "cartitem.h"
+#include <QMessageBox>
 #include "employeePage.h"
 
 void MainWindow::clearLayout(QLayout *layout) {
@@ -41,19 +43,21 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget* mainWidget = new QWidget;
     setCentralWidget(mainWidget);
 
-    QWidget* checkoutBar = new QWidget;
+
     QWidget* menu = new QWidget;
 
     Sidebar* sidebar = new Sidebar();
-    setupCheckoutBar(checkoutBar);
+    setupCheckoutBar(ui->widget);
     setupMenu(menu);
 
     QHBoxLayout* mainLayout = new QHBoxLayout(mainWidget);
-
+    layout = new QVBoxLayout(this);
+    ui->scrollAreaWidgetContents->setLayout(layout);
+    totalAmount = 0;
+    ui->label_6->setText(QString::number(totalAmount));
     mainLayout->addWidget(sidebar);
     mainLayout->addWidget(menu, 1);
-    mainLayout->addWidget(checkoutBar);
-
+    mainLayout->addWidget(ui->widget);
     mainWidget->setLayout(mainLayout);
     
 }
@@ -64,7 +68,7 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_pushButton_clicked()
 {
-   QPushButton* senderButton = qobject_cast<QPushButton*>(sender());
+    QPushButton* senderButton = qobject_cast<QPushButton*>(sender());
     ui->scrollAreaWidgetContents->show();
     QString name = senderButton->property("Label1").toString();
     QString price = senderButton->property("Label2").toString();
@@ -73,13 +77,20 @@ void MainWindow::on_pushButton_clicked()
     top->addWidget(newWid);
     layout->addLayout(top);
 }
+
+
 void MainWindow::on_checkout_clicked()
 {
     QMessageBox::StandardButton reply = QMessageBox::question(this, "Member Check", "Are You A Member", QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
+        qDebug() << "You a reaal nigga my G";
         qDebug() << "Discount Added!";
         totalAmount = totalAmount * (0.9);
         ui->label_6->setText(QString::number(totalAmount));
+    }
+    else {
+        QMessageBox::critical(this, "Not a Member", "You're Not a Member Bitch ass Nigga");
+        this->close();
     }
     QLayoutItem *child;
     while ((child = layout->takeAt(0)) != nullptr) {
@@ -89,5 +100,7 @@ void MainWindow::on_checkout_clicked()
         delete child;
     }
     ui->scrollAreaWidgetContents->hide();
+
 }
+
 
