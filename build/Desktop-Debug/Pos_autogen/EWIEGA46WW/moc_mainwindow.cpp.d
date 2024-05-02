@@ -1,6 +1,7 @@
 /home/boi/Projects/C++/Uni/OOP/Pos/build/Desktop-Debug/Pos_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/boi/Projects/C++/Uni/OOP/Pos/mainwindow.h \
   /home/boi/Projects/C++/Uni/OOP/Pos/build/Desktop-Debug/Pos_autogen/moc_predefs.h \
   /home/boi/Projects/C++/Uni/OOP/Pos/cartItem.h \
+  /home/boi/Projects/C++/Uni/OOP/Pos/sidebar.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \

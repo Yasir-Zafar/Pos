@@ -2,40 +2,28 @@
 #include "./ui_mainwindow.h"
 #include "itemmenu.h"
 #include "sidebar.h"
-#include "cartItem.h"
 #include <QVector>
 #include <QMessageBox>
 int count = 0;
 int spin = 0;
-void MainWindow::clearLayout(QLayout *layout) {
-    QLayoutItem *item;
-    while ((item = layout->takeAt(0)) != nullptr) {
-        if (item->layout()) {
-            clearLayout(item->layout());
-            delete item->layout();
-        }
-        if (item->widget()) {
-            delete item->widget();
-        }
-        delete item;
-    }
-}
+
 QVector<QString> itemName;
 QVector<QString> itemPrice;
 QVector<int> itemQuantity;
 
-void MainWindow::setupEmployeePage(QHBoxLayout* mainLayout) {
-    Sidebar* sidebar = new Sidebar();
-    sidebar->setStyleSheet("background-color: #f9f9f9; color: #333333; border-radius: 20px;");
+void MainWindow::switchToThirdPage() {
+    if (currentPage) {
+        delete currentPage;
+    }
 
-    mainLayout->addWidget(sidebar);
+    // Create the new page
+    currentPage = new QWidget(this);
+    currentPage->setStyleSheet("background-color: #FFFFFF;"); // Set background color
+    QVBoxLayout* layout = new QVBoxLayout(currentPage);
+    // Add widgets to the layout of the third page if needed
 
-    // Add the employee page
-    QWidget* employeePage = new QWidget();
-
-    mainLayout->addWidget(employeePage);
-
-    setLayout(mainLayout);
+    setCentralWidget(currentPage);
+    currentLayout = layout;
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -47,10 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget* mainWidget = new QWidget;
     setCentralWidget(mainWidget);
 
-
     QWidget* menu = new QWidget;
 
-    Sidebar* sidebar = new Sidebar();
+    sidebar = new Sidebar();
+    connect(sidebar->getThirdButton(), &QPushButton::clicked, this, &MainWindow::switchToThirdPage);
     setupCheckoutBar(ui->widget);
     setupMenu(menu);
 

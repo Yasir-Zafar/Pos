@@ -1,6 +1,13 @@
 #include "sidebar.h"
-#include "mainwindow.h"
 #include <QPalette>
+
+QPushButton* Sidebar::getThirdButton() {
+    return button3;
+}
+
+void Sidebar::handleThirdButtonClick() {
+    emit thirdButtonClicked(); // Emit the signal when the third button is clicked
+}
 
 Sidebar::Sidebar(QWidget* parent) : QWidget(parent) {
     setStyleSheet("QWidget { background-color: #f9f9f9; border-radius: 20px; }");
@@ -38,6 +45,7 @@ void Sidebar::setupUI() {
     QPushButton* button1 = createSidebarButton("/home/boi/Projects/C++/Uni/OOP/Pos/img/shopping-bag.png", buttonSize, hoverStyleSheet);
     QPushButton* button2 = createSidebarButton("/home/boi/Projects/C++/Uni/OOP/Pos/img/pie-chart.png", buttonSize, hoverStyleSheet);
     QPushButton* button3 = createSidebarButton("/home/boi/Projects/C++/Uni/OOP/Pos/img/user.png", buttonSize, hoverStyleSheet);
+    connect(button3, &QPushButton::clicked, this, &Sidebar::handleThirdButtonClick); // Connect the clicked signal to the slot
     QPushButton* button4 = createSidebarButton("/home/boi/Projects/C++/Uni/OOP/Pos/img/settings.png", buttonSize, hoverStyleSheet);
 
     sidebarLayout->addSpacing(40);

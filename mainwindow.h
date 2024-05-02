@@ -6,6 +6,7 @@
 #include <QScrollArea>
 #include <QVBoxLayout>
 #include "cartItem.h"
+#include "sidebar.h"
 #include <QtSql>
 
 QT_BEGIN_NAMESPACE
@@ -25,13 +26,15 @@ public:
     QVBoxLayout *layout;
 
 private slots:
-    void setupEmployeePage(QHBoxLayout *mainLayout);
-    void clearLayout(QLayout *layout);
     void on_pushButton_clicked();
     void on_checkout_clicked();
     void onSpinBoxValueChanged(int newValue);
+    void switchToThirdPage();
 
 private:
 Ui::MainWindow *ui;
+    Sidebar* sidebar;
+    QWidget* currentPage;
+    QVBoxLayout* currentLayout;
 };
 #endif // MAINWINDOW_H
