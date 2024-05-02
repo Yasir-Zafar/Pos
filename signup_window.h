@@ -25,6 +25,17 @@ private slots:
 
     void on_pushButton_login_clicked();
 
+    int countPlaceholders(const QString &query) {
+        int count = 0;
+        int pos = 0;
+        while ((pos = query.indexOf('?', pos)) != -1) {
+            ++count;
+            ++pos;
+        }
+        return count;
+    }
+
+
 private:
     Ui::signup_Window *ui;
 };
