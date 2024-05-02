@@ -9,7 +9,7 @@ login::login(QWidget *parent) : QWidget(parent) , ui(new Ui::login)
     ui->setupUi(this);
 
     QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
-    empDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/employees.db");
+    empDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/employees_2.db");
 
     if(!empDB.open())
     {
@@ -53,8 +53,11 @@ void login::on_pushButton_login_clicked()
 
     //verify data
 
-    QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
-    empDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/employees.db");
+    if(ui->radioButton_employee->isChecked())
+    {
+
+     QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
+    empDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/employees_2.db");
 
     if(!empDB.open())
     {
@@ -80,6 +83,43 @@ void login::on_pushButton_login_clicked()
         ui->label_status->setText("[-]Database Error.");
         QMessageBox::critical(this, "Error", "Database error occurred." + qry.lastError().text());
     }
+
+   }
+
+
+   if(ui->radioButton_admin->isChecked())
+   {
+       QSqlDatabase admDB=QSqlDatabase::addDatabase("QSQLITE");
+       admDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/admin.db");
+
+       if(!admDB.open())
+       {
+           QMessageBox::warning(this,"error!","failed to open db");
+       }
+       else
+           QMessageBox::information(this,"db status","db opened successfully");
+
+       QSqlQuery qry;
+       if(qry.exec("SELECT username, passwordd FROM Admins WHERE username='" + username + "' AND passwordd='" + password+"'"))
+       {
+           if(qry.next()) {
+               ui->label_status->setText("[+]Valid Username and Password");
+               QString msg = "Welcome, " + qry.value(0).toString();
+               QMessageBox::information(this, "Login Successful", msg);
+           }
+           else {
+               ui->label_status->setText("[-]Wrong Username or Password.");
+               QMessageBox::warning(this, "Login Failed", "Invalid username or password.");
+           }
+       }
+       else {
+           ui->label_status->setText("[-]Database Error.");
+           QMessageBox::critical(this, "Error", "Database error occurred." + qry.lastError().text());
+       }
+
+   }
+
+
 }
 
 
