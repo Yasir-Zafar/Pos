@@ -139,7 +139,7 @@ void MainWindow::on_checkout_clicked()
         query.addBindValue(itemPrice[i]);
         for (int j = start + 1; j < itemQuantity.size(); j++) {
             qDebug() << "At index " << j << "  " << itemQuantity[j];
-            if (itemQuantity[j] == 1 && j > count) {
+            if (itemQuantity[j] == 1 && j > 3) {
                 query.addBindValue(itemQuantity[j - 1]);
                 qDebug() << itemQuantity[j - 1] << "break";
                 start = j;
