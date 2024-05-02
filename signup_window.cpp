@@ -125,7 +125,40 @@ void signup_Window::on_pushButton_signup_clicked()
 
     if(ui->radioButton_admin->isChecked())
     {
-         QMessageBox::information(this,"admin","ur signing up as an admin");
+        QMessageBox::information(this,"admin","ur signing up as an admin");
+        QSqlDatabase admDB=QSqlDatabase::addDatabase("QSQLITE");
+        admDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/admin.db");
+
+        if (!admDB.open())
+        {
+            QMessageBox::critical(this, "Error", "Failed to open database: " + admDB.lastError().text());
+            return;
+        }
+
+        QSqlQuery qry(admDB);
+        qry.prepare("INSERT INTO Admins VALUES (?, ?, ?);");
+        qry.addBindValue(email);
+        qry.addBindValue(username);
+        qry.addBindValue(password);
+
+
+        if (qry.exec())
+        {
+            QMessageBox::information(this, "Saved", "New record added");
+        }
+
+        else
+        {
+            QMessageBox::critical(this, "Error!", qry.lastError().text());
+        }
+
+        int numPlaceholders = countPlaceholders(qry.executedQuery());
+        int numValues = qry.boundValues().size();
+
+        if (numPlaceholders != numValues) {
+            QMessageBox::critical(this, "Error", "Parameter mismatch: the number of placeholders in the query does not match the number of values.");
+            return;
+        }
     }
 
 }
@@ -136,6 +169,4 @@ void signup_Window::on_pushButton_login_clicked()
     this->hide();
     Log->show();
 }
-
-
 
