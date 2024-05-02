@@ -3,15 +3,15 @@
 #include "signup_window.h"
 #include<QMessageBox>
 
-login::login(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::login)
+
+login::login(QWidget *parent) : QWidget(parent) , ui(new Ui::login)
 {
     ui->setupUi(this);
-    QSqlDatabase CUSTDB=QSqlDatabase::addDatabase("QSQLITE");
-    CUSTDB.setDatabaseName("C:/Users/Lenovo/OneDrive/Desktop/customers.db");
 
-    if(!CUSTDB.open())
+    QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
+    empDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/employees.db");
+
+    if(!empDB.open())
     {
         ui->label_status->setText("Failed to connect database");
     }
@@ -23,11 +23,13 @@ login::login(QWidget *parent)
 
 login::~login()
 {
+    empDB.close();
     delete ui;
 }
 
 void login::on_pushButton_login_clicked()
 {
+
     QString username = ui->lineEdit_username->text();
     QString password = ui->lineEdit_password->text();
 
@@ -49,6 +51,35 @@ void login::on_pushButton_login_clicked()
         return;
     }
 
+    //verify data
+
+    QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
+    empDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/employees.db");
+
+    if(!empDB.open())
+    {
+        QMessageBox::warning(this,"error!","failed to open db");
+    }
+    else
+        QMessageBox::information(this,"db status","db opened successfully");
+
+    QSqlQuery qry;
+    if(qry.exec("SELECT username, passwordd FROM employees WHERE username='" + username + "' AND passwordd='" + password+"'"))
+    {
+        if(qry.next()) {
+            ui->label_status->setText("[+]Valid Username and Password");
+            QString msg = "Welcome, " + qry.value(0).toString();
+            QMessageBox::information(this, "Login Successful", msg);
+        }
+        else {
+            ui->label_status->setText("[-]Wrong Username or Password.");
+            QMessageBox::warning(this, "Login Failed", "Invalid username or password.");
+        }
+    }
+    else {
+        ui->label_status->setText("[-]Database Error.");
+        QMessageBox::critical(this, "Error", "Database error occurred." + qry.lastError().text());
+    }
 }
 
 
@@ -59,4 +90,3 @@ void login::on_pushButton_signup_clicked()
     sp->show();
 
 }
-
