@@ -2,8 +2,42 @@
 #include "./ui_mainwindow.h"
 #include "itemmenu.h"
 #include "sidebar.h"
-#include "cartItem.h"
+#include "cartitem.h"
+#include <QVector>
 #include <QMessageBox>
+#include "employeePage.h"
+int count = 0;
+int spin = 0;
+void MainWindow::clearLayout(QLayout *layout) {
+    QLayoutItem *item;
+    while ((item = layout->takeAt(0)) != nullptr) {
+        if (item->layout()) {
+            clearLayout(item->layout());
+            delete item->layout();
+        }
+        if (item->widget()) {
+            delete item->widget();
+        }
+        delete item;
+    }
+}
+QVector<QString> itemName;
+QVector<QString> itemPrice;
+QVector<int> itemQuantity;
+
+void MainWindow::setupEmployeePage(QHBoxLayout* mainLayout) {
+    Sidebar* sidebar = new Sidebar();
+    sidebar->setStyleSheet("background-color: #f9f9f9; color: #333333; border-radius: 20px;");
+
+    mainLayout->addWidget(sidebar);
+
+    // Add the employee page
+    QWidget* employeePage = new QWidget();
+
+    mainLayout->addWidget(employeePage);
+
+    setLayout(mainLayout);
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,13 +64,20 @@ MainWindow::MainWindow(QWidget *parent)
     mainLayout->addWidget(menu, 1);
     mainLayout->addWidget(ui->widget);
     mainWidget->setLayout(mainLayout);
-    
+    count = 0;
+    itemName.resize(0);
+    itemPrice.resize(0);
+    for (int i = 0; i < cardButtons.size(); i++)
+    connect(cardButtons[i], &QPushButton::clicked, this, &MainWindow::on_pushButton_clicked);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+QString name;
+QString price;
+
 void MainWindow::on_pushButton_clicked()
 {
     count++;
@@ -88,13 +129,28 @@ void MainWindow::on_checkout_clicked()
     if (myindb.open()) {
         qDebug() << "DB is open";
     }
+
+    int start = count;
     for (int i = 0; i < itemName.size(); i++) {
         QSqlQuery query(myindb);
         query.prepare("INSERT INTO info "
                       "VALUES (?, ?, ?);");
         query.addBindValue(itemName[i]);
         query.addBindValue(itemPrice[i]);
-        query.addBindValue(itemQuantity[count + i]);
+        for (int j = start + 1; j < itemQuantity.size(); j++) {
+            qDebug() << "At index " << j << "  " << itemQuantity[j];
+            if (itemQuantity[j] == 1 && j > count) {
+                query.addBindValue(itemQuantity[j - 1]);
+                qDebug() << itemQuantity[j - 1] << "break";
+                start = j;
+                break;
+            }
+            else if (j == itemQuantity.size() - 1) {
+                query.addBindValue(itemQuantity[j]);
+                qDebug() << itemQuantity[j] << "break";
+                break;
+            }
+        }
         query.exec();
     }
     itemName.clear();
@@ -104,6 +160,7 @@ void MainWindow::on_checkout_clicked()
 
 void MainWindow::onSpinBoxValueChanged(int newValue)
 {
+    spin++;
     qDebug() << "New value of QSpinBox:" << newValue;
     QSpinBox *spinBox = qobject_cast<QSpinBox*>(sender());
     int quantity = spinBox->value();
@@ -111,7 +168,4 @@ void MainWindow::onSpinBoxValueChanged(int newValue)
     for (int i = 0; i < itemQuantity.size(); i++) {
         qDebug() << itemQuantity[i];
     }
-
 }
-
-
