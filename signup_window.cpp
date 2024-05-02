@@ -15,10 +15,10 @@ signup_Window::signup_Window(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QSqlDatabase CUSTDB=QSqlDatabase::addDatabase("QSQLITE");
-    CUSTDB.setDatabaseName("C:/Users/Lenovo/OneDrive/Desktop/customers.db");
+    QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
+    empDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/employees_2.db");
 
-    if(!CUSTDB.open())
+    if(!empDB.open())
     {
         ui->label_status->setText("Failed to connect database");
     }
@@ -39,6 +39,7 @@ bool isValidEmail(QString input)  // function to verify email
     string inputStr = input.toStdString();
     return regex_match(inputStr, pattern);
 }
+
 
 void signup_Window::on_pushButton_signup_clicked()
 {
@@ -82,11 +83,50 @@ void signup_Window::on_pushButton_signup_clicked()
         return;
     }
 
+    if(ui->radioButton_employee->isChecked())
+    {
+        QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
+        empDB.setDatabaseName("C:/Users/Lenovo/Downloads/SQLiteDatabaseBrowserPortable/employees_2.db");
 
+        if (!empDB.open())
+        {
+            QMessageBox::critical(this, "Error", "Failed to open database: " + empDB.lastError().text());
+            return;
+        }
 
-    //write data into database
+        QMessageBox::information(this, "employee", "You're signing up as an employee");
 
+        QSqlQuery qry(empDB);
+        qry.prepare("INSERT INTO employees VALUES (?, ?, ?, ?);");
+        qry.addBindValue(email);
+        qry.addBindValue(username);
+        qry.addBindValue(password);
+        qry.addBindValue("");
 
+        if (qry.exec())
+        {
+            QMessageBox::information(this, "Saved", "New record added");
+        }
+
+        else
+        {
+            QMessageBox::critical(this, "Error!", qry.lastError().text());
+        }
+
+        int numPlaceholders = countPlaceholders(qry.executedQuery());
+        int numValues = qry.boundValues().size();
+
+        if (numPlaceholders != numValues) {
+            QMessageBox::critical(this, "Error", "Parameter mismatch: the number of placeholders in the query does not match the number of values.");
+            return;
+        }
+
+    }
+
+    if(ui->radioButton_admin->isChecked())
+    {
+         QMessageBox::information(this,"admin","ur signing up as an admin");
+    }
 
 }
 
@@ -96,4 +136,6 @@ void signup_Window::on_pushButton_login_clicked()
     this->hide();
     Log->show();
 }
+
+
 
