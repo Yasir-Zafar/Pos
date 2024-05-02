@@ -5,7 +5,7 @@
 #include <QHBoxLayout>
 #include <QScrollArea>
 #include <QVBoxLayout>
-#include "cartitem.h"
+#include "cartItem.h"
 #include <QtSql>
 
 QT_BEGIN_NAMESPACE

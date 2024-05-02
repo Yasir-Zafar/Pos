@@ -2,10 +2,9 @@
 #include "./ui_mainwindow.h"
 #include "itemmenu.h"
 #include "sidebar.h"
-#include "cartitem.h"
+#include "cartItem.h"
 #include <QVector>
 #include <QMessageBox>
-#include "employeePage.h"
 int count = 0;
 int spin = 0;
 void MainWindow::clearLayout(QLayout *layout) {

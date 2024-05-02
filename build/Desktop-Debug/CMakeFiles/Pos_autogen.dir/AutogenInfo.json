@@ -269,9 +269,9 @@
 	"HEADERS" : 
 	[
 		[
-			"/home/boi/Projects/C++/Uni/OOP/Pos/employeePage.h",
+			"/home/boi/Projects/C++/Uni/OOP/Pos/cartItem.h",
 			"MU",
-			"EWIEGA46WW/moc_employeePage.cpp",
+			"EWIEGA46WW/moc_cartItem.cpp",
 			null
 		],
 		[
@@ -360,7 +360,7 @@
 	"SETTINGS_FILE" : "/home/boi/Projects/C++/Uni/OOP/Pos/build/Desktop-Debug/CMakeFiles/Pos_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/boi/Projects/C++/Uni/OOP/Pos/employeeePage.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/OOP/Pos/cartItem.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/OOP/Pos/itemmenu.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/OOP/Pos/main.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/OOP/Pos/mainwindow.cpp", "MU", null ],

@@ -2,7 +2,6 @@
 #include "product.h"
 
 QVector<Product> productsArray;
-QVector<QPushButton*> cardButtons;
 
 void setupCheckoutBar(QWidget* checkoutBar) {
     QVBoxLayout* checkoutLayout = new QVBoxLayout(checkoutBar);

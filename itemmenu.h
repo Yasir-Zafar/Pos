@@ -17,5 +17,7 @@ void setupSidebar(QWidget* sidebar);
 void setupMenu(QWidget* menu);
 void setupCheckoutBar(QWidget* checkoutBar);
 void setupCards(QWidget* bottomWidget, QObject* eventFilter);
+//ignore this please
+inline QVector<QPushButton*> cardButtons;
 
 #endif // ITEMMENU_H
