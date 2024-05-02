@@ -5,13 +5,13 @@
 #include <QDebug>
 #include <QVBoxLayout>
 
-CardWidget::CardWidget(QWidget* parent) : QWidget(parent) {
+cardWidget::cardWidget(QWidget* parent) : QWidget(parent) {
     setupUi();
     loadData();
     applyStyles();
 }
 
-void CardWidget::setupUi() {
+void cardWidget::setupUi() {
     QVBoxLayout* layout = new QVBoxLayout(this);
     layout->setContentsMargins(10, 10, 10, 10);
     layout->setSpacing(10);
@@ -22,14 +22,14 @@ void CardWidget::setupUi() {
     priceLabel = new QLabel(this);
 
     layout->addWidget(nameLabel);
-    layout->ddWidget(brandLabel);
+    layout->addWidget(brandLabel);
     layout->addWidget(categoryLabel);
     layout->addWidget(priceLabel);
 
     setLayout(layout);
 }
 
-void CardWidget::loadData() {
+void cardWidget::loadData() {
     // Open SQL database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("project_root/SQL/products.db"); // Adjust path as needed
@@ -64,7 +64,7 @@ void CardWidget::loadData() {
     db.close();
 }
 
-void CardWidget::applyStyles() {
+void cardWidget::applyStyles() {
     // Apply styles to the card widget
     setStyleSheet(
         "background-color: #ffffff;"       // Set background color to white

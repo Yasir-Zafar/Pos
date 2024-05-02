@@ -23,18 +23,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Pos
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        itemmenu.h itemmenu.cpp
+        itemmenu.h
+        itemmenu.cpp
         product.h
         product.cpp
         sidebar.h
         sidebar.cpp
-        employeePage.h
-        employeeePage.cpp
-        cartitem.h cartitem.cpp
-
-
-
-
+        cartItem.h
+        cartItem.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Pos APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

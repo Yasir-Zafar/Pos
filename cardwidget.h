@@ -9,7 +9,7 @@ class cardWidget: public QWidget
 {
     Q_OBJECT
 public:
-    explicit CardWidget(QWidget* parent = nullptr);
+    explicit cardWidget(QWidget* parent = nullptr);
 private:
     QLabel* nameLabel;
     QLabel* brandLabel;
