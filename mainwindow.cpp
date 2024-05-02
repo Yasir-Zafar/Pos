@@ -68,16 +68,28 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_pushButton_clicked()
 {
+    count++;
     QPushButton* senderButton = qobject_cast<QPushButton*>(sender());
     ui->scrollAreaWidgetContents->show();
-    QString name = senderButton->property("Label1").toString();
-    QString price = senderButton->property("Label2").toString();
-    cartItem* newWid = new cartItem(this, name, price);
+    qDebug() << senderButton->layout()->dynamicPropertyNames();
+    price = senderButton->property("priceLabel").toString();
+    newWid = new cartItem(this, name, price);
     QVBoxLayout *top = new QVBoxLayout;
+    disconnect(newWid->counter, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxValueChanged(int)));
+
+    // Connect valueChanged signal before retrieving the quantity
+    connect(newWid->counter, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxValueChanged(int)));
+
+    // Retrieve quantity from the QSpinBox and store it in the vector
+    int quantity = newWid->counter->value();
+    itemQuantity.append(quantity);
+
     top->addWidget(newWid);
     layout->addLayout(top);
+    // Store item information in vectors
+    itemName.append(name);
+    itemPrice.append(price);
 }
-
 
 void MainWindow::on_checkout_clicked()
 {
@@ -100,6 +112,34 @@ void MainWindow::on_checkout_clicked()
         delete child;
     }
     ui->scrollAreaWidgetContents->hide();
+    QSqlDatabase myindb = QSqlDatabase::addDatabase("QSQLITE");
+    myindb.setDatabaseName("sales.db");
+    if (myindb.open()) {
+        qDebug() << "DB is open";
+    }
+    for (int i = 0; i < itemName.size(); i++) {
+        QSqlQuery query(myindb);
+        query.prepare("INSERT INTO info "
+                      "VALUES (?, ?, ?);");
+        query.addBindValue(itemName[i]);
+        query.addBindValue(itemPrice[i]);
+        query.addBindValue(itemQuantity[count + i]);
+        query.exec();
+    }
+    itemName.clear();
+    itemPrice.clear();
+    itemQuantity.clear();
+}
+
+void MainWindow::onSpinBoxValueChanged(int newValue)
+{
+    qDebug() << "New value of QSpinBox:" << newValue;
+    QSpinBox *spinBox = qobject_cast<QSpinBox*>(sender());
+    int quantity = spinBox->value();
+    itemQuantity.append(quantity);
+    for (int i = 0; i < itemQuantity.size(); i++) {
+        qDebug() << itemQuantity[i];
+    }
 
 }
 
