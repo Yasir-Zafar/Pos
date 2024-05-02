@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QScrollArea>
 #include <QVBoxLayout>
+#include "cartitem.h"
 #include <QtSql>
 
 QT_BEGIN_NAMESPACE
@@ -19,6 +20,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QSqlDatabase salesDb;
+    cartItem* newWid;
     float totalAmount;
     QVBoxLayout *layout;
 
