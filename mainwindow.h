@@ -27,6 +27,7 @@ private slots:
     void clearLayout(QLayout *layout);
     void on_pushButton_clicked();
     void on_checkout_clicked();
+    void onSpinBoxValueChanged(int newValue)
 
 private:
 Ui::MainWindow *ui;
