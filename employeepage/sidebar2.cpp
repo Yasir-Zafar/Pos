@@ -158,6 +158,12 @@ sidebar2& sidebar2::getInstance()
 
 void sidebar2::resettables()
 {
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->setColumnCount(0);
+
+    ui->tableWidget_2->setRowCount(0);
+    ui->tableWidget_2->setColumnCount(0);
+
     setadmins();
     setemployees();
 }
@@ -172,5 +178,12 @@ void sidebar2::on_pushButton_5_clicked()
 void sidebar2::on_pushButton_6_clicked()
 {
     resettables();
+}
+
+
+void sidebar2::on_rem_1_clicked()
+{
+    Remove *remove = new Remove;
+    remove->show();
 }
 

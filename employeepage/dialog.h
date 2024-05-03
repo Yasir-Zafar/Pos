@@ -31,7 +31,6 @@ public:
     bool emailcheck();
 
 
-
 private slots:
     void on_pushButton_8_clicked();
 

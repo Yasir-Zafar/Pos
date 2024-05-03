@@ -11,6 +11,7 @@
 #include<QSqlError>
 #include<QTableWidgetItem>
 #include"dialog.h"
+#include"remove.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,6 +35,8 @@ private slots:
     void on_pushButton_5_clicked();
 
     void on_pushButton_6_clicked();
+
+    void on_rem_1_clicked();
 
 private:
     Ui::sidebar2 *ui;

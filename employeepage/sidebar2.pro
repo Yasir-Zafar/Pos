@@ -11,14 +11,17 @@ CONFIG += c++17
 SOURCES += \
     dialog.cpp \
     mainemp.cpp \
+    remove.cpp \
     sidebar2.cpp
 
 HEADERS += \
     dialog.h \
+    remove.h \
     sidebar2.h
 
 FORMS += \
     dialog.ui \
+    remove.ui \
     sidebar2.ui
 
 # Default rules for deployment.
