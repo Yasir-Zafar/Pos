@@ -11,13 +11,6 @@ class Sidebar : public QWidget {
 
 public:
     explicit Sidebar(QWidget* parent = nullptr);
-    QPushButton* getThirdButton();
-
-signals:
-    void thirdButtonClicked();
-
-private slots:
-    void handleThirdButtonClick();
 
 private:
     void setupUI();
@@ -30,6 +23,14 @@ private:
     QPushButton* button3;
     QPushButton* button4;
     QLabel* logoLabel;
+
+signals:
+    void button1Clicked();
+    void button3Clicked();
+
+private slots:
+    void onButton1Clicked();
+    void onButton3Clicked();
 };
 
 #endif // SIDEBAR_H

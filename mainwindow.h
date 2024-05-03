@@ -2,12 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QHBoxLayout>
-#include <QScrollArea>
-#include <QVBoxLayout>
-#include "cartItem.h"
+
 #include "sidebar.h"
-#include <QtSql>
+#include "shop.h"
+#include "user.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,21 +18,21 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QSqlDatabase salesDb;
-    cartItem* newWid;
-    float totalAmount;
-    QVBoxLayout *layout;
 
-private slots:
-    void on_pushButton_clicked();
-    void on_checkout_clicked();
-    void onSpinBoxValueChanged(int newValue);
-    void switchToThirdPage();
+    void deleteLastWidget();
+
+public slots:
+    void handleSidebarButton1Click();
+    void handleSidebarButton3Click();
 
 private:
-Ui::MainWindow *ui;
+    Ui::MainWindow *ui;
+
+    QWidget *mainWidget;
+    QHBoxLayout *mainLayout;
+
     Sidebar* sidebar;
-    QWidget* currentPage;
-    QVBoxLayout* currentLayout;
+    Shop* shop;
+    User *user;
 };
 #endif // MAINWINDOW_H
