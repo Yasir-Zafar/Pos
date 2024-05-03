@@ -4,7 +4,13 @@
 #include<QSqlDatabase>
 #include<QFileInfo>
 #include<QDebug>
+#include<QSqlQuery>
+#include<QString>
+#include<QStringList>
 #include <QMainWindow>
+#include<QSqlError>
+#include<QTableWidgetItem>
+#include"dialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,6 +25,15 @@ class sidebar2 : public QMainWindow
 public:
     sidebar2(QWidget *parent = nullptr);
     ~sidebar2();
+    void setadmins();
+    void setemployees();
+    void resettables();
+    static sidebar2& getInstance();
+
+private slots:
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
 
 private:
     Ui::sidebar2 *ui;
