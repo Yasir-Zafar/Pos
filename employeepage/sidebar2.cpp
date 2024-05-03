@@ -36,10 +36,10 @@ void sidebar2::setadmins()
 
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:/Users/HP/Desktop/admins.db");
+    db.setDatabaseName("C:/Users/HP/Desktop/admin.db");
 
     QSqlQuery query;
-    query.exec("SELECT * FROM admin");
+    query.exec("SELECT * FROM Admins");
 
 
     if (!db.open())
@@ -52,7 +52,7 @@ void sidebar2::setadmins()
         // Proceed with database operations
         QSqlQuery query;
 
-        if (!query.exec("SELECT * FROM admin"))
+        if (!query.exec("SELECT * FROM Admins"))
         {
             qDebug() << "Error executing query:" << query.lastError().text();
             // Handle the error appropriately
@@ -68,8 +68,8 @@ void sidebar2::setadmins()
 
                 int newRow = ui->tableWidget->rowCount();
                 ui->tableWidget->insertRow(newRow);
-                ui->tableWidget->setItem(newRow, 0, new QTableWidgetItem(username));
-                ui->tableWidget->setItem(newRow, 1, new QTableWidgetItem(email));
+                ui->tableWidget->setItem(newRow, 0, new QTableWidgetItem(email));
+                ui->tableWidget->setItem(newRow, 1, new QTableWidgetItem(username));
 
 
 
@@ -104,10 +104,10 @@ void sidebar2::setemployees()
 
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:/Users/HP/Desktop/employees.db");
+    db.setDatabaseName("C:/Users/HP/Desktop/employees_2.db");
 
     QSqlQuery query;
-    query.exec("SELECT * FROM employee");
+    query.exec("SELECT * FROM employees");
 
 
     if (!db.open())
@@ -120,7 +120,7 @@ void sidebar2::setemployees()
         // Proceed with database operations
         QSqlQuery query;
 
-        if (!query.exec("SELECT * FROM employee"))
+        if (!query.exec("SELECT * FROM employees"))
         {
             qDebug() << "Error executing query:" << query.lastError().text();
             // Handle the error appropriately
@@ -137,8 +137,8 @@ void sidebar2::setemployees()
 
                 int newRow = ui->tableWidget_2->rowCount();
                 ui->tableWidget_2->insertRow(newRow);
-                ui->tableWidget_2->setItem(newRow, 0, new QTableWidgetItem(username));
-                ui->tableWidget_2->setItem(newRow, 1, new QTableWidgetItem(email));
+                ui->tableWidget_2->setItem(newRow, 0, new QTableWidgetItem(email));
+                ui->tableWidget_2->setItem(newRow, 1, new QTableWidgetItem(username));
                 ui->tableWidget_2->setItem(newRow, 2, new QTableWidgetItem(shift));
             }
         }

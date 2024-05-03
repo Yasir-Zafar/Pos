@@ -21,17 +21,17 @@ void Dialog::add_db_admin()
     QString pass=ui->lineEdit_6->text();
 
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS");
-    db2.setDatabaseName("C:/Users/HP/Desktop/admins.db");
+    db2.setDatabaseName("C:/Users/HP/Desktop/admin.db");
     if (!db2.open())
     {
         qDebug() << "Error: Failed to open database:" << db2.lastError().text();
     }
 
-    QString querya = "INSERT INTO admin (Username, Email, Password) VALUES (?, ?, ?)";
+    QString querya = "INSERT INTO Admins (email,username, passwordd) VALUES (?, ?, ?)";
     QSqlQuery query(db2);
     query.prepare(querya);
-    query.addBindValue(name);
     query.addBindValue(email);
+    query.addBindValue(name);
     query.addBindValue(pass);;
 
     // Do something with the retrieved data
@@ -54,17 +54,17 @@ void Dialog::add_db_employee()
     QString pass=ui->lineEdit_6->text();
 
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","EMPLOYEES");
-    db2.setDatabaseName("C:/Users/HP/Desktop/employees.db");
+    db2.setDatabaseName("C:/Users/HP/Desktop/employees_2.db");
     if (!db2.open())
     {
         qDebug() << "Error: Failed to open database:" << db2.lastError().text();
     }
 
-    QString querya = "INSERT INTO employee (Username, Email, Password, Shift) VALUES (?, ?, ?, ?)";
+    QString querya = "INSERT INTO employees (email,username,passwordd,shift) VALUES (?, ?, ?, ?)";
     QSqlQuery query(db2);
     query.prepare(querya);
-    query.addBindValue(name);
     query.addBindValue(email);
+    query.addBindValue(name);
     query.addBindValue(pass);
     query.addBindValue(shift);
 
@@ -125,9 +125,9 @@ int Dialog::checklene()
     QString shift=ui->lineEdit_5->text();
     QString pass=ui->lineEdit_6->text();
 
-    if(name.length()<8)
+    if(name.length()<6)
     {
-        QMessageBox::information(this, "Name_Len", "Name must be at least 8 characters!");
+        QMessageBox::information(this, "Name_Len", "Name must be at least 6 characters!");
         return 0;
     }
     else if(email.length()<8)
@@ -160,9 +160,9 @@ int Dialog::checklena()
     QString email=ui->lineEdit_4->text();
     QString pass=ui->lineEdit_6->text();
 
-    if(name.length()<8)
+    if(name.length()<6)
     {
-        QMessageBox::information(this, "Name_Len", "Name must be at least 8 characters!");
+        QMessageBox::information(this, "Name_Len", "Name must be at least 6 characters!");
         return 0;
     }
     else if(email.length()<8)

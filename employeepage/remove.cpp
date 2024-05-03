@@ -25,10 +25,10 @@ bool Remove::emailcheck()
 int Remove::checkrow()
 {
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS2");
-    db2.setDatabaseName("C:/Users/HP/Desktop/admins.db");
+    db2.setDatabaseName("C:/Users/HP/Desktop/admin.db");
     db2.open();
 
-    QString querya = "SELECT * FROM admin";
+    QString querya = "SELECT * FROM Admins";
     QSqlQuery query(db2);
 
     query.prepare(querya);
@@ -120,10 +120,10 @@ int Remove::emailcheck2()
 void Remove::delemployee()
 {
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS2");
-    db2.setDatabaseName("C:/Users/HP/Desktop/employees.db");
+    db2.setDatabaseName("C:/Users/HP/Desktop/employees_2.db");
     db2.open();
 
-    QString querya = "DELETE FROM employee WHERE Email = :email";
+    QString querya = "DELETE FROM employees WHERE email = :email";
     QSqlQuery query(db2);
     query.prepare(querya);
     QString email=ui->remline_1->text();
@@ -140,10 +140,10 @@ void Remove::delemployee()
 void Remove::deladmin()
 {
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS2");
-    db2.setDatabaseName("C:/Users/HP/Desktop/admins.db");
+    db2.setDatabaseName("C:/Users/HP/Desktop/admin.db");
     db2.open();
 
-    QString querya = "DELETE FROM admin WHERE Email = :email";
+    QString querya = "DELETE FROM Admins WHERE email = :email";
     QSqlQuery query(db2);
     query.prepare(querya);
     QString email=ui->remline_1->text();
