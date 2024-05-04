@@ -51,5 +51,7 @@ void feedback::on_pushButton_clicked()
         QMessageBox::warning(this, "Feedback", "Invalid phone number. Please enter a valid phone number.");
         return;
     }
+
+    QMessageBox::information(this, "feedback", "thankyou for your feedback ! :)");
 }
 
