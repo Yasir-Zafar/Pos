@@ -5,13 +5,12 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QScrollArea>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QSpinBox>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QListWidget>
-#include <QListWidgetItem>
 
 #include "cartitem.h"
 
@@ -32,9 +31,10 @@ private:
 
     QWidget *cartWidget;
     QVBoxLayout *mainLayout;
+    QVBoxLayout *lll;
+    QScrollArea *scrollArea;
+    QWidget* scrollAreaContentWidgets;
     QVBoxLayout *top;
-
-    QListWidget *cartListWidget;
 
     QVector<QString> itemName;
     QVector<QString> itemPrice;

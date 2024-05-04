@@ -473,8 +473,6 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtWidgets/QHeaderView \
 	/usr/include/qt6/QtWidgets/QLabel \
 	/usr/include/qt6/QtWidgets/QLineEdit \
-	/usr/include/qt6/QtWidgets/QListWidget \
-	/usr/include/qt6/QtWidgets/QListWidgetItem \
 	/usr/include/qt6/QtWidgets/QMainWindow \
 	/usr/include/qt6/QtWidgets/QMessageBox \
 	/usr/include/qt6/QtWidgets/QPushButton \
@@ -500,8 +498,6 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtWidgets/qlayout.h \
 	/usr/include/qt6/QtWidgets/qlayoutitem.h \
 	/usr/include/qt6/QtWidgets/qlineedit.h \
-	/usr/include/qt6/QtWidgets/qlistview.h \
-	/usr/include/qt6/QtWidgets/qlistwidget.h \
 	/usr/include/qt6/QtWidgets/qmainwindow.h \
 	/usr/include/qt6/QtWidgets/qmessagebox.h \
 	/usr/include/qt6/QtWidgets/qpushbutton.h \

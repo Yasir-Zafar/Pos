@@ -20,13 +20,12 @@ void Cart::setupCart() {
     checkoutLabel->setFont(QFont("Arial Rounded", 19, QFont::Bold));
     mainLayout->addWidget(checkoutLabel, 0, Qt::AlignTop | Qt::AlignLeft);
 
-    // Scroll Area for Cart Items
-    QVBoxLayout* boi = new QVBoxLayout;
-    cartListWidget = new QListWidget(this);
-    cartListWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    cartListWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn); // Set scrollbar policy
-    boi->addWidget(cartListWidget);
-    mainLayout->addLayout(boi);
+    // Scroll Area
+    lll = new QVBoxLayout;
+    scrollArea = new QScrollArea(cartWidget);
+    scrollArea->setStyleSheet("border-radius: 0px;");
+    scrollAreaContentWidgets = new QWidget;
+    mainLayout->addWidget(scrollArea);
 
     // Labels
     QHBoxLayout *totalAmountLayout = new QHBoxLayout();
@@ -90,31 +89,20 @@ void Cart::on_pushButton_clicked()
     count++;
     cartItem* temp = new cartItem(this, "Apples", 50);
 
+    top = new QVBoxLayout(this);
     disconnect(temp->counter, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxValueChanged(int)));
+
+    // Connect valueChanged signal before retrieving the quantity
     connect(temp->counter, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxValueChanged(int)));
 
-    top = new QVBoxLayout(this);
     newWid.append(temp);
+
     top->addWidget(newWid[newWid.size() - 1]);
+    scrollAreaContentWidgets->setLayout(top);
 
-    if (top) {
-        // Create a frame to wrap the cartItem
-        QFrame *frame = new QFrame();
-        frame->setFrameShape(QFrame::Box);
-        frame->setLineWidth(1);
-        QVBoxLayout *frameLayout = new QVBoxLayout(frame);
-        frameLayout->addWidget(temp);
-        frame->setLayout(frameLayout);
-
-        // Add cart item (wrapped in frame) to list widget
-        QListWidgetItem *item = new QListWidgetItem();
-        cartListWidget->addItem(item);
-        item->setSizeHint(temp->sizeHint());
-        cartListWidget->setItemWidget(item, frame);
-        mainLayout->addLayout(top);
-    } else {
-        qDebug() << "Failed to create cartItem";
-    }
+    // Set the scroll area widget as the widget for the scroll area
+    lll->addLayout(top);
+    scrollArea->setLayout(lll);
 }
 
 // void Cart::on_checkout_clicked()
