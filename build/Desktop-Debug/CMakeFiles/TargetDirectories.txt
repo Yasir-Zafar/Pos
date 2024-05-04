@@ -1,0 +1,9 @@
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/Pos.dir
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/install.dir
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/install/local.dir
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/install/strip.dir
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/Pos_autogen_timestamp_deps.dir
+/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/Pos_autogen.dir
