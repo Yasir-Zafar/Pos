@@ -8,7 +8,7 @@ Receipt::Receipt(QWidget *parent) : QWidget(parent){
     QTableWidget *receipttable = new QTableWidget(this);
 
     // Set widget window size
-    receipttable->setFixedSize(700, 300);
+    receipttable->setFixedSize(800, 300);
 
     // Hide scroll bars
     receipttable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -25,11 +25,10 @@ Receipt::Receipt(QWidget *parent) : QWidget(parent){
     receipttable->setHorizontalHeaderLabels(headerLabels);
 
     // Set column sizes
-    receipttable->setColumnWidth(0, 200);
-    receipttable->setColumnWidth(1, 200);
-    receipttable->setColumnWidth(2, 100);
-    receipttable->setColumnWidth(3, 100);
-    receipttable->setColumnWidth(4, 100);
+
+    for (int i = 0; i < receipttable->columnCount(); ++i) {
+        receipttable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
+    }
 
     // Set font
     QFont font("Arial Rounded MT Bold", 12);

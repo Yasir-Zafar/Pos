@@ -16,6 +16,8 @@ set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
+        signup_window.ui
+        login.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -31,6 +33,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         dialog.h dialog.cpp
         removeuser.h removeuser.cpp
         analysis.h analysis.cpp
+        signup_window.h signup_window.cpp
+        login.h login.cpp
+        .clang-format
 
     )
 # Define target properties for Android with Qt 6 as:

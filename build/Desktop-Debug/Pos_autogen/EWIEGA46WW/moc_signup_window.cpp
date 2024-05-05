@@ -36,8 +36,10 @@ namespace {
 struct qt_meta_stringdata_CLASSsignup_WindowENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSsignup_WindowENDCLASS = QtMocHelpers::stringData(
     "signup_Window",
-    "on_pushButton_signup_clicked",
+    "SignupSuccessful",
     "",
+    "username",
+    "on_pushButton_signup_clicked",
     "on_pushButton_login_clicked",
     "countPlaceholders",
     "query"
@@ -53,22 +55,28 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSsignup_WindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   38,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x08,    1 /* Private */,
-       3,    0,   33,    2, 0x08,    2 /* Private */,
-       4,    1,   34,    2, 0x08,    3 /* Private */,
+       4,    0,   41,    2, 0x08,    3 /* Private */,
+       5,    0,   42,    2, 0x08,    4 /* Private */,
+       6,    1,   43,    2, 0x08,    5 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::QString,    3,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Int, QMetaType::QString,    5,
+    QMetaType::Int, QMetaType::QString,    7,
 
        0        // eod
 };
@@ -82,6 +90,9 @@ Q_CONSTINIT const QMetaObject signup_Window::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSsignup_WindowENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<signup_Window, std::true_type>,
+        // method 'SignupSuccessful'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'on_pushButton_signup_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_login_clicked'
@@ -99,11 +110,21 @@ void signup_Window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         auto *_t = static_cast<signup_Window *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_pushButton_signup_clicked(); break;
-        case 1: _t->on_pushButton_login_clicked(); break;
-        case 2: { int _r = _t->countPlaceholders((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+        case 0: _t->SignupSuccessful((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 1: _t->on_pushButton_signup_clicked(); break;
+        case 2: _t->on_pushButton_login_clicked(); break;
+        case 3: { int _r = _t->countPlaceholders((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
             if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (signup_Window::*)(QString );
+            if (_t _q_method = &signup_Window::SignupSuccessful; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
         }
     }
 }
@@ -127,14 +148,21 @@ int signup_Window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
+}
+
+// SIGNAL 0
+void signup_Window::SignupSuccessful(QString _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

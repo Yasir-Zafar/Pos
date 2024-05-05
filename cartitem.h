@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QSpinBox>
 #include <QVBoxLayout>
+
 inline QVector<QString> itemName;
 inline QVector<QString> itemBrand;
 inline QVector<double> itemPrice;

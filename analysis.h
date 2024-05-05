@@ -17,6 +17,11 @@ class Analysis : public QWidget
 public:
     Analysis(QWidget *parent = nullptr);
     void setupUi();
+
+private slots:
+    // void  on_pushButton_clicked();
+
+    // void on_DisplayGraph_clicked();
 private:
 
     QWidget *centralwidget;

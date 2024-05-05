@@ -13,7 +13,7 @@ User::User(QWidget *parent)
 void User::setupUser(){
     label_6 = new QLabel("User Management", this); // 1
     label_6->setFont(QFont("Arial Rounded", 19, QFont::Bold));
-    label_6->setFixedHeight(25);
+    label_6->setContentsMargins(0,0,0,20);
     label_6->setStyleSheet("color: #333");
 
     label_7 = new QLabel("Admin", this); // table 1

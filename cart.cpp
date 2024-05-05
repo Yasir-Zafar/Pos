@@ -15,6 +15,8 @@ Cart::Cart(QWidget *parent)
 
 void Cart::setupCart() {
     top = new QVBoxLayout;
+    top->setAlignment(Qt::AlignTop);
+
     cartWidget = new QWidget(this);
     cartWidget->setFixedWidth(350);
 
@@ -24,18 +26,19 @@ void Cart::setupCart() {
     // Checkout Label
     QLabel *checkoutLabel = new QLabel("Checkout", cartWidget);
     checkoutLabel->setFont(QFont("Arial Rounded", 19, QFont::Bold));
+    checkoutLabel->setContentsMargins(0,0,0,0);
     mainLayout->addWidget(checkoutLabel, 0, Qt::AlignTop | Qt::AlignCenter);
 
     // Scroll Area
     lll = new QVBoxLayout;
     scrollArea = new QScrollArea(cartWidget);
-    scrollArea->setStyleSheet("border-radius: 0px; border: 2px black;");
-    scrollArea->setFixedSize(350, 400);
+    scrollArea->setFixedSize(350, 500);
     scrollAreaContentWidgets = new QWidget(scrollArea);
-    scrollAreaContentWidgets->setMinimumSize(320, 200);
+    scrollAreaContentWidgets->setMinimumSize(320, 700);
     scrollAreaContentWidgets->setLayout(top);
     scrollArea->setWidget(scrollAreaContentWidgets);
-    mainLayout->addWidget(scrollArea);
+    scrollArea->setContentsMargins(0,0,0,0);
+    mainLayout->addWidget(scrollArea,0,Qt::AlignTop);
 
     // Labels
     QHBoxLayout *totalAmountLayout = new QHBoxLayout();
@@ -110,7 +113,7 @@ void Cart::on_pushButton_clicked(int i)
     }
     top->addWidget(newWid[newWid.size() - 1]); // Add the new widget to the existing layout
     scrollAreaContentWidgets->setLayout(top);
-    scrollAreaContentWidgets->adjustSize();
+    // scrollAreaContentWidgets->adjustSize();
 }
 
 void Cart::on_checkout_clicked()
@@ -119,7 +122,7 @@ void Cart::on_checkout_clicked()
     if (reply == QMessageBox::Yes) {
         totalAmount = totalAmount * (0.9);
         totalAmountValueLabel->setText(QString::number(totalAmount));
-        QMessageBox::information(this, "Member", "90% Discount added, Keep supporting us!");
+        QMessageBox::information(this, "Member", "10% Discount added, Keep supporting us!");
 
     }
     receipt = new Receipt;
@@ -131,7 +134,7 @@ void Cart::on_checkout_clicked()
     if (myindb.open()) {
         qDebug() << "DB is open";
     }
-QSqlQuery initial(myindb);
+    QSqlQuery initial(myindb);
     initial.exec("CREATE TABLE IF NOT EXISTS info (name TEXT, price INTEGER, quantity INTEGER);");
 
     for (int i = 0; i < itemName.size(); i++) {
@@ -165,7 +168,6 @@ void Cart::onSpinBoxValueChanged(int i)
     int quant = newWid[i]->counter->value();
     int oldQuantity = itemQuantity[i];
     itemQuantity[i] = quant;
-    int total = itemQuantity[i] * itemPrice[i];
     subtotal -= (oldQuantity - itemQuantity[i]) * itemPrice[i]; // Subtract the difference from the subtotal
     // Update subtotal label
     subtotalValueLabel->setText(QString::number(subtotal));
