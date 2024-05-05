@@ -269,7 +269,7 @@ bool Dialog::emailcheck()
 {
     QString email = lineEdit_4->text();
     std::string emailtext = email.toStdString();
-    std::regex pattern(R"(^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$)");
+    std::regex pattern(R"(^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$)");
     return regex_match(emailtext,pattern);
 }
 

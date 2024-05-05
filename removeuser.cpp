@@ -8,55 +8,66 @@ RemoveUser::RemoveUser(QWidget *parent) : QDialog(parent)
 
 void RemoveUser::setupUi()
 {
-    resize(688, 464);
-    frame = new QFrame(Remove);
-    frame->setObjectName(QString::fromUtf8("frame"));
-    frame->setGeometry(QRect(90, 70, 491, 271));
-    frame->setStyleSheet(QString::fromUtf8("background-color:#D3D3D3\n"));
-    frame->setFrameShape(QFrame::StyledPanel);
-    frame->setFrameShadow(QFrame::Raised);
+    resize(700, 460);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout(frame);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);  // Use the main widget's layout
+    mainLayout->setAlignment(Qt::AlignCenter);  // Align everything to the center
+    mainLayout->setContentsMargins(50, 50, 50, 50);
 
-    QLabel *label_9 = new QLabel("Enter email of employee to delete:", frame);
+    QLabel *label_9 = new QLabel("Enter email of employee to delete:");
     QFont font;
-    font.setFamily(QString::fromUtf8("Arial Rounded MT Bold"));
+    font.setFamily("Arial Rounded Bold");
     font.setPointSize(12);
     label_9->setFont(font);
-
-    QLabel *label_11 = new QLabel("Email:", frame);
-    label_11->setFont(font);
-
-    remline_1 = new QLineEdit(frame);
-    remline_1->setObjectName(QString::fromUtf8("remline_1"));
-    remline_1->setStyleSheet(QString::fromUtf8("background-color: #FFFFFF;"));
+    label_9->setFixedHeight(30);  // Set fixed height for the label
+    label_9->setAlignment(Qt::AlignCenter);  // Align label to the center
 
     QHBoxLayout *radioLayout = new QHBoxLayout;
-    remradio_1 = new QRadioButton("Delete admin", frame);
-    remradio_2 = new QRadioButton("Delete employee", frame);
+    remradio_1 = new QRadioButton("Delete admin", this);
+    remradio_2 = new QRadioButton("Delete employee", this);
+    remradio_1->setFixedHeight(30);  // Set fixed height for radio buttons
+    remradio_2->setFixedHeight(30);  // Set fixed height for radio buttons
     radioLayout->addWidget(remradio_1);
     radioLayout->addWidget(remradio_2);
+    radioLayout->setAlignment(Qt::AlignCenter);  // Align radio buttons to the center
+
+    QLabel *label_11 = new QLabel("Email:");
+    label_11->setFont(font);
+    label_11->setFixedHeight(30);  // Set fixed height for the label
+    label_11->setAlignment(Qt::AlignLeft);  // Align label to the center
+
+    remline_1 = new QLineEdit;
+    remline_1->setObjectName("remline_1");
+    remline_1->setStyleSheet("background-color: #FFFFFF;");
+    remline_1->setFixedHeight(30);  // Set fixed height for the line edit
+    remline_1->setFixedWidth(500);
+    remline_1->setAlignment(Qt::AlignCenter);  // Align line edit text to the center
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
-    rembutton_2 = new QPushButton("Cancel", frame);
-    rembutton_1 = new QPushButton("Ok", frame);
+    rembutton_2 = new QPushButton("Cancel");
+    rembutton_1 = new QPushButton("Ok");
     rembutton_2->setFont(font);
     rembutton_1->setFont(font);
-    rembutton_2->setStyleSheet(QString::fromUtf8("border: 2px solid red; \n"
-        "border-radius: 20px;\n"
-        "color: #FFFFFF;\n"
-        "background-color:#A9A9A9"));
-    rembutton_1->setStyleSheet(QString::fromUtf8("border: 2px solid red; \n"
-        "border-radius: 20px;\n"
-        "color: #FFFFFF;\n"
-        "background-color:#A9A9A9"));
+
+    rembutton_2->setFixedHeight(40);  // Set fixed height for the buttons
+    rembutton_1->setFixedHeight(40);  // Set fixed height for the buttons
     buttonLayout->addWidget(rembutton_2);
+    buttonLayout->addSpacing(20);  // Add gap between buttons
     buttonLayout->addWidget(rembutton_1);
+    buttonLayout->setAlignment(Qt::AlignCenter);  // Align buttons to the center
+
+    rembutton_2->setStyleSheet("QPushButton { border: 2px solid #333; border-radius: 20px; color: #333; background-color: #f0f0f0; }");
+    rembutton_1->setStyleSheet("QPushButton { border: 2px solid #333; border-radius: 20px; color: #333; background-color: #f0f0f0; }");
+    connect(rembutton_1, &QPushButton::clicked, this, &RemoveUser::on_rembutton_1_clicked);
+    connect(rembutton_2, &QPushButton::clicked, this, &RemoveUser::on_rembutton_2_clicked);
 
     mainLayout->addWidget(label_9);
+    mainLayout->addSpacing(20);
+    mainLayout->addLayout(radioLayout);
+    mainLayout->addSpacing(20);
     mainLayout->addWidget(label_11);
     mainLayout->addWidget(remline_1);
-    mainLayout->addLayout(radioLayout);
+    mainLayout->addSpacing(30);
     mainLayout->addLayout(buttonLayout);
 
     setLayout(mainLayout);
@@ -66,15 +77,14 @@ bool RemoveUser::emailcheck()
 {
     QString email = remline_1->text();
     std::string emailtext = email.toStdString();
-    std::regex pattern(R"(^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$)");
+    std::regex pattern(R"(^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$)");
     return regex_match(emailtext,pattern);
-
 }
 
 int RemoveUser::checkrow()
 {
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS2");
-    db2.setDatabaseName("C:/Users/HP/Desktop/admin.db");
+    db2.setDatabaseName("home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
     db2.open();
 
     QString querya = "SELECT * FROM Admins";

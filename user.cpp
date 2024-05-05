@@ -92,6 +92,8 @@ void User::setAdmins()
 {
     tableWidget->setColumnCount(2);
 
+    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     QStringList header;
     header << "Username" << "Email";
     tableWidget->setHorizontalHeaderLabels(header);
@@ -156,6 +158,8 @@ void User::setEmployees()
 {
     tableWidget_2->setColumnCount(3);
     tableWidget_2->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for (int i = 0; i < tableWidget->columnCount(); ++i) {
         tableWidget_2->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);

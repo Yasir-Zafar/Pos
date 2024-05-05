@@ -10,6 +10,8 @@ Pos_autogen/timestamp: \
 	/home/boi/Projects/C++/Uni/Pos/cartitem.h \
 	/home/boi/Projects/C++/Uni/Pos/dialog.cpp \
 	/home/boi/Projects/C++/Uni/Pos/dialog.h \
+	/home/boi/Projects/C++/Uni/Pos/login.cpp \
+	/home/boi/Projects/C++/Uni/Pos/login.h \
 	/home/boi/Projects/C++/Uni/Pos/main.cpp \
 	/home/boi/Projects/C++/Uni/Pos/mainwindow.cpp \
 	/home/boi/Projects/C++/Uni/Pos/mainwindow.h \

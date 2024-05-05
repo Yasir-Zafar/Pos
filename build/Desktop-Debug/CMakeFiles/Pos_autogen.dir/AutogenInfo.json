@@ -269,6 +269,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/boi/Projects/C++/Uni/Pos/analysis.h",
+			"MU",
+			"EWIEGA46WW/moc_analysis.cpp",
+			null
+		],
+		[
 			"/home/boi/Projects/C++/Uni/Pos/cart.h",
 			"MU",
 			"EWIEGA46WW/moc_cart.cpp",
@@ -384,6 +390,7 @@
 	"SETTINGS_FILE" : "/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/CMakeFiles/Pos_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/boi/Projects/C++/Uni/Pos/analysis.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/cart.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/cartitem.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/dialog.cpp", "MU", null ],
