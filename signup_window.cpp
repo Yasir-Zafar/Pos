@@ -171,14 +171,3 @@ void signup_Window::on_pushButton_login_clicked()
     this->hide();
     Log->show();
 }
-
-
-
-
-
-
-
-
-
-
-
