@@ -106,6 +106,7 @@ void signup_Window::on_pushButton_signup_clicked()
         if (qry.exec())
         {
             QMessageBox::information(this, "Saved", "New record added");
+             emit SignupSuccessful(username);
         }
 
         else
@@ -145,6 +146,7 @@ void signup_Window::on_pushButton_signup_clicked()
         if (qry.exec())
         {
             QMessageBox::information(this, "Saved", "New record added");
+            emit SignupSuccessful(username);
         }
 
         else
@@ -169,4 +171,14 @@ void signup_Window::on_pushButton_login_clicked()
     this->hide();
     Log->show();
 }
+
+
+
+
+
+
+
+
+
+
 
