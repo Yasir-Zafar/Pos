@@ -1,4 +1,5 @@
 #include "removeuser.h"
+#include "qsqlerror.h"
 #include <regex>
 
 RemoveUser::RemoveUser(QWidget *parent) : QDialog(parent)
@@ -84,15 +85,25 @@ bool RemoveUser::emailcheck()
 int RemoveUser::checkrow()
 {
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS2");
-    db2.setDatabaseName("home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
-    db2.open();
+    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
+    if (!db2.open()) {
+        qDebug() << "Error: Failed to open database:" << db2.lastError().text();
+        return -1; // Return -1 to indicate error opening the database
+    }
 
-    QString querya = "SELECT * FROM Admins";
     QSqlQuery query(db2);
+    QString querya = "SELECT * FROM Admins";
+    if (!query.prepare(querya)) {
+        qDebug() << "Error preparing query:" << query.lastError().text();
+        db2.close(); // Close the database before returning
+        return -1; // Return -1 to indicate error preparing the query
+    }
 
-    query.prepare(querya);
-
-    query.exec();
+    if (!query.exec()) {
+        qDebug() << "Error executing query:" << query.lastError().text();
+        db2.close(); // Close the database before returning
+        return -1; // Return -1 to indicate error executing the query
+    }
 
     int row = 0;
     while (query.next()) {
@@ -103,8 +114,7 @@ int RemoveUser::checkrow()
 
     db2.close();
 
-    if(row>1)
-    {
+    if (row > 1) {
         return 1;
     }
     return 0;
@@ -125,7 +135,6 @@ void RemoveUser::on_rembutton_1_clicked()
     }
     else
     {
-
         if(remradio_1->isChecked())
         {
             if(checkrow()==0)
@@ -172,8 +181,8 @@ int RemoveUser::emailcheck2()
 
 void RemoveUser::delemployee()
 {
-    QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS2");
-    db2.setDatabaseName("home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+    QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","EMPLOYEES2");
+    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
     db2.open();
 
     QString querya = "DELETE FROM employees WHERE email = :email";
@@ -188,8 +197,8 @@ void RemoveUser::delemployee()
 
 void RemoveUser::deladmin()
 {
-    QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS2");
-    db2.setDatabaseName("home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
+    QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE");
+    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
     db2.open();
 
     QString querya = "DELETE FROM Admins WHERE email = :email";

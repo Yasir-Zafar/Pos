@@ -55,7 +55,6 @@ MainWindow::~MainWindow()
     delete user;
 
     delete mainWidget;
-    delete mainLayout;
 }
 
 
