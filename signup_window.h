@@ -20,6 +20,10 @@ public:
     signup_Window(QWidget *parent = nullptr);
     ~signup_Window();
 
+signals:
+    // Define the custom signal
+    void SignupSuccessful(QString username);
+
 private slots:
     void on_pushButton_signup_clicked();
 
