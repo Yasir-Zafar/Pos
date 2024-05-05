@@ -27,10 +27,12 @@ private:
 
 signals:
     void button1Clicked();
+    void button2Clicked();
     void button3Clicked();
 
 private slots:
     void onButton1Clicked();
+    void onButton2Clicked();
     void onButton3Clicked();
 };
 

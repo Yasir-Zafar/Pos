@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     sidebar = new Sidebar();
     mainLayout->addWidget(sidebar);
     connect(sidebar, &Sidebar::button1Clicked, this, &MainWindow::handleSidebarButton1Click);
+    connect(sidebar, &Sidebar::button2Clicked, this, &MainWindow::handleSidebarButton2Click);
     connect(sidebar, &Sidebar::button3Clicked, this, &MainWindow::handleSidebarButton3Click);
 
     shop = new Shop();
@@ -62,6 +63,12 @@ void MainWindow::handleSidebarButton1Click() {
     MainWindow::deleteLastWidget();
     shop = new Shop();
     mainLayout->addWidget(shop);
+}
+
+void MainWindow::handleSidebarButton2Click() {
+    MainWindow::deleteLastWidget();
+    analysis = new Analysis();
+    mainLayout->addWidget(analysis);
 }
 
 void MainWindow::handleSidebarButton3Click() {

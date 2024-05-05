@@ -6,6 +6,7 @@
 #include "sidebar.h"
 #include "shop.h"
 #include "user.h"
+#include "analysis.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +24,7 @@ public:
 
 public slots:
     void handleSidebarButton1Click();
+    void handleSidebarButton2Click();
     void handleSidebarButton3Click();
 
 private:
@@ -34,5 +36,6 @@ private:
     Sidebar* sidebar;
     Shop* shop;
     User *user;
+    Analysis* analysis;
 };
 #endif // MAINWINDOW_H

@@ -1,5 +1,4 @@
 #include "sidebar.h"
-#include <QPalette>
 
 Sidebar::Sidebar(QWidget* parent)
     : QWidget(parent) {
@@ -41,6 +40,7 @@ void Sidebar::setupUI() {
     QPushButton* button4 = createSidebarButton("/home/boi/Projects/C++/Uni/Pos/img/settings.png", buttonSize, hoverStyleSheet);
 
     connect(button1, &QPushButton::clicked, this, &Sidebar::onButton1Clicked);
+    connect(button2, &QPushButton::clicked, this, &Sidebar::onButton2Clicked);
     connect(button3, &QPushButton::clicked, this, &Sidebar::onButton3Clicked);
 
     sidebarLayout->addSpacing(40);
@@ -78,6 +78,10 @@ QPushButton* Sidebar::createSidebarButton(const QString& iconPath, const QSize& 
 
 void Sidebar::onButton1Clicked() {
     emit button1Clicked();
+}
+
+void Sidebar::onButton2Clicked() {
+    emit button2Clicked();
 }
 
 void Sidebar::onButton3Clicked() {
