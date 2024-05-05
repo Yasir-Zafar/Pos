@@ -18,6 +18,11 @@ class login : public QWidget
 public:
     explicit login(QWidget *parent = nullptr);
     ~login();
+    
+signals:
+    // Define the custom signal
+    void loginSuccessful(QString username);
+    
 
 private slots:
     void on_pushButton_login_clicked();
@@ -26,6 +31,7 @@ private slots:
 
 private:
     Ui::login *ui;
+    QSqlDatabase empDB;
 };
 
 #endif // LOGIN_H
