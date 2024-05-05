@@ -34,6 +34,7 @@ void sidebar2::setadmins()
     QFont font("Arial", 12);
     ui->tableWidget->setFont(font);
 
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("C:/Users/HP/Desktop/admin.db");
@@ -102,6 +103,7 @@ void sidebar2::setemployees()
     QFont font("Arial", 12);
     ui->tableWidget_2->setFont(font);
 
+    ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("C:/Users/HP/Desktop/employees_2.db");
