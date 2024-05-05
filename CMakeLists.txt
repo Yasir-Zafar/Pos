@@ -28,6 +28,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         user.h user.cpp
         cart.h cart.cpp
         cartitem.h cartitem.cpp
+        receipt.h receipt.cpp
+        dialog.h dialog.cpp
+        removeuser.h removeuser.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Pos APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

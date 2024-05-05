@@ -113,6 +113,30 @@ build CMakeFiles/Pos.dir/cartitem.cpp.o: CXX_COMPILER__Pos_unscanned_Debug /home
   OBJECT_DIR = CMakeFiles/Pos.dir
   OBJECT_FILE_DIR = CMakeFiles/Pos.dir
 
+build CMakeFiles/Pos.dir/receipt.cpp.o: CXX_COMPILER__Pos_unscanned_Debug /home/boi/Projects/C++/Uni/Pos/receipt.cpp || cmake_object_order_depends_target_Pos
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/Pos.dir/receipt.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/Pos_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtSql
+  OBJECT_DIR = CMakeFiles/Pos.dir
+  OBJECT_FILE_DIR = CMakeFiles/Pos.dir
+
+build CMakeFiles/Pos.dir/dialog.cpp.o: CXX_COMPILER__Pos_unscanned_Debug /home/boi/Projects/C++/Uni/Pos/dialog.cpp || cmake_object_order_depends_target_Pos
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/Pos.dir/dialog.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/Pos_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtSql
+  OBJECT_DIR = CMakeFiles/Pos.dir
+  OBJECT_FILE_DIR = CMakeFiles/Pos.dir
+
+build CMakeFiles/Pos.dir/removeuser.cpp.o: CXX_COMPILER__Pos_unscanned_Debug /home/boi/Projects/C++/Uni/Pos/removeuser.cpp || cmake_object_order_depends_target_Pos
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/Pos.dir/removeuser.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/Pos_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtSql
+  OBJECT_DIR = CMakeFiles/Pos.dir
+  OBJECT_FILE_DIR = CMakeFiles/Pos.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Pos
@@ -121,7 +145,7 @@ build CMakeFiles/Pos.dir/cartitem.cpp.o: CXX_COMPILER__Pos_unscanned_Debug /home
 #############################################
 # Link the executable Pos
 
-build Pos: CXX_EXECUTABLE_LINKER__Pos_Debug CMakeFiles/Pos.dir/Pos_autogen/mocs_compilation.cpp.o CMakeFiles/Pos.dir/main.cpp.o CMakeFiles/Pos.dir/mainwindow.cpp.o CMakeFiles/Pos.dir/sidebar.cpp.o CMakeFiles/Pos.dir/shop.cpp.o CMakeFiles/Pos.dir/user.cpp.o CMakeFiles/Pos.dir/cart.cpp.o CMakeFiles/Pos.dir/cartitem.cpp.o | /usr/lib64/libQt6Widgets.so.6.7.0 /usr/lib64/libQt6Sql.so.6.7.0 /usr/lib64/libQt6Gui.so.6.7.0 /usr/lib64/libGLX.so /usr/lib64/libOpenGL.so /usr/lib64/libQt6Core.so.6.7.0 || Pos_autogen Pos_autogen_timestamp_deps
+build Pos: CXX_EXECUTABLE_LINKER__Pos_Debug CMakeFiles/Pos.dir/Pos_autogen/mocs_compilation.cpp.o CMakeFiles/Pos.dir/main.cpp.o CMakeFiles/Pos.dir/mainwindow.cpp.o CMakeFiles/Pos.dir/sidebar.cpp.o CMakeFiles/Pos.dir/shop.cpp.o CMakeFiles/Pos.dir/user.cpp.o CMakeFiles/Pos.dir/cart.cpp.o CMakeFiles/Pos.dir/cartitem.cpp.o CMakeFiles/Pos.dir/receipt.cpp.o CMakeFiles/Pos.dir/dialog.cpp.o CMakeFiles/Pos.dir/removeuser.cpp.o | /usr/lib64/libQt6Widgets.so.6.7.0 /usr/lib64/libQt6Sql.so.6.7.0 /usr/lib64/libQt6Gui.so.6.7.0 /usr/lib64/libGLX.so /usr/lib64/libOpenGL.so /usr/lib64/libQt6Core.so.6.7.0 || Pos_autogen Pos_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = /usr/lib64/libQt6Widgets.so.6.7.0  /usr/lib64/libQt6Sql.so.6.7.0  /usr/lib64/libQt6Gui.so.6.7.0  /usr/lib64/libGLX.so  /usr/lib64/libOpenGL.so  /usr/lib64/libQt6Core.so.6.7.0
   OBJECT_DIR = CMakeFiles/Pos.dir

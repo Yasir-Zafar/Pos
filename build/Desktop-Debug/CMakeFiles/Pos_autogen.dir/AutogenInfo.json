@@ -281,9 +281,27 @@
 			null
 		],
 		[
+			"/home/boi/Projects/C++/Uni/Pos/dialog.h",
+			"MU",
+			"EWIEGA46WW/moc_dialog.cpp",
+			null
+		],
+		[
 			"/home/boi/Projects/C++/Uni/Pos/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"/home/boi/Projects/C++/Uni/Pos/receipt.h",
+			"MU",
+			"EWIEGA46WW/moc_receipt.cpp",
+			null
+		],
+		[
+			"/home/boi/Projects/C++/Uni/Pos/removeuser.h",
+			"MU",
+			"EWIEGA46WW/moc_removeuser.cpp",
 			null
 		],
 		[
@@ -368,8 +386,11 @@
 	[
 		[ "/home/boi/Projects/C++/Uni/Pos/cart.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/cartitem.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/Pos/dialog.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/main.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/mainwindow.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/Pos/receipt.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/Pos/removeuser.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/shop.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/sidebar.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/user.cpp", "MU", null ]

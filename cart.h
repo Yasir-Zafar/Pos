@@ -7,12 +7,14 @@
 #include <QPushButton>
 #include <QScrollArea>
 #include <QVBoxLayout>
+
 #include <QHBoxLayout>
 #include <QSpinBox>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
 #include "cartitem.h"
+#include "receipt.h"
 
 class Cart : public QWidget {
     Q_OBJECT
@@ -21,10 +23,10 @@ public:
     explicit Cart(QWidget *parent = nullptr);
     ~Cart();
 
-private slots:
-    void on_pushButton_clicked();
-    // void onSpinBoxValueChanged(int newValue);
-    // void on_checkout_clicked();
+public slots:
+    void on_pushButton_clicked(int index);
+    void onSpinBoxValueChanged(int newValue);
+    void on_checkout_clicked();
 
 private:
     void setupCart();
@@ -32,20 +34,20 @@ private:
     QWidget *cartWidget;
     QVBoxLayout *mainLayout;
     QVBoxLayout *lll;
+    QVBoxLayout* lay;
     QScrollArea *scrollArea;
     QWidget* scrollAreaContentWidgets;
     QVBoxLayout *top;
 
-    QVector<QString> itemName;
-    QVector<QString> itemPrice;
-    QVector<int> itemQuantity;
-    QVector <cartItem*> newWid;
+    QLabel *totalAmountValueLabel;
+    QLabel *subtotalValueLabel;
 
-    int count = 0;
-    int spin = 0;
+    QVector <cartItem*> newWid;
     QString name;
-    QString price;
-    int totalAmount = 0;
+    double price;
+
+    float subtotal;
+    Receipt* receipt;
 };
 
 #endif // CART_H

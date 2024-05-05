@@ -11,11 +11,12 @@ cartItem::cartItem(QWidget* parent, QString name1, double price2) : QWidget(pare
 
     name->setText(this->name1);
     QString pr = QString::number(this->price2);
-    price->setText("Price: $" + pr);
+    price->setText("Price: PKR" + pr);
 
     QHBoxLayout* labelLayout = new QHBoxLayout;
     labelLayout->addWidget(name);
     labelLayout->addWidget(price);
+
 
     QHBoxLayout* quantityLayout = new QHBoxLayout;
     quantityLayout->addWidget(quantity);
@@ -29,4 +30,3 @@ cartItem::cartItem(QWidget* parent, QString name1, double price2) : QWidget(pare
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 }
-

@@ -86,11 +86,5 @@ void Sidebar::onButton3Clicked() {
 
 Sidebar::~Sidebar() {
     delete frame;
-    delete sidebarLayout;
-    delete button1;
-    delete button2;
-    delete button3;
-    delete button4;
-    delete logoLabel;
 }
 

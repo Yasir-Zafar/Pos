@@ -194,9 +194,4 @@ Shop::~Shop() {
         delete scrollArea;
         scrollArea = nullptr;
     }
-
-    if (searchBar) {
-        delete searchBar;
-        searchBar = nullptr;
-    }
 }

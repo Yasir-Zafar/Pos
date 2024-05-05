@@ -27,7 +27,6 @@ public:
     void setAdmins();
     void setEmployees();
     void resettables();
-    ~User();
 
 private:
     QLabel *label;
@@ -41,7 +40,9 @@ private:
     QPushButton *rem_1;
 
 private slots:
+    void on_pushButton_5_clicked();
     void on_pushButton_6_clicked();
+    void on_rem_1_clicked();
 };
 
 #endif // USER_H

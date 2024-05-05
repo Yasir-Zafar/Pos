@@ -5,12 +5,18 @@
 Cart::Cart(QWidget *parent)
     : QWidget(parent) {
     setupCart();
+    totalAmount = 0;
+    subtotal = 0;
     setStyleSheet("background-color: #f0f0f0; color: #333333; border-radius: 20px;");
+    // itemName.resize(0);
+    // itemPrice.resize(0);
+    // itemQuantity.resize(0);
 }
 
 void Cart::setupCart() {
+    top = new QVBoxLayout;
     cartWidget = new QWidget(this);
-    cartWidget->setFixedWidth(420);
+    cartWidget->setFixedWidth(350);
 
     mainLayout = new QVBoxLayout(cartWidget);
     mainLayout->setContentsMargins(20, 20, 20, 20);
@@ -18,13 +24,17 @@ void Cart::setupCart() {
     // Checkout Label
     QLabel *checkoutLabel = new QLabel("Checkout", cartWidget);
     checkoutLabel->setFont(QFont("Arial Rounded", 19, QFont::Bold));
-    mainLayout->addWidget(checkoutLabel, 0, Qt::AlignTop | Qt::AlignLeft);
+    mainLayout->addWidget(checkoutLabel, 0, Qt::AlignTop | Qt::AlignCenter);
 
     // Scroll Area
     lll = new QVBoxLayout;
     scrollArea = new QScrollArea(cartWidget);
-    scrollArea->setStyleSheet("border-radius: 0px;");
-    scrollAreaContentWidgets = new QWidget;
+    scrollArea->setStyleSheet("border-radius: 0px; border: 2px black;");
+    scrollArea->setFixedSize(350, 400);
+    scrollAreaContentWidgets = new QWidget(scrollArea);
+    scrollAreaContentWidgets->setMinimumSize(320, 200);
+    scrollAreaContentWidgets->setLayout(top);
+    scrollArea->setWidget(scrollAreaContentWidgets);
     mainLayout->addWidget(scrollArea);
 
     // Labels
@@ -34,7 +44,7 @@ void Cart::setupCart() {
     totalAmountLayout->addWidget(totalAmountLabel);
     totalAmountLayout->setSpacing(20);
 
-    QLabel *totalAmountValueLabel = new QLabel("Yasir istg khuda ka wasta");
+    totalAmountValueLabel = new QLabel(" ");
     totalAmountLayout->addWidget(totalAmountValueLabel);
     mainLayout->addLayout(totalAmountLayout);
 
@@ -44,7 +54,7 @@ void Cart::setupCart() {
     gstLayout->addWidget(gstLabel);
 
     QLabel *gstValueLabel = new QLabel("16%");
-    gstValueLabel->setFont(QFont("Arial Rounded", 13));
+    gstValueLabel->setFont(QFont("Arial Rounded", 11));
     gstLayout->addWidget(gstValueLabel);
     mainLayout->addLayout(gstLayout);
 
@@ -52,7 +62,7 @@ void Cart::setupCart() {
     QLabel *subtotalLabel = new QLabel("Subtotal:");
     subtotalLabel->setFont(QFont("Arial Rounded", 12, QFont::Bold));
     subtotalLayout->addWidget(subtotalLabel);
-    QLabel *subtotalValueLabel = new QLabel("YasirMakeGettersPlease");
+    subtotalValueLabel = new QLabel(" ");
     subtotalLayout->addWidget(subtotalValueLabel);
     mainLayout->addLayout(subtotalLayout);
 
@@ -61,11 +71,11 @@ void Cart::setupCart() {
 
     QPushButton *feedbackButton = new QPushButton("Feedback", cartWidget);
     feedbackButton->setFont(QFont("Arial Rounded", 12, QFont::Bold));
-    feedbackButton->setStyleSheet("QPushButton {background-color: rgb(40, 164, 166); color: #333; border-style: outset; border-radius: 20px; padding: 0px;}");
+    feedbackButton->setStyleSheet("QPushButton {background-color: rgb(40, 164, 166); color: #333; border-style: outset; border-radius: 20px; padding: 10px;}");
     QPushButton *checkoutButton = new QPushButton("Checkout", cartWidget);
     checkoutButton->setFont(QFont("Arial Rounded", 12));
-    checkoutButton->setStyleSheet("QPushButton { background-color: rgb(0, 204, 238); border-radius: 20px; }");
-    // connect(checkoutButton, &QPushButton::clicked, this, &Cart::on_checkout_clicked);
+    checkoutButton->setStyleSheet("QPushButton { background-color: rgb(0, 204, 238); border-radius: 20px; padding: 10px; }");
+    connect(checkoutButton, &QPushButton::clicked, this, &Cart::on_checkout_clicked);
 
     buttonLayout->addWidget(feedbackButton);
     buttonLayout->setSpacing(20);
@@ -81,96 +91,90 @@ void Cart::setupCart() {
     setLayout(cartLayout);
 
     for (int i = 0; i < cardButtons.size(); i++)
-    connect(cardButtons[i], &QPushButton::clicked, this, &Cart::on_pushButton_clicked);
+        connect(cardButtons[i], &QPushButton::clicked, this, [this, i] {on_pushButton_clicked(i);});
 }
-
-void Cart::on_pushButton_clicked()
+QString brand;
+void Cart::on_pushButton_clicked(int i)
 {
-    count++;
-    cartItem* temp = new cartItem(this, "Apples", 50);
-
-    top = new QVBoxLayout(this);
-    disconnect(temp->counter, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxValueChanged(int)));
-
-    // Connect valueChanged signal before retrieving the quantity
-    connect(temp->counter, SIGNAL(valueChanged(int)), this, SLOT(onSpinBoxValueChanged(int)));
-
+    name = productsArray[i].name;
+    price = productsArray[i].price;
+    brand = productsArray[i].brand;
+    cartItem* temp = new cartItem(this, name, price);
     newWid.append(temp);
-
-    top->addWidget(newWid[newWid.size() - 1]);
+    itemName.push_back(name);
+    itemPrice.push_back(price);
+    itemBrand.push_back(brand);
+    itemQuantity.push_back(temp->counter->value());
+    for (int j = 0; j < newWid.size(); j++) {
+        connect(newWid[j]->counter,&QSpinBox::valueChanged , this, [this, j] {onSpinBoxValueChanged(j);});
+    }
+    top->addWidget(newWid[newWid.size() - 1]); // Add the new widget to the existing layout
     scrollAreaContentWidgets->setLayout(top);
-
-    // Set the scroll area widget as the widget for the scroll area
-    lll->addLayout(top);
-    scrollArea->setLayout(lll);
+    scrollAreaContentWidgets->adjustSize();
 }
 
-// void Cart::on_checkout_clicked()
-// {
-//     QMessageBox::StandardButton reply = QMessageBox::question(this, "Member Check", "Are You A Member", QMessageBox::Yes | QMessageBox::No);
-//     if (reply == QMessageBox::Yes) {
-//         qDebug() << "You a reaal nigga my G";
-//         qDebug() << "Discount Added!";
-//         totalAmount = totalAmount * (0.9);
-//         ui->label_6->setText(QString::number(totalAmount));
-//     }
-//     else {
-//         QMessageBox::critical(this, "Not a Member", "You're Not a Member Bitch ass Nigga");
-//         this->close();
-//     }
-//     QLayoutItem *child;
-//     while ((child = layout->takeAt(0)) != nullptr) {
-//         if (child->widget()) {
-//             delete child->widget();
-//         }
-//         delete child;
-//     }
-//     ui->scrollAreaWidgetContents->hide();
-//     QSqlDatabase myindb = QSqlDatabase::addDatabase("QSQLITE");
-//     myindb.setDatabaseName("sales.db");
-//     if (myindb.open()) {
-//         qDebug() << "DB is open";
-//     }
+void Cart::on_checkout_clicked()
+{
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Member Check", "Are You A Member", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        totalAmount = totalAmount * (0.9);
+        totalAmountValueLabel->setText(QString::number(totalAmount));
+        QMessageBox::information(this, "Member", "90% Discount added, Keep supporting us!");
 
-//     int start = count;
-//     for (int i = 0; i < itemName.size(); i++) {
-//         QSqlQuery query(myindb);
-//         query.prepare("INSERT INTO info "
-//                       "VALUES (?, ?, ?);");
-//         query.addBindValue(itemName[i]);
-//         query.addBindValue(itemPrice[i]);
-//         for (int j = start + 1; j < itemQuantity.size(); j++) {
-//             qDebug() << "At index " << j << "  " << itemQuantity[j];
-//             if (itemQuantity[j] == 1 && j > 3) {
-//                 query.addBindValue(itemQuantity[j - 1]);
-//                 qDebug() << itemQuantity[j - 1] << "break";
-//                 start = j;
-//                 break;
-//             }
-//             else if (j == itemQuantity.size() - 1) {
-//                 query.addBindValue(itemQuantity[j]);
-//                 qDebug() << itemQuantity[j] << "break";
-//                 break;
-//             }
-//         }
-//         query.exec();
-//     }
-//     itemName.clear();
-//     itemPrice.clear();
-//     itemQuantity.clear();
-// }
+    }
+    receipt = new Receipt;
+    receipt->show();
 
-// void Cart::onSpinBoxValueChanged(int newValue)
-// {
-//     spin++;
-//     qDebug() << "New value of QSpinBox:" << newValue;
-//     QSpinBox *spinBox = qobject_cast<QSpinBox*>(sender());
-//     int quantity = spinBox->value();
-//     itemQuantity.append(quantity);
-//     for (int i = 0; i < itemQuantity.size(); i++) {
-//         qDebug() << itemQuantity[i];
-//     }
-// }
+    // Inserting into Database
+    QSqlDatabase myindb = QSqlDatabase::addDatabase("QSQLITE");
+    myindb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/sales.db");
+    if (myindb.open()) {
+        qDebug() << "DB is open";
+    }
+QSqlQuery initial(myindb);
+    initial.exec("CREATE TABLE IF NOT EXISTS info (name TEXT, price INTEGER, quantity INTEGER);");
+
+    for (int i = 0; i < itemName.size(); i++) {
+        QSqlQuery query(myindb);
+        query.prepare("INSERT INTO info "
+                      "VALUES (?, ?, ?);");
+        query.addBindValue(itemName[i]);
+        query.addBindValue(itemPrice[i]);
+        query.addBindValue(itemQuantity[i]);
+        query.exec();
+    }
+
+    // Clearing cart
+    itemName.clear();
+    itemPrice.clear();
+    itemQuantity.clear();
+    totalAmount = 0;
+    totalAmountValueLabel->setText(QString::number(totalAmount));
+    subtotal = 0;
+    subtotalValueLabel->setText(QString::number(subtotal));
+    for (int i = 0; i < newWid.size(); ++i) {
+        delete newWid[i]; // Deleting the widget
+    }
+    newWid.clear();
+    top->update(); // Update the layout
+}
+
+
+void Cart::onSpinBoxValueChanged(int i)
+{
+    int quant = newWid[i]->counter->value();
+    int oldQuantity = itemQuantity[i];
+    itemQuantity[i] = quant;
+    int total = itemQuantity[i] * itemPrice[i];
+    subtotal -= (oldQuantity - itemQuantity[i]) * itemPrice[i]; // Subtract the difference from the subtotal
+    // Update subtotal label
+    subtotalValueLabel->setText(QString::number(subtotal));
+    // Update total amount
+    totalAmount = subtotal + (0.16) * subtotal;
+    // Update total amount label
+    totalAmountValueLabel->setText(QString::number(totalAmount));
+    qDebug() << "Quantity of Button " << i << " " << itemQuantity[i];
+}
 
 Cart::~Cart() {
     delete cartWidget;

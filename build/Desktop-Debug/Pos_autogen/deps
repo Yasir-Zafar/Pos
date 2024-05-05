@@ -8,9 +8,15 @@ Pos_autogen/timestamp: \
 	/home/boi/Projects/C++/Uni/Pos/cart.h \
 	/home/boi/Projects/C++/Uni/Pos/cartitem.cpp \
 	/home/boi/Projects/C++/Uni/Pos/cartitem.h \
+	/home/boi/Projects/C++/Uni/Pos/dialog.cpp \
+	/home/boi/Projects/C++/Uni/Pos/dialog.h \
 	/home/boi/Projects/C++/Uni/Pos/main.cpp \
 	/home/boi/Projects/C++/Uni/Pos/mainwindow.cpp \
 	/home/boi/Projects/C++/Uni/Pos/mainwindow.h \
+	/home/boi/Projects/C++/Uni/Pos/receipt.cpp \
+	/home/boi/Projects/C++/Uni/Pos/receipt.h \
+	/home/boi/Projects/C++/Uni/Pos/removeuser.cpp \
+	/home/boi/Projects/C++/Uni/Pos/removeuser.h \
 	/home/boi/Projects/C++/Uni/Pos/shop.cpp \
 	/home/boi/Projects/C++/Uni/Pos/shop.h \
 	/home/boi/Projects/C++/Uni/Pos/sidebar.cpp \
@@ -459,6 +465,7 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtGui/qtransform.h \
 	/usr/include/qt6/QtGui/qvalidator.h \
 	/usr/include/qt6/QtGui/qwindowdefs.h \
+	/usr/include/qt6/QtSql/QSql \
 	/usr/include/qt6/QtSql/QSqlDatabase \
 	/usr/include/qt6/QtSql/QSqlError \
 	/usr/include/qt6/QtSql/QSqlQuery \
@@ -468,6 +475,8 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtSql/qtsql-config.h \
 	/usr/include/qt6/QtSql/qtsqlexports.h \
 	/usr/include/qt6/QtSql/qtsqlglobal.h \
+	/usr/include/qt6/QtWidgets/QDialog \
+	/usr/include/qt6/QtWidgets/QFrame \
 	/usr/include/qt6/QtWidgets/QGridLayout \
 	/usr/include/qt6/QtWidgets/QHBoxLayout \
 	/usr/include/qt6/QtWidgets/QHeaderView \
@@ -476,6 +485,7 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtWidgets/QMainWindow \
 	/usr/include/qt6/QtWidgets/QMessageBox \
 	/usr/include/qt6/QtWidgets/QPushButton \
+	/usr/include/qt6/QtWidgets/QRadioButton \
 	/usr/include/qt6/QtWidgets/QScrollArea \
 	/usr/include/qt6/QtWidgets/QSpinBox \
 	/usr/include/qt6/QtWidgets/QTableWidget \
@@ -501,6 +511,7 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtWidgets/qmainwindow.h \
 	/usr/include/qt6/QtWidgets/qmessagebox.h \
 	/usr/include/qt6/QtWidgets/qpushbutton.h \
+	/usr/include/qt6/QtWidgets/qradiobutton.h \
 	/usr/include/qt6/QtWidgets/qrubberband.h \
 	/usr/include/qt6/QtWidgets/qscrollarea.h \
 	/usr/include/qt6/QtWidgets/qsizepolicy.h \

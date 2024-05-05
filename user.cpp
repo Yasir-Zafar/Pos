@@ -1,4 +1,6 @@
 #include "user.h"
+#include "dialog.h"
+#include "removeuser.h"
 
 User::User(QWidget *parent)
     : QWidget{parent}
@@ -70,7 +72,9 @@ void User::setupUser(){
     tableWidget->setStyleSheet("QTableWidget { border: 4px solid #333; border-radius: 10px; }");
     tableWidget_2->setStyleSheet("QTableWidget { border: 4px solid #333; border-radius: 10px; }");
 
+    connect(pushButton_5, &QPushButton::clicked, this, &User::on_pushButton_5_clicked);
     connect(pushButton_6, &QPushButton::clicked, this, &User::on_pushButton_6_clicked);
+    connect(rem_1, &QPushButton::clicked, this, &User::on_rem_1_clicked);
 
     mainLayout->addLayout(horizontalLayout);
     mainLayout->addLayout(employeeLayout);
@@ -138,7 +142,7 @@ void User::setAdmins()
                 tableWidget->setItem(newRow, 1, new QTableWidgetItem(username));
 
                 // Do something with the retrieved data
-                qDebug() << "Username:" << username << ", Email:" << email;
+                // qDebug() << "Username:" << username << ", Email:" << email;
             }
         }
     }
@@ -215,21 +219,19 @@ void User::resettables()
     setEmployees();
 }
 
+void User::on_pushButton_5_clicked()
+{
+    Dialog *diag = new Dialog;
+    diag->show();
+}
+
 void User::on_pushButton_6_clicked()
 {
     resettables();
 }
 
-
-User::~User()
+void User::on_rem_1_clicked()
 {
-    delete label;
-    delete label_6;
-    delete label_7;
-    delete label_8;
-    delete tableWidget;
-    delete tableWidget_2;
-    delete pushButton_5;
-    delete pushButton_6;
-    delete rem_1;
+    RemoveUser *remove = new RemoveUser;
+    remove->show();
 }

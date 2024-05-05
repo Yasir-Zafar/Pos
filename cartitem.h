@@ -6,8 +6,11 @@
 #include <QLabel>
 #include <QSpinBox>
 #include <QVBoxLayout>
-
-
+inline QVector<QString> itemName;
+inline QVector<QString> itemBrand;
+inline QVector<double> itemPrice;
+inline QVector<int> itemQuantity;
+inline float totalAmount;
 class cartItem : public QWidget
 {
 public:
@@ -19,6 +22,9 @@ public:
     QLabel* price;
     QLabel* quantity;
     QSpinBox* counter;
+
+public slots:
+
 };
 
 #endif // CARTITEM_H
