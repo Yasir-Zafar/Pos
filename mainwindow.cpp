@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(sidebar, &Sidebar::button1Clicked, this, &MainWindow::handleSidebarButton1Click);
     connect(sidebar, &Sidebar::button2Clicked, this, &MainWindow::handleSidebarButton2Click);
     connect(sidebar, &Sidebar::button3Clicked, this, &MainWindow::handleSidebarButton3Click);
+    connect(sidebar, &Sidebar::button4Clicked, this, &MainWindow::handleSidebarButton4Click);
+
     connect(this, &MainWindow::employeeLogin, sidebar, &Sidebar::handleEmployeeLogin);
 
     shop = new Shop();
@@ -78,4 +80,11 @@ void MainWindow::handleSidebarButton3Click() {
     MainWindow::deleteLastWidget();
     user = new User();
     mainLayout->addWidget(user);
+}
+
+void MainWindow::handleSidebarButton4Click() {
+    MainWindow::deleteLastWidget();
+    settings = new Settings();
+    connect(this, &MainWindow::employeeLogin, settings, &Settings::handleEmployeeLogin);
+    mainLayout->addWidget(settings);
 }

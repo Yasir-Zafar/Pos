@@ -14,6 +14,8 @@ Pos_autogen/timestamp: \
 	/home/boi/Projects/C++/Uni/Pos/dialog.h \
 	/home/boi/Projects/C++/Uni/Pos/feedback.cpp \
 	/home/boi/Projects/C++/Uni/Pos/feedback.h \
+	/home/boi/Projects/C++/Uni/Pos/linechart.cpp \
+	/home/boi/Projects/C++/Uni/Pos/linechart.h \
 	/home/boi/Projects/C++/Uni/Pos/login.cpp \
 	/home/boi/Projects/C++/Uni/Pos/login.h \
 	/home/boi/Projects/C++/Uni/Pos/main.cpp \
@@ -23,6 +25,8 @@ Pos_autogen/timestamp: \
 	/home/boi/Projects/C++/Uni/Pos/receipt.h \
 	/home/boi/Projects/C++/Uni/Pos/removeuser.cpp \
 	/home/boi/Projects/C++/Uni/Pos/removeuser.h \
+	/home/boi/Projects/C++/Uni/Pos/settings.cpp \
+	/home/boi/Projects/C++/Uni/Pos/settings.h \
 	/home/boi/Projects/C++/Uni/Pos/shop.cpp \
 	/home/boi/Projects/C++/Uni/Pos/shop.h \
 	/home/boi/Projects/C++/Uni/Pos/sidebar.cpp \
@@ -319,6 +323,26 @@ Pos_autogen/timestamp: \
 	/usr/include/linux/limits.h \
 	/usr/include/locale.h \
 	/usr/include/pthread.h \
+	/usr/include/qt6/QtCharts/QAbstractAxis \
+	/usr/include/qt6/QtCharts/QAbstractSeries \
+	/usr/include/qt6/QtCharts/QChart \
+	/usr/include/qt6/QtCharts/QChartGlobal \
+	/usr/include/qt6/QtCharts/QChartView \
+	/usr/include/qt6/QtCharts/QLegend \
+	/usr/include/qt6/QtCharts/QLineSeries \
+	/usr/include/qt6/QtCharts/QValueAxis \
+	/usr/include/qt6/QtCharts/QXYSeries \
+	/usr/include/qt6/QtCharts/qabstractaxis.h \
+	/usr/include/qt6/QtCharts/qabstractseries.h \
+	/usr/include/qt6/QtCharts/qchart.h \
+	/usr/include/qt6/QtCharts/qchartglobal.h \
+	/usr/include/qt6/QtCharts/qchartview.h \
+	/usr/include/qt6/QtCharts/qlegend.h \
+	/usr/include/qt6/QtCharts/qlineseries.h \
+	/usr/include/qt6/QtCharts/qtcharts-config.h \
+	/usr/include/qt6/QtCharts/qtchartsexports.h \
+	/usr/include/qt6/QtCharts/qvalueaxis.h \
+	/usr/include/qt6/QtCharts/qxyseries.h \
 	/usr/include/qt6/QtCore/QDateTime \
 	/usr/include/qt6/QtCore/QDeadlineTimer \
 	/usr/include/qt6/QtCore/QDebug \
@@ -326,6 +350,7 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtCore/QHash \
 	/usr/include/qt6/QtCore/QList \
 	/usr/include/qt6/QtCore/QMap \
+	/usr/include/qt6/QtCore/QMargins \
 	/usr/include/qt6/QtCore/QMutex \
 	/usr/include/qt6/QtCore/QObject \
 	/usr/include/qt6/QtCore/QRect \
@@ -597,6 +622,10 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qxpfunctional.h \
 	/usr/include/qt6/QtCore/qxptype_traits.h \
 	/usr/include/qt6/QtCore/qyieldcpu.h \
+	/usr/include/qt6/QtGui/QBrush \
+	/usr/include/qt6/QtGui/QFont \
+	/usr/include/qt6/QtGui/QImage \
+	/usr/include/qt6/QtGui/QPen \
 	/usr/include/qt6/QtGui/QTextBlock \
 	/usr/include/qt6/QtGui/QTransform \
 	/usr/include/qt6/QtGui/qaction.h \
@@ -619,6 +648,8 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtGui/qinputmethod.h \
 	/usr/include/qt6/QtGui/qkeysequence.h \
 	/usr/include/qt6/QtGui/qpaintdevice.h \
+	/usr/include/qt6/QtGui/qpainter.h \
+	/usr/include/qt6/QtGui/qpainterpath.h \
 	/usr/include/qt6/QtGui/qpalette.h \
 	/usr/include/qt6/QtGui/qpen.h \
 	/usr/include/qt6/QtGui/qpicture.h \
@@ -670,9 +701,12 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtSql/qtsqlglobal.h \
 	/usr/include/qt6/QtSql/qtsqlversion.h \
 	/usr/include/qt6/QtWidgets/QApplication \
+	/usr/include/qt6/QtWidgets/QBoxLayout \
 	/usr/include/qt6/QtWidgets/QButtonGroup \
 	/usr/include/qt6/QtWidgets/QDialog \
 	/usr/include/qt6/QtWidgets/QFrame \
+	/usr/include/qt6/QtWidgets/QGraphicsView \
+	/usr/include/qt6/QtWidgets/QGraphicsWidget \
 	/usr/include/qt6/QtWidgets/QGridLayout \
 	/usr/include/qt6/QtWidgets/QHBoxLayout \
 	/usr/include/qt6/QtWidgets/QHeaderView \
@@ -703,6 +737,11 @@ Pos_autogen/timestamp: \
 	/usr/include/qt6/QtWidgets/qdialog.h \
 	/usr/include/qt6/QtWidgets/qdialogbuttonbox.h \
 	/usr/include/qt6/QtWidgets/qframe.h \
+	/usr/include/qt6/QtWidgets/qgraphicsitem.h \
+	/usr/include/qt6/QtWidgets/qgraphicslayoutitem.h \
+	/usr/include/qt6/QtWidgets/qgraphicsscene.h \
+	/usr/include/qt6/QtWidgets/qgraphicsview.h \
+	/usr/include/qt6/QtWidgets/qgraphicswidget.h \
 	/usr/include/qt6/QtWidgets/qgridlayout.h \
 	/usr/include/qt6/QtWidgets/qheaderview.h \
 	/usr/include/qt6/QtWidgets/qlabel.h \
@@ -770,6 +809,14 @@ Pos_autogen/timestamp: \
 	/usr/lib64/cmake/Qt6/QtPublicTestHelpers.cmake \
 	/usr/lib64/cmake/Qt6/QtPublicToolHelpers.cmake \
 	/usr/lib64/cmake/Qt6/QtPublicWalkLibsHelpers.cmake \
+	/usr/lib64/cmake/Qt6Charts/Qt6ChartsAdditionalTargetInfo.cmake \
+	/usr/lib64/cmake/Qt6Charts/Qt6ChartsConfig.cmake \
+	/usr/lib64/cmake/Qt6Charts/Qt6ChartsConfigVersion.cmake \
+	/usr/lib64/cmake/Qt6Charts/Qt6ChartsConfigVersionImpl.cmake \
+	/usr/lib64/cmake/Qt6Charts/Qt6ChartsDependencies.cmake \
+	/usr/lib64/cmake/Qt6Charts/Qt6ChartsTargets-relwithdebinfo.cmake \
+	/usr/lib64/cmake/Qt6Charts/Qt6ChartsTargets.cmake \
+	/usr/lib64/cmake/Qt6Charts/Qt6ChartsVersionlessTargets.cmake \
 	/usr/lib64/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake \
 	/usr/lib64/cmake/Qt6Core/Qt6CoreConfig.cmake \
 	/usr/lib64/cmake/Qt6Core/Qt6CoreConfigExtras.cmake \
@@ -859,6 +906,22 @@ Pos_autogen/timestamp: \
 	/usr/lib64/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake \
 	/usr/lib64/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake \
 	/usr/lib64/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake \
+	/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLAdditionalTargetInfo.cmake \
+	/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLConfig.cmake \
+	/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLConfigVersion.cmake \
+	/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLConfigVersionImpl.cmake \
+	/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLDependencies.cmake \
+	/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLTargets-relwithdebinfo.cmake \
+	/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLTargets.cmake \
+	/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLVersionlessTargets.cmake \
+	/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsAdditionalTargetInfo.cmake \
+	/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfig.cmake \
+	/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersion.cmake \
+	/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersionImpl.cmake \
+	/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsDependencies.cmake \
+	/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-relwithdebinfo.cmake \
+	/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake \
+	/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsVersionlessTargets.cmake \
 	/usr/lib64/cmake/Qt6Sql/Qt6SqlAdditionalTargetInfo.cmake \
 	/usr/lib64/cmake/Qt6Sql/Qt6SqlConfig.cmake \
 	/usr/lib64/cmake/Qt6Sql/Qt6SqlConfigVersion.cmake \

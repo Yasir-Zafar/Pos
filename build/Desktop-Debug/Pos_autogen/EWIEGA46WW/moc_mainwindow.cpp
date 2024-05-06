@@ -39,9 +39,11 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "MainWindow",
     "employeeLogin",
     "",
+    "initializationComplete",
     "handleSidebarButton1Click",
     "handleSidebarButton2Click",
     "handleSidebarButton3Click",
+    "handleSidebarButton4Click",
     "handleIsEmployee"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
@@ -55,26 +57,30 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   44,    2, 0x06,    1 /* Public */,
+       1,    0,   56,    2, 0x06,    1 /* Public */,
+       3,    0,   57,    2, 0x06,    2 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   45,    2, 0x0a,    2 /* Public */,
-       4,    0,   46,    2, 0x0a,    3 /* Public */,
-       5,    0,   47,    2, 0x0a,    4 /* Public */,
-       6,    0,   48,    2, 0x0a,    5 /* Public */,
+       4,    0,   58,    2, 0x0a,    3 /* Public */,
+       5,    0,   59,    2, 0x0a,    4 /* Public */,
+       6,    0,   60,    2, 0x0a,    5 /* Public */,
+       7,    0,   61,    2, 0x0a,    6 /* Public */,
+       8,    0,   62,    2, 0x0a,    7 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -94,11 +100,15 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
         // method 'employeeLogin'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'initializationComplete'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleSidebarButton1Click'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleSidebarButton2Click'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleSidebarButton3Click'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'handleSidebarButton4Click'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'handleIsEmployee'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
@@ -113,10 +123,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         (void)_t;
         switch (_id) {
         case 0: _t->employeeLogin(); break;
-        case 1: _t->handleSidebarButton1Click(); break;
-        case 2: _t->handleSidebarButton2Click(); break;
-        case 3: _t->handleSidebarButton3Click(); break;
-        case 4: _t->handleIsEmployee(); break;
+        case 1: _t->initializationComplete(); break;
+        case 2: _t->handleSidebarButton1Click(); break;
+        case 3: _t->handleSidebarButton2Click(); break;
+        case 4: _t->handleSidebarButton3Click(); break;
+        case 5: _t->handleSidebarButton4Click(); break;
+        case 6: _t->handleIsEmployee(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -125,6 +137,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             using _t = void (MainWindow::*)();
             if (_t _q_method = &MainWindow::employeeLogin; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (MainWindow::*)();
+            if (_t _q_method = &MainWindow::initializationComplete; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
                 return;
             }
         }
@@ -151,13 +170,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }
@@ -166,5 +185,11 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void MainWindow::employeeLogin()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+}
+
+// SIGNAL 1
+void MainWindow::initializationComplete()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 QT_WARNING_POP

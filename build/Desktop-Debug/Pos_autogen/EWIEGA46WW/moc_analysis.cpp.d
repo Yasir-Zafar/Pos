@@ -405,7 +405,17 @@
   /usr/include/qt6/QtGui/qtransform.h \
   /usr/include/qt6/QtGui/qvalidator.h \
   /usr/include/qt6/QtGui/qwindowdefs.h \
+  /usr/include/qt6/QtSql/QSqlDatabase \
+  /usr/include/qt6/QtSql/QSqlError \
+  /usr/include/qt6/QtSql/QSqlQuery \
+  /usr/include/qt6/QtSql/qsqldatabase.h \
+  /usr/include/qt6/QtSql/qsqlerror.h \
+  /usr/include/qt6/QtSql/qsqlquery.h \
+  /usr/include/qt6/QtSql/qtsql-config.h \
+  /usr/include/qt6/QtSql/qtsqlexports.h \
+  /usr/include/qt6/QtSql/qtsqlglobal.h \
   /usr/include/qt6/QtWidgets/QApplication \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QLabel \
   /usr/include/qt6/QtWidgets/QListWidget \
   /usr/include/qt6/QtWidgets/QMainWindow \
@@ -418,8 +428,12 @@
   /usr/include/qt6/QtWidgets/qabstractslider.h \
   /usr/include/qt6/QtWidgets/qabstractspinbox.h \
   /usr/include/qt6/QtWidgets/qapplication.h \
+  /usr/include/qt6/QtWidgets/qboxlayout.h \
   /usr/include/qt6/QtWidgets/qframe.h \
+  /usr/include/qt6/QtWidgets/qgridlayout.h \
   /usr/include/qt6/QtWidgets/qlabel.h \
+  /usr/include/qt6/QtWidgets/qlayout.h \
+  /usr/include/qt6/QtWidgets/qlayoutitem.h \
   /usr/include/qt6/QtWidgets/qlistview.h \
   /usr/include/qt6/QtWidgets/qlistwidget.h \
   /usr/include/qt6/QtWidgets/qmainwindow.h \

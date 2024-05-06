@@ -260,6 +260,34 @@
 		"/usr/lib64/cmake/Qt6Sql/Qt6SqlAdditionalTargetInfo.cmake",
 		"/usr/lib64/cmake/Qt6Sql/Qt6SqlVersionlessTargets.cmake",
 		"/usr/lib64/cmake/Qt6Sql/Qt6SqlPlugins.cmake",
+		"/usr/lib64/cmake/Qt6Charts/Qt6ChartsConfigVersion.cmake",
+		"/usr/lib64/cmake/Qt6Charts/Qt6ChartsConfigVersionImpl.cmake",
+		"/usr/lib64/cmake/Qt6Charts/Qt6ChartsConfig.cmake",
+		"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+		"/usr/lib64/cmake/Qt6Charts/Qt6ChartsDependencies.cmake",
+		"/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLConfigVersion.cmake",
+		"/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLConfigVersionImpl.cmake",
+		"/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLConfig.cmake",
+		"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+		"/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLDependencies.cmake",
+		"/usr/lib64/cmake/Qt6/FindWrapVulkanHeaders.cmake",
+		"/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLTargets.cmake",
+		"/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLTargets-relwithdebinfo.cmake",
+		"/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLAdditionalTargetInfo.cmake",
+		"/usr/lib64/cmake/Qt6OpenGL/Qt6OpenGLVersionlessTargets.cmake",
+		"/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersion.cmake",
+		"/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersionImpl.cmake",
+		"/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfig.cmake",
+		"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+		"/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsDependencies.cmake",
+		"/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake",
+		"/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-relwithdebinfo.cmake",
+		"/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsAdditionalTargetInfo.cmake",
+		"/usr/lib64/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsVersionlessTargets.cmake",
+		"/usr/lib64/cmake/Qt6Charts/Qt6ChartsTargets.cmake",
+		"/usr/lib64/cmake/Qt6Charts/Qt6ChartsTargets-relwithdebinfo.cmake",
+		"/usr/lib64/cmake/Qt6Charts/Qt6ChartsAdditionalTargetInfo.cmake",
+		"/usr/lib64/cmake/Qt6Charts/Qt6ChartsVersionlessTargets.cmake",
 		"/usr/share/cmake/Modules/GNUInstallDirs.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "/home/boi/Projects/C++/Uni/Pos",
@@ -299,6 +327,12 @@
 			null
 		],
 		[
+			"/home/boi/Projects/C++/Uni/Pos/linechart.h",
+			"MU",
+			"EWIEGA46WW/moc_linechart.cpp",
+			null
+		],
+		[
 			"/home/boi/Projects/C++/Uni/Pos/login.h",
 			"MU",
 			"EWIEGA46WW/moc_login.cpp",
@@ -320,6 +354,12 @@
 			"/home/boi/Projects/C++/Uni/Pos/removeuser.h",
 			"MU",
 			"EWIEGA46WW/moc_removeuser.cpp",
+			null
+		],
+		[
+			"/home/boi/Projects/C++/Uni/Pos/settings.h",
+			"MU",
+			"EWIEGA46WW/moc_settings.cpp",
 			null
 		],
 		[
@@ -350,7 +390,16 @@
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/Pos_autogen/include",
 	"MOC_COMPILATION_FILE" : "/home/boi/Projects/C++/Uni/Pos/build/Desktop-Debug/Pos_autogen/mocs_compilation.cpp",
-	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_SQL_LIB", "QT_WIDGETS_LIB" ],
+	"MOC_DEFINITIONS" : 
+	[
+		"QT_CHARTS_LIB",
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_OPENGLWIDGETS_LIB",
+		"QT_OPENGL_LIB",
+		"QT_SQL_LIB",
+		"QT_WIDGETS_LIB"
+	],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -366,6 +415,9 @@
 		"/usr/include/qt6/QtWidgets",
 		"/usr/include/qt6/QtGui",
 		"/usr/include/qt6/QtSql",
+		"/usr/include/qt6/QtCharts",
+		"/usr/include/qt6/QtOpenGL",
+		"/usr/include/qt6/QtOpenGLWidgets",
 		"/usr/include",
 		"/usr/include/c++/13",
 		"/usr/include/c++/13/x86_64-suse-linux",
@@ -413,11 +465,13 @@
 		[ "/home/boi/Projects/C++/Uni/Pos/cartitem.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/dialog.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/feedback.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/Pos/linechart.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/login.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/main.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/mainwindow.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/receipt.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/removeuser.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/Pos/settings.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/shop.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/sidebar.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/signup_window.cpp", "MU", null ],

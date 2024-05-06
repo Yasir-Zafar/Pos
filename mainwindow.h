@@ -7,6 +7,7 @@
 #include "shop.h"
 #include "user.h"
 #include "analysis.h"
+#include "settings.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,11 +26,13 @@ public:
 
 signals:
     void employeeLogin();
+    void initializationComplete();
 
 public slots:
     void handleSidebarButton1Click();
     void handleSidebarButton2Click();
     void handleSidebarButton3Click();
+    void handleSidebarButton4Click();
     void handleIsEmployee();
 
 private:
@@ -41,5 +44,6 @@ private:
     Shop* shop;
     User *user;
     Analysis* analysis;
+    Settings* settings;
 };
 #endif // MAINWINDOW_H

@@ -7,8 +7,10 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QWidget>
-
-QT_BEGIN_NAMESPACE
+#include <QBoxLayout>
+#include <QSqlError>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 
 class Analysis : public QWidget
 {
@@ -17,12 +19,15 @@ class Analysis : public QWidget
 public:
     Analysis(QWidget *parent = nullptr);
     void setupUi();
+    void setupDb();
 
 private slots:
-    // void  on_pushButton_clicked();
+    void  on_pushButton_clicked();
 
-    // void on_DisplayGraph_clicked();
+    void on_DisplayGraph_clicked();
 private:
+    QSqlDatabase DB_connection;
+    QSqlDatabase DB_connection_2;
 
     QWidget *centralwidget;
     QPushButton *pushButton;
@@ -36,7 +41,5 @@ private:
     QListWidget *listWidget;
     QLabel *label_7;
 };
-
-QT_END_NAMESPACE
 
 #endif // ANALYSIS_H

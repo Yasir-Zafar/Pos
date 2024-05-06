@@ -95,6 +95,7 @@ void Cart::setupCart() {
     for (int i = 0; i < cardButtons.size(); i++)
         connect(cardButtons[i], &QPushButton::clicked, this, [this, i] {on_pushButton_clicked(i);});
 }
+
 QString brand;
 void Cart::on_pushButton_clicked(int i)
 {
@@ -130,54 +131,8 @@ void Cart::on_checkout_clicked()
         QMessageBox::information(this, "Member", "10% Discount added, Keep supporting us!");
     }
 
-    // QSqlDatabase productsDb = QSqlDatabase::addDatabase("QSQLITE");
-    // productsDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
-
-    // if (!productsDb.open()) {
-    //     qDebug() << "Error: Failed to open products database";
-    //     return;
-    // }
-
-    // // Prepare the query to update the "Sold" column
-    // QSqlQuery updateQuery(productsDb);
-    // updateQuery.prepare("UPDATE products SET Sold = Sold + ? , Inventory = Inventory - ? WHERE Name = ?");
-
-    // // Update the "Sold" column for each item in the cart
-    // for (int i = 0; i < itemName.size(); i++) {
-    //     QString itemName = itemName[i];
-    //     int quantitySold = itemQuantity[i];
-
-    //     updateQuery.addBindValue(quantitySold);
-    //     updateQuery.addBindValue(quantitySold);
-    //     updateQuery.addBindValue(itemName);
-
-    //     if (!updateQuery.exec()) {
-    //         qDebug() << "Error updating Sold column for item" << itemName;
-    //     }
-    // }
-
     receipt = new Receipt;
     receipt->show();
-
-    // QSqlDatabase inventoryDb = QSqlDatabase::addDatabase("QSQLITE", "inventory_connection");
-    // inventoryDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/inventory.db");
-
-    // if (!inventoryDb.open()) {
-    //     qDebug() << "Error: Failed to open inventory database";
-    //     return;
-    // }
-
-    // // QDateTime currentDate = QDateTime::currentDateTime();
-    // // QString currentDateString = currentDate.toString("dd");
-
-    // QSqlQuery insertQuery(inventoryDb);
-    // insertQuery.prepare("INSERT INTO inventory (total_amount, date) VALUES (?, ?)");
-    // insertQuery.addBindValue(totalAmount);
-    // insertQuery.addBindValue("6-5");
-
-    // if (!insertQuery.exec()) {
-    //     qDebug() << "Error inserting data into inventory database";
-    // }
 
     // Inserting into Database
     QSqlDatabase myindb = QSqlDatabase::addDatabase("QSQLITE");
@@ -185,38 +140,45 @@ void Cart::on_checkout_clicked()
     if (myindb.open()) {
         qDebug() << "DB is open";
     }
+    QSqlDatabase productsDb = QSqlDatabase::addDatabase("QSQLITE");
+    productsDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
+    if (productsDb.open()) {
+        qDebug() << "DB is open";
+    }
+
     QSqlQuery initial(myindb);
     initial.exec("CREATE TABLE IF NOT EXISTS info (name TEXT, price INTEGER, quantity INTEGER);");
 
     for (int i = 0; i < itemName.size(); i++) {
         QSqlQuery query(myindb);
-        query.prepare("INSERT INTO info "
-                      "VALUES (?, ?, ?);");
+        QSqlQuery query2(productsDb);
+        query.prepare("INSERT INTO info VALUES (?, ?, ?);");
+
         query.addBindValue(itemName[i]);
         query.addBindValue(itemPrice[i]);
         query.addBindValue(itemQuantity[i]);
+
         query.exec();
+        QString trial = "UPDATE products SET Sold = Sold + " + QString::number(itemQuantity[i]) + ", Inventory = Inventory - " + QString::number(itemQuantity[i]) + " WHERE Name = '" + itemName[i] + "';";
+        query2.exec(trial);
     }
 
     // Clearing cart
     itemName.clear();
     itemPrice.clear();
     itemQuantity.clear();
-    totalAmount = 0;
 
+    totalAmount = 0;
     totalAmountValueLabel->setText(QString::number(totalAmount));
     subtotal = 0;
     subtotalValueLabel->setText(QString::number(subtotal));
 
     for (int i = 0; i < newWid.size(); ++i) {
-        delete newWid[i];
+        delete newWid[i]; // Deleting the widget
     }
 
     newWid.clear();
     top->update();
-
-    // productsDb.close();
-    // inventoryDb.close();
 }
 
 void Cart::onSpinBoxValueChanged(int i)

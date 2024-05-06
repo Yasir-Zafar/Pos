@@ -65,6 +65,7 @@ void login::on_pushButton_login_clicked()
                 QMessageBox::information(this, "Login Successful", msg);
                 emit loginSuccessful(username);
                 emit isEmployee();
+                close();
             }
             else {
                 ui->label_status->setText("[-]Wrong Username or Password.");
@@ -98,6 +99,7 @@ void login::on_pushButton_login_clicked()
                 QString msg = "Welcome, " + qry.value(0).toString();
                 QMessageBox::information(this, "Login Successful", msg);
                 emit loginSuccessful(username);
+                // close();
             }
             else {
                 ui->label_status->setText("[-]Wrong Username or Password.");

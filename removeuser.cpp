@@ -52,9 +52,11 @@ void RemoveUser::setupUi()
 
     rembutton_2->setFixedHeight(40);
     rembutton_1->setFixedHeight(40);
+
     buttonLayout->addWidget(rembutton_2);
     buttonLayout->addSpacing(20);
     buttonLayout->addWidget(rembutton_1);
+
     buttonLayout->setAlignment(Qt::AlignCenter);
 
     connect(rembutton_1, &QPushButton::clicked, this, &RemoveUser::on_rembutton_1_clicked);

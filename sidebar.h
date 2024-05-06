@@ -28,6 +28,7 @@ signals:
     void button1Clicked();
     void button2Clicked();
     void button3Clicked();
+    void button4Clicked();
 
 public slots:
     void handleEmployeeLogin();
@@ -36,6 +37,7 @@ private slots:
     void onButton1Clicked();
     void onButton2Clicked();
     void onButton3Clicked();
+    void onButton4Clicked();
 };
 
 #endif // SIDEBAR_H

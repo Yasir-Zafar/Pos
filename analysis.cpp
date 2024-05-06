@@ -1,9 +1,10 @@
 #include "analysis.h"
-#include "qboxlayout.h"
+#include "linechart.h"
 
 Analysis::Analysis(QWidget *parent)
     : QWidget(parent) {
     setupUi();
+    // setupDb();
 }
 
 void Analysis::setupUi()
@@ -111,6 +112,7 @@ void Analysis::setupUi()
                                 "border-radius:20px;");
     DisplayGraph->setFixedSize(400, 100);
     DisplayGraph->setFont(commonFont);
+    connect(DisplayGraph, &QPushButton::clicked, this, &Analysis::on_DisplayGraph_clicked);
 
     pushButton = new QPushButton("LOAD");
     pushButton->setObjectName(QString::fromUtf8("pushButton"));
@@ -118,6 +120,7 @@ void Analysis::setupUi()
                               "border-radius:20px;");
     pushButton->setFixedSize(400, 100);
     pushButton->setFont(commonFont);
+    connect(pushButton, &QPushButton::clicked, this, &Analysis::on_pushButton_clicked);
 
     buttonLayout->addWidget(DisplayGraph);
     buttonLayout->addWidget(pushButton);
@@ -149,4 +152,134 @@ void Analysis::setupUi()
     frameLayout->setContentsMargins(10, 10, 10, 10);
 
     setLayout(frameLayout);
+}
+
+void Analysis::on_pushButton_clicked()
+{
+    // DB_connection.open();
+
+    QSqlDatabase :: database() .transaction();
+    // QSqlQuery sumdata(DB_connection);
+
+    // QString sum ;
+    // sumdata.prepare("SELECT SUM(Total) FROM checkout");
+    // sumdata.exec();
+    // if(sumdata.next())
+    //     sum = sumdata.value(0).toString();
+
+    // qDebug() << "sum=" << sum;
+    // label->setText("Rs. " + sum);
+
+    DB_connection_2 = QSqlDatabase ::addDatabase("QSQLITE");
+    DB_connection_2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
+    if(DB_connection_2.open())
+        qDebug() << "Database is connected";
+    else
+        qDebug() << "Database is not connected";
+
+    QSqlQuery solditems(DB_connection_2);
+    QString itemssold;
+    solditems.prepare("SELECT SUM(quantity) FROM info;");
+    if(!solditems.exec())
+        itemssold = "error";
+    if(solditems.next())
+        itemssold = solditems.value(0).toString();
+
+    label_3-> setText(itemssold);
+    if(DB_connection_2.open())
+        qDebug() << "Database is connected";
+    else
+    {
+        qDebug() << "Database is not connected";
+        qDebug() << "Error:" << DB_connection_2.lastError();
+    }
+
+    QSqlQuery readinventory(DB_connection_2);
+    QString inventory;
+    readinventory.prepare("SELECT SUM(Inventory) FROM products");
+    readinventory.exec();
+    if(readinventory.next())
+        inventory = readinventory.value(0).toString();
+    label_5-> setText(inventory);
+
+    QSqlQuery readmaximum(DB_connection_2);
+    QString m1 ;
+    readmaximum.prepare("SELECT MAX(Sold) FROM products ");
+    if(readmaximum.exec())
+        m1 = "error query";
+    if(readmaximum.next())
+        m1 = readmaximum.value(0).toString();
+
+    QString max1;
+    QSqlQuery readmaxname(DB_connection_2);
+    readmaxname.prepare("SELECT Name FROM products WHERE Sold =" + m1);
+    if(readmaxname.exec())
+        max1 = "error query";
+    if(readmaxname.next())
+        max1 = readmaxname.value(0).toString();
+
+    listWidget->addItem("1."+max1);
+    listWidget->addItem("");
+
+    QSqlQuery readmaximum2(DB_connection_2);
+    QString m2 ;
+    readmaximum.prepare("SELECT MAX(Sold) FROM products Where Sold != " + m1);
+    if(!readmaximum.exec())
+        m2 = "error query";
+    if(readmaximum.next())
+        m2 = readmaximum.value(0).toString();
+    qDebug() << m2;
+
+    QString max2;
+    QSqlQuery readmaxname2(DB_connection_2);
+    readmaxname2.prepare("SELECT Name FROM products WHERE Sold =" + m2);
+    if(!readmaxname2.exec())
+        max2 = "error query";
+    if(readmaxname2.next())
+    {
+        max2 = readmaxname2.value(0).toString();
+    }
+    listWidget->addItem("2."+max2);
+    listWidget->addItem("");
+
+    QSqlQuery readmaximum3(DB_connection_2);
+    QString m3 ;
+    readmaximum3.prepare("SELECT MAX(Sold) FROM products WHERE Sold !=" + m1 +" AND Sold !=" + m2 + ";");
+    if(!readmaximum3.exec())
+        m3 = "error query";
+    if(readmaximum3.next())
+        m3 = readmaximum3.value(0).toString();
+
+    qDebug() << m3;
+    QString max3;
+    QSqlQuery readmaxname3(DB_connection_2);
+    readmaxname3.prepare("SELECT Name FROM products WHERE Sold =" + m3);
+    if(!readmaxname3.exec())
+        max3 = "error query";
+    if(readmaxname3.next())
+        max3 = readmaxname3.value(0).toString();
+    listWidget->addItem("3."+max3);
+
+    QSqlDatabase::database().commit();
+
+    // DB_connection.close();
+    DB_connection_2.close();
+}
+
+void Analysis::setupDb(){
+    DB_connection = QSqlDatabase ::addDatabase("QSQLITE");
+    DB_connection.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/checkout.db");
+    if(DB_connection.open())
+        qDebug() << "Database is connected";
+    else
+    {
+        qDebug() << "Database is not connected";
+        qDebug() << "Error:" << DB_connection.lastError();
+    }
+}
+
+void Analysis::on_DisplayGraph_clicked()
+{
+    LineChart *newlinechart = new LineChart;
+    newlinechart->show();
 }

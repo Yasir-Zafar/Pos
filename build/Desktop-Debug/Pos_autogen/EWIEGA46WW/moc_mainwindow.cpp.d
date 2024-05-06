@@ -5,6 +5,7 @@
   /home/boi/Projects/C++/Uni/Pos/cartitem.h \
   /home/boi/Projects/C++/Uni/Pos/feedback.h \
   /home/boi/Projects/C++/Uni/Pos/receipt.h \
+  /home/boi/Projects/C++/Uni/Pos/settings.h \
   /home/boi/Projects/C++/Uni/Pos/shop.h \
   /home/boi/Projects/C++/Uni/Pos/sidebar.h \
   /home/boi/Projects/C++/Uni/Pos/user.h \
@@ -491,8 +492,10 @@
   /usr/include/qt6/QtSql/qtsqlexports.h \
   /usr/include/qt6/QtSql/qtsqlglobal.h \
   /usr/include/qt6/QtWidgets/QApplication \
+  /usr/include/qt6/QtWidgets/QBoxLayout \
   /usr/include/qt6/QtWidgets/QButtonGroup \
   /usr/include/qt6/QtWidgets/QDialog \
+  /usr/include/qt6/QtWidgets/QFrame \
   /usr/include/qt6/QtWidgets/QGridLayout \
   /usr/include/qt6/QtWidgets/QHBoxLayout \
   /usr/include/qt6/QtWidgets/QHeaderView \
