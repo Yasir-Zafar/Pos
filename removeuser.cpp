@@ -11,8 +11,8 @@ void RemoveUser::setupUi()
 {
     resize(700, 460);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);  // Use the main widget's layout
-    mainLayout->setAlignment(Qt::AlignCenter);  // Align everything to the center
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->setAlignment(Qt::AlignCenter);
     mainLayout->setContentsMargins(50, 50, 50, 50);
 
     QLabel *label_9 = new QLabel("Enter email of employee to delete:");
@@ -20,29 +20,29 @@ void RemoveUser::setupUi()
     font.setFamily("Arial Rounded Bold");
     font.setPointSize(12);
     label_9->setFont(font);
-    label_9->setFixedHeight(30);  // Set fixed height for the label
-    label_9->setAlignment(Qt::AlignCenter);  // Align label to the center
+    label_9->setFixedHeight(30);
+    label_9->setAlignment(Qt::AlignCenter);
 
     QHBoxLayout *radioLayout = new QHBoxLayout;
     remradio_1 = new QRadioButton("Delete admin", this);
     remradio_2 = new QRadioButton("Delete employee", this);
-    remradio_1->setFixedHeight(30);  // Set fixed height for radio buttons
-    remradio_2->setFixedHeight(30);  // Set fixed height for radio buttons
+    remradio_1->setFixedHeight(30);
+    remradio_2->setFixedHeight(30);
     radioLayout->addWidget(remradio_1);
     radioLayout->addWidget(remradio_2);
-    radioLayout->setAlignment(Qt::AlignCenter);  // Align radio buttons to the center
+    radioLayout->setAlignment(Qt::AlignCenter);
 
     QLabel *label_11 = new QLabel("Email:");
     label_11->setFont(font);
-    label_11->setFixedHeight(30);  // Set fixed height for the label
-    label_11->setAlignment(Qt::AlignLeft);  // Align label to the center
+    label_11->setFixedHeight(30);
+    label_11->setAlignment(Qt::AlignLeft);
 
     remline_1 = new QLineEdit;
     remline_1->setObjectName("remline_1");
     remline_1->setStyleSheet("background-color: #FFFFFF;");
-    remline_1->setFixedHeight(30);  // Set fixed height for the line edit
+    remline_1->setFixedHeight(30);
     remline_1->setFixedWidth(500);
-    remline_1->setAlignment(Qt::AlignCenter);  // Align line edit text to the center
+    remline_1->setAlignment(Qt::AlignCenter);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     rembutton_2 = new QPushButton("Cancel");
@@ -50,15 +50,13 @@ void RemoveUser::setupUi()
     rembutton_2->setFont(font);
     rembutton_1->setFont(font);
 
-    rembutton_2->setFixedHeight(40);  // Set fixed height for the buttons
-    rembutton_1->setFixedHeight(40);  // Set fixed height for the buttons
+    rembutton_2->setFixedHeight(40);
+    rembutton_1->setFixedHeight(40);
     buttonLayout->addWidget(rembutton_2);
-    buttonLayout->addSpacing(20);  // Add gap between buttons
+    buttonLayout->addSpacing(20);
     buttonLayout->addWidget(rembutton_1);
-    buttonLayout->setAlignment(Qt::AlignCenter);  // Align buttons to the center
+    buttonLayout->setAlignment(Qt::AlignCenter);
 
-    rembutton_2->setStyleSheet("QPushButton { border: 2px solid #333; border-radius: 20px; color: #333; background-color: #f0f0f0; }");
-    rembutton_1->setStyleSheet("QPushButton { border: 2px solid #333; border-radius: 20px; color: #333; background-color: #f0f0f0; }");
     connect(rembutton_1, &QPushButton::clicked, this, &RemoveUser::on_rembutton_1_clicked);
     connect(rembutton_2, &QPushButton::clicked, this, &RemoveUser::on_rembutton_2_clicked);
 
@@ -70,6 +68,9 @@ void RemoveUser::setupUi()
     mainLayout->addWidget(remline_1);
     mainLayout->addSpacing(30);
     mainLayout->addLayout(buttonLayout);
+
+    rembutton_1->setStyleSheet("QPushButton { border: 2px solid #333; border-radius: 20px; color: #333; background-color: #f0f0f0; }");
+    rembutton_2->setStyleSheet("QPushButton { border: 2px solid #333; border-radius: 20px; color: #333; background-color: #f0f0f0; }");
 
     setLayout(mainLayout);
 }

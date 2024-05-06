@@ -151,6 +151,7 @@ void Shop::setupMenu() {
     QLineEdit* searchBar = new QLineEdit;
     searchBar->setStyleSheet("border: 5px solid #CCCCCC; border-radius: 7px; padding: 5px;");
     searchBar->setPlaceholderText("Search");
+    connect(searchBar, &QLineEdit::textChanged, this, &Shop::filterCards);
 
     labelsAndSearchLayout->addLayout(labelsLayout);
     labelsAndSearchLayout->addStretch();

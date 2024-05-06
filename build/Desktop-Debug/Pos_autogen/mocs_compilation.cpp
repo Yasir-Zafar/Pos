@@ -2,6 +2,7 @@
 #include "EWIEGA46WW/moc_analysis.cpp"
 #include "EWIEGA46WW/moc_cart.cpp"
 #include "EWIEGA46WW/moc_dialog.cpp"
+#include "EWIEGA46WW/moc_feedback.cpp"
 #include "EWIEGA46WW/moc_login.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
 #include "EWIEGA46WW/moc_receipt.cpp"

@@ -92,7 +92,7 @@ void User::setAdmins()
 {
     tableWidget->setColumnCount(2);
 
-    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    // tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QStringList header;
     header << "Username" << "Email";

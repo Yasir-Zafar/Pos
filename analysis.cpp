@@ -17,7 +17,7 @@ void Analysis::setupUi()
     QFrame *frame = new QFrame(this);
     frame->setObjectName("frame");
     frame->setStyleSheet("QFrame#frame { background-color: #ECECEC; border-radius: 20px; }");
-    frame->setContentsMargins(20, 20, 20, 20);
+    frame->setContentsMargins(25, 25, 25, 25);
     QVBoxLayout *mainLayout = new QVBoxLayout(frame);
     mainLayout->setContentsMargins(20, 20, 20, 20);
 
@@ -25,7 +25,7 @@ void Analysis::setupUi()
     titleLabel->setFont(QFont("Arial Rounded", 19, QFont::Bold));
     titleLabel->setAlignment(Qt::AlignCenter);
     titleLabel->setFixedHeight(35);
-    titleLabel->setAlignment(Qt::AlignLeft); // Align analysis left
+    titleLabel->setAlignment(Qt::AlignLeft);
     mainLayout->addWidget(titleLabel);
 
     QVBoxLayout *topLayout = new QVBoxLayout;
@@ -41,8 +41,8 @@ void Analysis::setupUi()
                          "background-color: #FFFFFF;"
                          "border-radius: 14px;");
     label->setFont(commonFont);
-    label->setFixedSize(400, 150); // Set fixed size for label
-    label->setAlignment(Qt::AlignCenter); // Center labels vertically
+    label->setFixedSize(400, 150);
+    label->setAlignment(Qt::AlignCenter);
 
     label_2 = new QLabel("Total Revenue");
     label_2->setObjectName(QString::fromUtf8("label_2"));
@@ -100,35 +100,35 @@ void Analysis::setupUi()
     TopLayout->addLayout(leftTopLayout);
     TopLayout->addSpacing(100); // Center labels vertically
     TopLayout->addLayout(topLayout);
-    TopLayout->addSpacing(100); // Center labels vertically
+    TopLayout->addSpacing(100);
     TopLayout->addLayout(rightTopLayout);
-    TopLayout->setContentsMargins(0, 20, 20, 20); // Adjusted margin
-    TopLayout->setAlignment(Qt::AlignCenter); // Center labels vertically
+    TopLayout->setContentsMargins(0, 20, 20, 20);
+    TopLayout->setAlignment(Qt::AlignCenter);
 
     DisplayGraph = new QPushButton("Display Graph");
     DisplayGraph->setObjectName(QString::fromUtf8("DisplayGraph"));
     DisplayGraph->setStyleSheet("background-color: #4ACCB1;"
                                 "border-radius:20px;");
-    DisplayGraph->setFixedSize(400, 100); // Set fixed size for DisplayGraph
+    DisplayGraph->setFixedSize(400, 100);
     DisplayGraph->setFont(commonFont);
 
     pushButton = new QPushButton("LOAD");
     pushButton->setObjectName(QString::fromUtf8("pushButton"));
     pushButton->setStyleSheet("background-color: #4ACCB1;"
                               "border-radius:20px;");
-    pushButton->setFixedSize(400, 100); // Set fixed size for pushButton
+    pushButton->setFixedSize(400, 100);
     pushButton->setFont(commonFont);
 
     buttonLayout->addWidget(DisplayGraph);
     buttonLayout->addWidget(pushButton);
-    buttonLayout->setContentsMargins(0, 60, 20, 10); // Adjusted margin
+    buttonLayout->setContentsMargins(0, 60, 20, 10);
 
     listWidget = new QListWidget();
     listWidget->setObjectName(QString::fromUtf8("listWidget"));
     listWidget->setStyleSheet("background-color: #F9F9F9;"
                               "color: #4ACCB1;"
                               "border-radius:20px;");
-    listWidget->setFixedSize(1650, 400); // Set fixed size for listWidget
+    listWidget->setFixedSize(1650, 400);
 
     label_7 = new QLabel("Top 3 Products");
     label_7->setObjectName(QString::fromUtf8("label_7"));
@@ -138,7 +138,7 @@ void Analysis::setupUi()
 
     bottomLayout->addWidget(label_7);
     bottomLayout->addWidget(listWidget);
-    bottomLayout->setContentsMargins(20, 20, 20, 20); // Adjusted margin
+    bottomLayout->setContentsMargins(20, 20, 20, 20);
 
     mainLayout->addLayout(TopLayout);
     mainLayout->addLayout(buttonLayout);

@@ -293,6 +293,12 @@
 			null
 		],
 		[
+			"/home/boi/Projects/C++/Uni/Pos/feedback.h",
+			"MU",
+			"EWIEGA46WW/moc_feedback.cpp",
+			null
+		],
+		[
 			"/home/boi/Projects/C++/Uni/Pos/login.h",
 			"MU",
 			"EWIEGA46WW/moc_login.cpp",
@@ -406,6 +412,7 @@
 		[ "/home/boi/Projects/C++/Uni/Pos/cart.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/cartitem.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/dialog.cpp", "MU", null ],
+		[ "/home/boi/Projects/C++/Uni/Pos/feedback.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/login.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/main.cpp", "MU", null ],
 		[ "/home/boi/Projects/C++/Uni/Pos/mainwindow.cpp", "MU", null ],

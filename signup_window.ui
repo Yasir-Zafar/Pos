@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/home/boi/Projects/C++/Uni/Pos/img/bg.png);
+     <string notr="true">background-image: url(&quot;/home/boi/Projects/C++/Uni/Pos/img/bg&quot;);
 color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">

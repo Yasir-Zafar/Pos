@@ -9,15 +9,7 @@ login::login(QWidget *parent) : QWidget(parent) , ui(new Ui::login)
 
     QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
     empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
-
-    if(!empDB.open())
-    {
-        ui->label_status->setText("Failed to connect database");
-    }
-    else
-    {
-        ui->label_status->setText("Database is connected");
-    }
+    ui->radioButton_employee->setChecked(true);
 }
 
 login::~login()
@@ -72,6 +64,7 @@ void login::on_pushButton_login_clicked()
                 QString msg = "Welcome, " + qry.value(0).toString();
                 QMessageBox::information(this, "Login Successful", msg);
                 emit loginSuccessful(username);
+                emit isEmployee();
             }
             else {
                 ui->label_status->setText("[-]Wrong Username or Password.");
@@ -117,8 +110,6 @@ void login::on_pushButton_login_clicked()
         }
 
     }
-
-
 }
 
 

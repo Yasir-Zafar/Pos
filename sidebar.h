@@ -11,10 +11,9 @@ class Sidebar : public QWidget {
 
 public:
     explicit Sidebar(QWidget* parent = nullptr);
-    ~Sidebar();
+    void setupUI();
 
 private:
-    void setupUI();
     QPushButton* createSidebarButton(const QString& iconPath, const QSize& buttonSize, const QString& hoverStyleSheet);
 
     QFrame* frame;
@@ -29,6 +28,9 @@ signals:
     void button1Clicked();
     void button2Clicked();
     void button3Clicked();
+
+public slots:
+    void handleEmployeeLogin();
 
 private slots:
     void onButton1Clicked();

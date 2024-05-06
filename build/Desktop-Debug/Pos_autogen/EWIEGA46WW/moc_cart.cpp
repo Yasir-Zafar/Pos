@@ -42,7 +42,8 @@ constexpr auto qt_meta_stringdata_CLASSCartENDCLASS = QtMocHelpers::stringData(
     "index",
     "onSpinBoxValueChanged",
     "newValue",
-    "on_checkout_clicked"
+    "on_checkout_clicked",
+    "on_feedback_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -55,7 +56,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCartENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,13 +64,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSCartENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   32,    2, 0x0a,    1 /* Public */,
-       4,    1,   35,    2, 0x0a,    3 /* Public */,
-       6,    0,   38,    2, 0x0a,    5 /* Public */,
+       1,    1,   38,    2, 0x0a,    1 /* Public */,
+       4,    1,   41,    2, 0x0a,    3 /* Public */,
+       6,    0,   44,    2, 0x0a,    5 /* Public */,
+       7,    0,   45,    2, 0x0a,    6 /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -91,6 +94,8 @@ Q_CONSTINIT const QMetaObject Cart::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_checkout_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_feedback_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -105,6 +110,7 @@ void Cart::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         case 0: _t->on_pushButton_clicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 1: _t->onSpinBoxValueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 2: _t->on_checkout_clicked(); break;
+        case 3: _t->on_feedback_clicked(); break;
         default: ;
         }
     }
@@ -129,13 +135,13 @@ int Cart::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

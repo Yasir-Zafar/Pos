@@ -20,9 +20,8 @@ public:
     ~login();
 
 signals:
-    // Define the custom signal
     void loginSuccessful(QString username);
-
+    void isEmployee();
 
 private slots:
     void on_pushButton_login_clicked();

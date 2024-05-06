@@ -45,14 +45,14 @@ public:
         main_label = new QLabel(login);
         main_label->setObjectName("main_label");
         main_label->setGeometry(QRect(0, -10, 1311, 601));
-        main_label->setStyleSheet(QString::fromUtf8("background-image: url(:/bg_image/pos_bg.png);"));
+        main_label->setStyleSheet(QString::fromUtf8("background-image: url(\"/home/boi/Projects/C++/Uni/Pos/img/bg\");"));
         main_label->setPixmap(QPixmap(QString::fromUtf8(":/bg_image/pos_bg.png")));
         main_label->setScaledContents(true);
         textBrowser_welcome = new QTextBrowser(login);
         textBrowser_welcome->setObjectName("textBrowser_welcome");
         textBrowser_welcome->setGeometry(QRect(480, 10, 351, 91));
         textBrowser_welcome->setStyleSheet(QString::fromUtf8("background-color: rgb(176, 240, 241);"));
-        textBrowser_welcome->setFrameShape(QFrame::NoFrame);
+        textBrowser_welcome->setFrameShape(QFrame::Shape::NoFrame);
         label_status = new QLabel(login);
         label_status->setObjectName("label_status");
         label_status->setGeometry(QRect(20, 560, 251, 20));
@@ -118,7 +118,7 @@ public:
 "color: rgb(0, 0, 0);\n"
 "font: 13pt \"Segoe UI\";\n"
 "background-color: rgb(215, 255, 254);"));
-        lineEdit_password->setEchoMode(QLineEdit::Password);
+        lineEdit_password->setEchoMode(QLineEdit::EchoMode::Password);
         lineEdit_username = new QLineEdit(groupBox);
         lineEdit_username->setObjectName("lineEdit_username");
         lineEdit_username->setGeometry(QRect(50, 130, 269, 38));
@@ -142,8 +142,8 @@ public:
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:36pt; font-weight:700; color:#008a8a;\">Welcome</span></p></body></html>", nullptr));
+"</style></head><body style=\" font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Segoe UI'; font-size:36pt; font-weight:700; color:#008a8a;\">Welcome</span></p></body></html>", nullptr));
         label_status->setText(QCoreApplication::translate("login", "[+]DB status", nullptr));
         groupBox->setTitle(QString());
         pushButton_signup->setText(QCoreApplication::translate("login", "Sign up", nullptr));

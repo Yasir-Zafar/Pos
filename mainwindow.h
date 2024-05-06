@@ -21,11 +21,16 @@ public:
     ~MainWindow();
 
     void deleteLastWidget();
+    Sidebar* sidebar;
+
+signals:
+    void employeeLogin();
 
 public slots:
     void handleSidebarButton1Click();
     void handleSidebarButton2Click();
     void handleSidebarButton3Click();
+    void handleIsEmployee();
 
 private:
     Ui::MainWindow *ui;
@@ -33,7 +38,6 @@ private:
     QWidget *mainWidget;
     QHBoxLayout *mainLayout;
 
-    Sidebar* sidebar;
     Shop* shop;
     User *user;
     Analysis* analysis;

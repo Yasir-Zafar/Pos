@@ -1,6 +1,5 @@
 #include "cart.h"
 #include "shop.h"
-#include "cartitem.h"
 
 Cart::Cart(QWidget *parent)
     : QWidget(parent) {
@@ -8,9 +7,6 @@ Cart::Cart(QWidget *parent)
     totalAmount = 0;
     subtotal = 0;
     setStyleSheet("background-color: #f0f0f0; color: #333333; border-radius: 20px;");
-    // itemName.resize(0);
-    // itemPrice.resize(0);
-    // itemQuantity.resize(0);
 }
 
 void Cart::setupCart() {
@@ -48,6 +44,7 @@ void Cart::setupCart() {
     totalAmountLayout->setSpacing(20);
 
     totalAmountValueLabel = new QLabel(" ");
+    totalAmountValueLabel->setFont(QFont("Arial Rounded", 15, QFont::Bold));
     totalAmountLayout->addWidget(totalAmountValueLabel);
     mainLayout->addLayout(totalAmountLayout);
 
@@ -78,7 +75,9 @@ void Cart::setupCart() {
     QPushButton *checkoutButton = new QPushButton("Checkout", cartWidget);
     checkoutButton->setFont(QFont("Arial Rounded", 12));
     checkoutButton->setStyleSheet("QPushButton { background-color: rgb(0, 204, 238); border-radius: 20px; padding: 10px; }");
+
     connect(checkoutButton, &QPushButton::clicked, this, &Cart::on_checkout_clicked);
+    connect(feedbackButton, &QPushButton::clicked, this, &Cart::on_feedback_clicked);
 
     buttonLayout->addWidget(feedbackButton);
     buttonLayout->setSpacing(20);
@@ -102,18 +101,24 @@ void Cart::on_pushButton_clicked(int i)
     name = productsArray[i].name;
     price = productsArray[i].price;
     brand = productsArray[i].brand;
+
     cartItem* temp = new cartItem(this, name, price);
     newWid.append(temp);
+
+    // temp->counter->setValue(1);
+    temp->counter->setButtonSymbols(QAbstractSpinBox::NoButtons);
+
     itemName.push_back(name);
     itemPrice.push_back(price);
     itemBrand.push_back(brand);
     itemQuantity.push_back(temp->counter->value());
+
     for (int j = 0; j < newWid.size(); j++) {
         connect(newWid[j]->counter,&QSpinBox::valueChanged , this, [this, j] {onSpinBoxValueChanged(j);});
     }
-    top->addWidget(newWid[newWid.size() - 1]); // Add the new widget to the existing layout
+
+    top->addWidget(newWid[newWid.size() - 1]);
     scrollAreaContentWidgets->setLayout(top);
-    // scrollAreaContentWidgets->adjustSize();
 }
 
 void Cart::on_checkout_clicked()
@@ -127,6 +132,52 @@ void Cart::on_checkout_clicked()
     }
     receipt = new Receipt;
     receipt->show();
+
+    // QSqlDatabase productsDb = QSqlDatabase::addDatabase("QSQLITE");
+    // productsDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
+
+    // if (!productsDb.open()) {
+    //     qDebug() << "Error: Failed to open products database";
+    //     return;
+    // }
+
+    // // Prepare the query to update the "Sold" column
+    // QSqlQuery updateQuery(productsDb);
+    // updateQuery.prepare("UPDATE products SET Sold = Sold + ? , Inventory = Inventory - ? WHERE Name = ?");
+
+    // // Update the "Sold" column for each item in the cart
+    // for (int i = 0; i < itemName.size(); i++) {
+    //     QString itemName = itemName[i];
+    //     int quantitySold = itemQuantity[i];
+
+    //     updateQuery.addBindValue(quantitySold);
+    //     updateQuery.addBindValue(quantitySold);
+    //     updateQuery.addBindValue(itemName);
+
+    //     if (!updateQuery.exec()) {
+    //         qDebug() << "Error updating Sold column for item" << itemName;
+    //     }
+    // }
+
+    // QSqlDatabase inventoryDb = QSqlDatabase::addDatabase("QSQLITE", "inventory_connection");
+    // inventoryDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/inventory.db");
+
+    // if (!inventoryDb.open()) {
+    //     qDebug() << "Error: Failed to open inventory database";
+    //     return;
+    // }
+
+    // // QDateTime currentDate = QDateTime::currentDateTime();
+    // // QString currentDateString = currentDate.toString("dd");
+
+    // QSqlQuery insertQuery(inventoryDb);
+    // insertQuery.prepare("INSERT INTO inventory (total_amount, date) VALUES (?, ?)");
+    // insertQuery.addBindValue(totalAmount);
+    // insertQuery.addBindValue("6-5");
+
+    // if (!insertQuery.exec()) {
+    //     qDebug() << "Error inserting data into inventory database";
+    // }
 
     // Inserting into Database
     QSqlDatabase myindb = QSqlDatabase::addDatabase("QSQLITE");
@@ -152,30 +203,41 @@ void Cart::on_checkout_clicked()
     itemPrice.clear();
     itemQuantity.clear();
     totalAmount = 0;
+
     totalAmountValueLabel->setText(QString::number(totalAmount));
     subtotal = 0;
     subtotalValueLabel->setText(QString::number(subtotal));
-    for (int i = 0; i < newWid.size(); ++i) {
-        delete newWid[i]; // Deleting the widget
-    }
-    newWid.clear();
-    top->update(); // Update the layout
-}
 
+    for (int i = 0; i < newWid.size(); ++i) {
+        delete newWid[i];
+    }
+
+    newWid.clear();
+    top->update();
+
+    // productsDb.close();
+    // inventoryDb.close();
+}
 
 void Cart::onSpinBoxValueChanged(int i)
 {
     int quant = newWid[i]->counter->value();
     int oldQuantity = itemQuantity[i];
+
     itemQuantity[i] = quant;
-    subtotal -= (oldQuantity - itemQuantity[i]) * itemPrice[i]; // Subtract the difference from the subtotal
-    // Update subtotal label
+    subtotal -= (oldQuantity - itemQuantity[i]) * itemPrice[i];
+
     subtotalValueLabel->setText(QString::number(subtotal));
-    // Update total amount
+
     totalAmount = subtotal + (0.16) * subtotal;
-    // Update total amount label
+
     totalAmountValueLabel->setText(QString::number(totalAmount));
     qDebug() << "Quantity of Button " << i << " " << itemQuantity[i];
+}
+
+void Cart::on_feedback_clicked() {
+    feed = new feedback;
+    feed->show();
 }
 
 Cart::~Cart() {

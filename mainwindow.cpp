@@ -17,10 +17,12 @@ MainWindow::MainWindow(QWidget *parent)
     mainWidget->setLayout(mainLayout);
 
     sidebar = new Sidebar();
+    sidebar->setupUI();
     mainLayout->addWidget(sidebar);
     connect(sidebar, &Sidebar::button1Clicked, this, &MainWindow::handleSidebarButton1Click);
     connect(sidebar, &Sidebar::button2Clicked, this, &MainWindow::handleSidebarButton2Click);
     connect(sidebar, &Sidebar::button3Clicked, this, &MainWindow::handleSidebarButton3Click);
+    connect(this, &MainWindow::employeeLogin, sidebar, &Sidebar::handleEmployeeLogin);
 
     shop = new Shop();
     mainLayout->addWidget(shop);
@@ -48,15 +50,17 @@ void MainWindow::deleteLastWidget() {
     }
 }
 
+void MainWindow::handleIsEmployee(){
+    emit employeeLogin();
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
     delete sidebar;
-    delete user;
 
     delete mainWidget;
 }
-
 
 void MainWindow::handleSidebarButton1Click() {
     MainWindow::deleteLastWidget();

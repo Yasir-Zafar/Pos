@@ -51,7 +51,7 @@ public:
         main_label = new QLabel(centralwidget);
         main_label->setObjectName("main_label");
         main_label->setGeometry(QRect(0, 0, 1311, 591));
-        main_label->setStyleSheet(QString::fromUtf8("background-image: url(:/home/boi/Projects/C++/Uni/Pos/img/bg.png);\n"
+        main_label->setStyleSheet(QString::fromUtf8("background-image: url(\"/home/boi/Projects/C++/Uni/Pos/img/bg\");\n"
 "color: rgb(0, 0, 0);"));
         main_label->setPixmap(QPixmap(QString::fromUtf8(":/bg_image/pos_bg.png")));
         main_label->setScaledContents(true);

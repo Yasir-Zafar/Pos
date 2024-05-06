@@ -36,6 +36,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         signup_window.h signup_window.cpp
         login.h login.cpp
         .clang-format
+        feedback.h feedback.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
