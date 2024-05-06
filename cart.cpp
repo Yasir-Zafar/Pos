@@ -128,10 +128,7 @@ void Cart::on_checkout_clicked()
         totalAmount = totalAmount * (0.9);
         totalAmountValueLabel->setText(QString::number(totalAmount));
         QMessageBox::information(this, "Member", "10% Discount added, Keep supporting us!");
-
     }
-    receipt = new Receipt;
-    receipt->show();
 
     // QSqlDatabase productsDb = QSqlDatabase::addDatabase("QSQLITE");
     // productsDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
@@ -158,6 +155,9 @@ void Cart::on_checkout_clicked()
     //         qDebug() << "Error updating Sold column for item" << itemName;
     //     }
     // }
+
+    receipt = new Receipt;
+    receipt->show();
 
     // QSqlDatabase inventoryDb = QSqlDatabase::addDatabase("QSQLITE", "inventory_connection");
     // inventoryDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/inventory.db");

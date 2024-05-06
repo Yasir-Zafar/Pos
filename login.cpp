@@ -81,7 +81,7 @@ void login::on_pushButton_login_clicked()
     if(ui->radioButton_admin->isChecked())
     {
         QSqlDatabase admDB=QSqlDatabase::addDatabase("QSQLITE");
-        admDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+        admDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
 
         if(!admDB.open())
         {
