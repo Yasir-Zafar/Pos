@@ -23,6 +23,7 @@ public:
 signals:
     // Define the custom signal
     void SignupSuccessful(QString username);
+    void LoginSuccessful();
 
 private slots:
     void on_pushButton_signup_clicked();

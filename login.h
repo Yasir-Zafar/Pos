@@ -21,6 +21,7 @@ public:
 
 signals:
     void loginSuccessful(QString username);
+    void SignupSuccessful();
     void isEmployee();
 
 private slots:

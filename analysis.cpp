@@ -110,7 +110,7 @@ void Analysis::setupUi()
     DisplayGraph->setObjectName(QString::fromUtf8("DisplayGraph"));
     DisplayGraph->setStyleSheet("background-color: #4ACCB1;"
                                 "border-radius:20px;");
-    DisplayGraph->setFixedSize(400, 100);
+    DisplayGraph->setFixedSize(400, 90);
     DisplayGraph->setFont(commonFont);
     connect(DisplayGraph, &QPushButton::clicked, this, &Analysis::on_DisplayGraph_clicked);
 
@@ -118,7 +118,7 @@ void Analysis::setupUi()
     pushButton->setObjectName(QString::fromUtf8("pushButton"));
     pushButton->setStyleSheet("background-color: #4ACCB1;"
                               "border-radius:20px;");
-    pushButton->setFixedSize(400, 100);
+    pushButton->setFixedSize(400, 90);
     pushButton->setFont(commonFont);
     connect(pushButton, &QPushButton::clicked, this, &Analysis::on_pushButton_clicked);
 
@@ -131,6 +131,13 @@ void Analysis::setupUi()
     listWidget->setStyleSheet("background-color: #F9F9F9;"
                               "color: #4ACCB1;"
                               "border-radius:20px;");
+
+    QFont font;
+    font.setPointSize(24); // Change the font size as needed
+
+    // Set the font for the list widget
+    listWidget->setFont(font);
+
     listWidget->setFixedSize(1650, 400);
 
     label_7 = new QLabel("Top 3 Products");
@@ -218,7 +225,7 @@ void Analysis::on_pushButton_clicked()
     if(readmaxname.next())
         max1 = readmaxname.value(0).toString();
 
-    listWidget->addItem("1."+max1);
+    listWidget->addItem("1. "+max1);
     listWidget->addItem("");
 
     QSqlQuery readmaximum2(DB_connection_2);
@@ -239,7 +246,7 @@ void Analysis::on_pushButton_clicked()
     {
         max2 = readmaxname2.value(0).toString();
     }
-    listWidget->addItem("2."+max2);
+    listWidget->addItem("2. "+max2);
     listWidget->addItem("");
 
     QSqlQuery readmaximum3(DB_connection_2);
@@ -258,7 +265,7 @@ void Analysis::on_pushButton_clicked()
         max3 = "error query";
     if(readmaxname3.next())
         max3 = readmaxname3.value(0).toString();
-    listWidget->addItem("3."+max3);
+    listWidget->addItem("3. "+max3);
 
     QSqlDatabase::database().commit();
 

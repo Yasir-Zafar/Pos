@@ -106,7 +106,7 @@ void signup_Window::on_pushButton_signup_clicked()
         if (qry.exec())
         {
             QMessageBox::information(this, "Saved", "New record added");
-             emit SignupSuccessful(username);
+            emit SignupSuccessful(username);
         }
 
         else
@@ -167,7 +167,6 @@ void signup_Window::on_pushButton_signup_clicked()
 
 void signup_Window::on_pushButton_login_clicked()
 {
-    login *Log=new login();
     this->hide();
-    Log->show();
+    emit LoginSuccessful();
 }

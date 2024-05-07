@@ -117,8 +117,6 @@ void login::on_pushButton_login_clicked()
 
 void login::on_pushButton_signup_clicked()
 {
-    signup_Window *sp=new signup_Window();
     this->hide();
-    sp->show();
-
+    emit SignupSuccessful();
 }
