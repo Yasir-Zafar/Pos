@@ -25,7 +25,7 @@ void Cart::setupCart() {
     mainLayout->addWidget(checkoutLabel, 0, Qt::AlignTop | Qt::AlignCenter);
 
     scrollArea = new QScrollArea(cartWidget);
-    scrollArea->setFixedSize(350, 780);
+    scrollArea->setFixedSize(350, 760);
     scrollAreaContentWidgets = new QWidget(scrollArea);
     scrollAreaContentWidgets->setMinimumSize(320, 800);
     scrollAreaContentWidgets->setLayout(top);
@@ -175,6 +175,13 @@ void Cart::on_checkout_clicked()
         QString trial = "UPDATE products SET Sold = Sold + " + QString::number(itemQuantity[i]) + ", Inventory = Inventory - " + QString::number(itemQuantity[i]) + " WHERE Name = '" + itemName[i] + "';";
         query2.exec(trial);
     }
+
+    QSqlQuery checkoutQuery(productsDb);
+    checkoutQuery.exec("CREATE TABLE IF NOT EXISTS checkout (totalAmount INTEGER);");
+
+    checkoutQuery.prepare("INSERT INTO checkout (totalAmount) VALUES (:totalAmount);");
+    checkoutQuery.bindValue(":totalAmount", totalAmount);
+    checkoutQuery.exec();
 
     itemName.clear();
     itemPrice.clear();

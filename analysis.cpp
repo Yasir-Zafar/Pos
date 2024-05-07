@@ -5,7 +5,7 @@ Analysis::Analysis(QWidget *parent)
     : QWidget(parent) {
     setupUi();
     on_pushButton_clicked();
-    // setupDb();
+    setupDb();
 }
 
 void Analysis::setupUi()
@@ -39,10 +39,10 @@ void Analysis::setupUi()
 
     label = new QLabel();
     label->setObjectName(QString::fromUtf8("label"));
-    label->setStyleSheet("color: #55EBE6;"
-                         "background-color: #FFFFFF;"
+    label->setStyleSheet("background-color: #FFFFFF;"
                          "border-radius: 14px;");
     label->setFont(commonFont);
+    label->setPalette(commonPalette);
     label->setFixedSize(400, 150);
     label->setAlignment(Qt::AlignCenter);
 
@@ -111,7 +111,7 @@ void Analysis::setupUi()
     DisplayGraph->setObjectName(QString::fromUtf8("DisplayGraph"));
     DisplayGraph->setStyleSheet("background-color: #4ACCB1;"
                                 "border-radius:20px;");
-    DisplayGraph->setFixedSize(400, 90);
+    DisplayGraph->setFixedSize(400, 80);
     DisplayGraph->setFont(commonFont);
     connect(DisplayGraph, &QPushButton::clicked, this, &Analysis::on_DisplayGraph_clicked);
 
@@ -119,7 +119,7 @@ void Analysis::setupUi()
     pushButton->setObjectName(QString::fromUtf8("pushButton"));
     pushButton->setStyleSheet("background-color: #4ACCB1;"
                               "border-radius:20px;");
-    pushButton->setFixedSize(400, 90);
+    pushButton->setFixedSize(400, 80);
     pushButton->setFont(commonFont);
     connect(pushButton, &QPushButton::clicked, this, &Analysis::on_pushButton_clicked);
 
@@ -162,19 +162,19 @@ void Analysis::setupUi()
 
 void Analysis::on_pushButton_clicked()
 {
-    // DB_connection.open();
+    DB_connection.open();
 
-    QSqlDatabase :: database() .transaction();
-    // QSqlQuery sumdata(DB_connection);
+    QSqlDatabase :: database().transaction();
+    QSqlQuery sumdata(DB_connection);
 
-    // QString sum ;
-    // sumdata.prepare("SELECT SUM(Total) FROM checkout");
-    // sumdata.exec();
-    // if(sumdata.next())
-    //     sum = sumdata.value(0).toString();
+    QString sum ;
+    sumdata.prepare("SELECT SUM(totalAmount) FROM checkout");
+    sumdata.exec();
+    if(sumdata.next())
+        sum = sumdata.value(0).toString();
 
-    // qDebug() << "sum=" << sum;
-    // label->setText("Rs. " + sum);
+    qDebug() << "sum=" << sum;
+    label->setText("Rs. " + sum);
 
     DB_connection_2 = QSqlDatabase ::addDatabase("QSQLITE");
     DB_connection_2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
@@ -273,8 +273,8 @@ void Analysis::on_pushButton_clicked()
 }
 
 void Analysis::setupDb(){
-    DB_connection = QSqlDatabase ::addDatabase("QSQLITE");
-    DB_connection.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/checkout.db");
+    DB_connection = QSqlDatabase::addDatabase("QSQLITE");
+    DB_connection.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
     if(DB_connection.open())
         qDebug() << "Database is connected";
     else
