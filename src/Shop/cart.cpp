@@ -1,5 +1,6 @@
-#include "cart.h"
-#include "shop.h"
+#include "../../include/Shop/cart.h"
+#include "../../include/Shop/cartitem.h"
+#include "../../include/Shop/shop.h"
 
 Cart::Cart(QWidget *parent)
     : QWidget(parent) {
@@ -14,70 +15,66 @@ void Cart::setupCart() {
     top->setAlignment(Qt::AlignTop);
 
     cartWidget = new QWidget(this);
-    cartWidget->setFixedWidth(350);
+    cartWidget->setFixedWidth(300);
 
     mainLayout = new QVBoxLayout(cartWidget);
     mainLayout->setContentsMargins(20, 20, 20, 20);
 
     QLabel *checkoutLabel = new QLabel("Checkout", cartWidget);
     checkoutLabel->setFont(QFont("Arial Rounded", 19, QFont::Bold));
-    checkoutLabel->setContentsMargins(0, 0, 0, 10);
     mainLayout->addWidget(checkoutLabel, 0, Qt::AlignTop | Qt::AlignCenter);
 
+    lll = new QVBoxLayout;
     scrollArea = new QScrollArea(cartWidget);
-    scrollArea->setFixedSize(350, 760);
+    scrollArea->setStyleSheet("border-radius: 0px; border: 2px black;");
+    scrollArea->setFixedSize(350, 400);
     scrollAreaContentWidgets = new QWidget(scrollArea);
-    scrollAreaContentWidgets->setMinimumSize(320, 800);
+    scrollAreaContentWidgets->setMinimumSize(320, 200);
     scrollAreaContentWidgets->setLayout(top);
     scrollArea->setWidget(scrollAreaContentWidgets);
-    scrollArea->setContentsMargins(0,0,0,0);
-    mainLayout->addWidget(scrollArea, 10, Qt::AlignTop);
+    mainLayout->addWidget(scrollArea);
 
-    QHBoxLayout *totalAmountLayout = new QHBoxLayout();
-    QLabel *totalAmountLabel = new QLabel("Total Amount:");
-    totalAmountLabel->setFont(QFont("Arial Rounded", 17, QFont::Bold));
-    totalAmountLayout->addWidget(totalAmountLabel);
-    totalAmountLayout->setSpacing(20);
+    QHBoxLayout *subtotalLayout = new QHBoxLayout();
+    QLabel *subtotalLabel = new QLabel("Subtotal:");
+    subtotalLabel->setFont(QFont("Arial Rounded", 12, QFont::Bold));
+    subtotalLayout->addWidget(subtotalLabel);
 
-    totalAmountValueLabel = new QLabel(" ");
-    totalAmountValueLabel->setFont(QFont("Arial Rounded", 16, QFont::Bold));
-    totalAmountValueLabel->setAlignment(Qt::AlignRight);
-    totalAmountLayout->addWidget(totalAmountValueLabel, 0);
-    mainLayout->addLayout(totalAmountLayout);
+    subtotalValueLabel = new QLabel(" ");
+    subtotalLayout->addWidget(subtotalValueLabel);
+    mainLayout->addLayout(subtotalLayout);
 
     QHBoxLayout *gstLayout = new QHBoxLayout();
     QLabel *gstLabel = new QLabel("GST: ");
-    gstLabel->setFont(QFont("Arial Rounded", 13, QFont::Bold));
+    gstLabel->setFont(QFont("Arial Rounded", 12, QFont::Bold));
     gstLayout->addWidget(gstLabel);
 
     QLabel *gstValueLabel = new QLabel("16%");
     gstValueLabel->setFont(QFont("Arial Rounded", 13));
-    gstValueLabel->setAlignment(Qt::AlignRight);
-    gstLayout->addWidget(gstValueLabel, 0);
+    gstLayout->addWidget(gstValueLabel);
     mainLayout->addLayout(gstLayout);
 
-    QHBoxLayout *subtotalLayout = new QHBoxLayout();
-    QLabel *subtotalLabel = new QLabel("Subtotal:");
-    subtotalLabel->setFont(QFont("Arial Rounded", 15, QFont::Bold));
-    subtotalLabel->setFont(QFont("Arial Rounded", 15, QFont::Bold));
-    subtotalLayout->addWidget(subtotalLabel);
+    QHBoxLayout *totalAmountLayout = new QHBoxLayout();
+    QLabel *totalAmountLabel = new QLabel("Total Amount:");
+    totalAmountLabel->setFont(QFont("Arial Rounded", 15, QFont::Bold));
+    totalAmountLayout->addWidget(totalAmountLabel);
+    totalAmountLayout->setSpacing(20);
 
-    subtotalValueLabel = new QLabel(" ");
-    subtotalValueLabel->setAlignment(Qt::AlignRight);
-    subtotalLayout->addWidget(subtotalValueLabel, 0);
-    mainLayout->addLayout(subtotalLayout);
+    totalAmountValueLabel = new QLabel(" ");
+    totalAmountValueLabel->setFont(QFont("Arial Rounded", 15, QFont::Bold));
+    totalAmountLayout->addWidget(totalAmountValueLabel);
+    mainLayout->addLayout(totalAmountLayout);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
 
     QPushButton *feedbackButton = new QPushButton("Feedback", cartWidget);
     feedbackButton->setFont(QFont("Arial Rounded", 12, QFont::Bold));
     feedbackButton->setStyleSheet("QPushButton {background-color: rgb(40, 164, 166); color: #333; border-style: outset; border-radius: 20px; padding: 10px;}");
+    connect(feedbackButton, &QPushButton::clicked, this, &Cart::on_feedback_clicked);
+
     QPushButton *checkoutButton = new QPushButton("Checkout", cartWidget);
     checkoutButton->setFont(QFont("Arial Rounded", 12));
     checkoutButton->setStyleSheet("QPushButton { background-color: rgb(0, 204, 238); border-radius: 20px; padding: 10px; }");
-
     connect(checkoutButton, &QPushButton::clicked, this, &Cart::on_checkout_clicked);
-    connect(feedbackButton, &QPushButton::clicked, this, &Cart::on_feedback_clicked);
 
     buttonLayout->addWidget(feedbackButton);
     buttonLayout->setSpacing(20);
@@ -97,12 +94,12 @@ void Cart::setupCart() {
 }
 
 QString brand;
+
 void Cart::on_pushButton_clicked(int i)
 {
     name = productsArray[i].name;
     price = productsArray[i].price;
     brand = productsArray[i].brand;
-
     bool isPresent = false;
     int pre;
     for (int i = 0; i < itemName.size(); i++) {
@@ -116,23 +113,23 @@ void Cart::on_pushButton_clicked(int i)
         newWid[pre]->counter->setValue(newWid[pre]->counter->value() + 1);
     }
     else {
-    cartItem* temp = new cartItem(this, name, price);
-    newWid.append(temp);
+        cartItem* temp = new cartItem(this, name, price);
+        newWid.append(temp);
 
-    temp->counter->setButtonSymbols(QAbstractSpinBox::NoButtons);
+        temp->counter->setButtonSymbols(QAbstractSpinBox::NoButtons);
 
-    itemName.push_back(name);
-    itemPrice.push_back(price);
-    itemBrand.push_back(brand);
-    itemQuantity.push_back(temp->counter->value());
+        itemName.push_back(name);
+        itemPrice.push_back(price);
+        itemBrand.push_back(brand);
+        itemQuantity.push_back(temp->counter->value());
 
-    for (int j = 0; j < newWid.size(); j++) {
-        connect(newWid[j]->counter,&QSpinBox::valueChanged , this, [this, j] {onSpinBoxValueChanged(j);});
-    }
+        for (int j = 0; j < newWid.size(); j++) {
+            connect(newWid[j]->counter,&QSpinBox::valueChanged , this, [this, j] {onSpinBoxValueChanged(j);});
+        }
 
-    top->addWidget(newWid[newWid.size() - 1]);
-    scrollAreaContentWidgets->setLayout(top);
-    scrollAreaContentWidgets->adjustSize();
+        top->addWidget(newWid[newWid.size() - 1]);
+        scrollAreaContentWidgets->setLayout(top);
+        scrollAreaContentWidgets->adjustSize();
     }
 }
 
@@ -149,12 +146,12 @@ void Cart::on_checkout_clicked()
     receipt->show();
 
     QSqlDatabase myindb = QSqlDatabase::addDatabase("QSQLITE");
-    myindb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/sales.db");
+    myindb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/sales.db");
     if (myindb.open()) {
         qDebug() << "DB is open";
     }
     QSqlDatabase productsDb = QSqlDatabase::addDatabase("QSQLITE");
-    productsDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
+    productsDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/products.db");
     if (productsDb.open()) {
         qDebug() << "DB is open";
     }
@@ -193,11 +190,16 @@ void Cart::on_checkout_clicked()
     subtotalValueLabel->setText(QString::number(subtotal));
 
     for (int i = 0; i < newWid.size(); ++i) {
-        delete newWid[i]; // Deleting the widget
+        delete newWid[i];
     }
 
     newWid.clear();
     top->update();
+}
+
+void Cart::on_feedback_clicked() {
+    feed = new feedback;
+    feed->show();
 }
 
 void Cart::onSpinBoxValueChanged(int i)
@@ -214,11 +216,6 @@ void Cart::onSpinBoxValueChanged(int i)
 
     totalAmountValueLabel->setText(QString::number(totalAmount));
     qDebug() << "Quantity of Button " << i << " " << itemQuantity[i];
-}
-
-void Cart::on_feedback_clicked() {
-    feed = new feedback;
-    feed->show();
 }
 
 Cart::~Cart() {

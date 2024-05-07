@@ -2,7 +2,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
-#include "shop.h"
+#include "../../include/Shop/shop.h"
 
 Shop::Shop(QWidget* parent) : QWidget(parent) {
     setupMenu();
@@ -33,7 +33,7 @@ void Shop::setupCards() {
     cardsWidget = new QWidget(scrollArea);
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
+    db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/products.db");
 
     if (!db.open()) {
         qDebug() << "Error: Unable to open database";

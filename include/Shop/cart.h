@@ -40,6 +40,7 @@ private:
     QScrollArea *scrollArea;
     QWidget* scrollAreaContentWidgets;
     QVBoxLayout *top;
+    QVBoxLayout* lll;
 
     QLabel *totalAmountValueLabel;
     QLabel *subtotalValueLabel;

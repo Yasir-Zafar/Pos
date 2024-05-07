@@ -1,12 +1,8 @@
-#include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "../include/mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-
     setGeometry(0, 0, 1920, 1080);
     setWindowTitle("Pos");
 
@@ -58,9 +54,7 @@ void MainWindow::handleIsEmployee(){
 
 MainWindow::~MainWindow()
 {
-    delete ui;
     delete sidebar;
-
     delete mainWidget;
 }
 

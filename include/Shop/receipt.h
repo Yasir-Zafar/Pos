@@ -4,13 +4,12 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QDialog>
-#include<QString>
-#include<QTableWidget>
-#include<QTableWidgetItem>
-#include<QHeaderView>
-#include<QStringList>
-
-#include "cartitem.h"
+#include <QString>
+#include <QTableWidget>
+#include <QTableWidgetItem>
+#include <QHeaderView>
+#include <QStringList>
+#include <QVBoxLayout>
 
 class Receipt : public QWidget {
     Q_OBJECT

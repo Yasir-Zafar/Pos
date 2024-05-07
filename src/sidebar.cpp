@@ -1,4 +1,4 @@
-#include "sidebar.h"
+#include "../include/sidebar.h"
 
 Sidebar::Sidebar(QWidget* parent)
     : QWidget(parent), button1( new QPushButton), button2( new QPushButton), button3( new QPushButton), button4( new QPushButton)

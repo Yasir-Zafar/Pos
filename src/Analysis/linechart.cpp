@@ -1,4 +1,4 @@
-#include "linechart.h"
+#include "../../include/Analysis/linechart.h"
 
 LineChart::LineChart(QWidget *parent) :
   QMainWindow(parent)
@@ -20,7 +20,7 @@ void LineChart::setupChart()
     int sless50000 = 0;
 
     DB_connection_3 = QSqlDatabase::addDatabase("QSQLITE");
-    DB_connection_3.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
+    DB_connection_3.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/products.db");
 
     if(DB_connection_3.open())
         qDebug() << "Database is connected";

@@ -1,6 +1,6 @@
-#include "login.h"
+#include "../../include/Login/login.h"
 #include "ui_login.h"
-#include "signup_window.h"
+#include "../../include/Login/signup_window.h"
 #include<QMessageBox>
 
 login::login(QWidget *parent) : QWidget(parent) , ui(new Ui::login)
@@ -8,7 +8,7 @@ login::login(QWidget *parent) : QWidget(parent) , ui(new Ui::login)
     ui->setupUi(this);
 
     QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
-    empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+    empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");
     ui->radioButton_employee->setChecked(true);
 }
 
@@ -47,7 +47,7 @@ void login::on_pushButton_login_clicked()
     if(ui->radioButton_employee->isChecked())
     {
         QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
-        empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+        empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");
 
         if(!empDB.open())
         {
@@ -82,7 +82,7 @@ void login::on_pushButton_login_clicked()
     if(ui->radioButton_admin->isChecked())
     {
         QSqlDatabase admDB=QSqlDatabase::addDatabase("QSQLITE");
-        admDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
+        admDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/admin.db");
 
         if(!admDB.open())
         {

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Pos VERSION 0.1 LANGUAGES CXX)
+project(Pos VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -13,32 +13,31 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Charts)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Charts)
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        signup_window.ui
-        login.ui
+        src/main.cpp
+        src/mainwindow.cpp
+        include/mainwindow.h
+        src/Login/signup_window.ui
+        src/Login/login.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Pos
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        sidebar.h sidebar.cpp
-        shop.h shop.cpp
-        user.h user.cpp
-        cart.h cart.cpp
-        cartitem.h cartitem.cpp
-        receipt.h receipt.cpp
-        dialog.h dialog.cpp
-        removeuser.h removeuser.cpp
-        analysis.h analysis.cpp
-        signup_window.h signup_window.cpp
-        login.h login.cpp
-        .clang-format
-        feedback.h feedback.cpp
-        settings.h settings.cpp
-        linechart.h linechart.cpp
+        include/sidebar.h src/sidebar.cpp
+        include/Shop/shop.h src/Shop/shop.cpp
+        include/User/user.h src/User/user.cpp
+        include/Shop/cart.h src/Shop/cart.cpp
+        include/Shop/cartitem.h src/Shop/cartitem.cpp
+        include/Shop/receipt.h src/Shop/receipt.cpp
+        include/User/dialog.h src/User/dialog.cpp
+        include/User/removeuser.h src/User/removeuser.cpp
+        include/Analysis/analysis.h src/Analysis/analysis.cpp
+        include/Login/signup_window.h src/Login/signup_window.cpp
+        include/Login/login.h src/Login/login.cpp
+        include/Shop/feedback.h src/Shop/feedback.cpp
+        include/settings.h src/settings.cpp
+        include/Analysis/linechart.h src/Analysis/linechart.cpp
 
 
 

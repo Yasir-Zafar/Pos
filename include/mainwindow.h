@@ -4,9 +4,9 @@
 #include <QMainWindow>
 
 #include "sidebar.h"
-#include "shop.h"
-#include "user.h"
-#include "analysis.h"
+#include "Shop/shop.h"
+#include "User/user.h"
+#include "Analysis/analysis.h"
 #include "settings.h"
 
 QT_BEGIN_NAMESPACE

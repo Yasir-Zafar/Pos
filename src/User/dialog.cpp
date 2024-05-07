@@ -1,4 +1,4 @@
-#include "dialog.h"
+#include "../../include/User/dialog.h"
 #include <regex>
 
 Dialog::Dialog(QWidget *parent): QDialog(parent){
@@ -113,7 +113,7 @@ void Dialog::add_db_admin()
     QString pass  = lineEdit_6->text();
 
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS");
-    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
+    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/admin.db");
     if (!db2.open())
     {
         qDebug() << "Error: Failed to open database:" << db2.lastError().text();
@@ -144,7 +144,7 @@ void Dialog::add_db_employee()
     QString pass  = lineEdit_6->text();
 
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","EMPLOYEES");
-    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");
     if (!db2.open())
     {
         qDebug() << "Error: Failed to open database:" << db2.lastError().text();

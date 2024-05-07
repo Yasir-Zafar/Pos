@@ -1,4 +1,5 @@
-#include "receipt.h"
+#include "../../include/Shop/cartitem.h"
+#include "../../include/Shop/receipt.h"
 
 Receipt::Receipt(QWidget *parent) : QWidget(parent){
     setFixedSize(800, 420);

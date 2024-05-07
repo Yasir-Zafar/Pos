@@ -1,11 +1,11 @@
-#include "signup_window.h"
+#include "../../include/Login/signup_window.h"
 #include "ui_signup_window.h"
+
 #include<string>
 #include<cstring>
 #include<QMessageBox>
 #include<regex>
 #include<QString>
-#include "login.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ signup_Window::signup_Window(QWidget *parent)
     ui->setupUi(this);
 
     QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
-    empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+    empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");
 
     if(!empDB.open())
     {
@@ -86,7 +86,7 @@ void signup_Window::on_pushButton_signup_clicked()
     if(ui->radioButton_employee->isChecked())
     {
         QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
-        empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+        empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");
 
         if (!empDB.open())
         {
@@ -128,7 +128,7 @@ void signup_Window::on_pushButton_signup_clicked()
     {
         QMessageBox::information(this,"admin","ur signing up as an admin");
         QSqlDatabase admDB=QSqlDatabase::addDatabase("QSQLITE");
-        admDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
+        admDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/admin.db");
 
         if (!admDB.open())
         {

@@ -1,5 +1,5 @@
-#include "analysis.h"
-#include "linechart.h"
+#include "../../include/Analysis/analysis.h"
+#include "../../include/Analysis/linechart.h"
 
 Analysis::Analysis(QWidget *parent)
     : QWidget(parent) {
@@ -177,7 +177,7 @@ void Analysis::on_pushButton_clicked()
     label->setText("Rs. " + sum);
 
     DB_connection_2 = QSqlDatabase ::addDatabase("QSQLITE");
-    DB_connection_2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
+    DB_connection_2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/products.db");
     if(DB_connection_2.open())
         qDebug() << "Database is connected";
     else
@@ -274,7 +274,7 @@ void Analysis::on_pushButton_clicked()
 
 void Analysis::setupDb(){
     DB_connection = QSqlDatabase::addDatabase("QSQLITE");
-    DB_connection.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/products.db");
+    DB_connection.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/products.db");
     if(DB_connection.open())
         qDebug() << "Database is connected";
     else

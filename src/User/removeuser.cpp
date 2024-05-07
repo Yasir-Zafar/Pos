@@ -1,4 +1,4 @@
-#include "removeuser.h"
+#include "../../include/User/removeuser.h"
 #include "qsqlerror.h"
 #include <regex>
 
@@ -88,7 +88,7 @@ bool RemoveUser::emailcheck()
 int RemoveUser::checkrow()
 {
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","ADMINS2");
-    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
+    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/admin.db");
     if (!db2.open()) {
         qDebug() << "Error: Failed to open database:" << db2.lastError().text();
         return -1; // Return -1 to indicate error opening the database
@@ -185,7 +185,7 @@ int RemoveUser::emailcheck2()
 void RemoveUser::delemployee()
 {
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE","EMPLOYEES2");
-    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");
     db2.open();
 
     QString querya = "DELETE FROM employees WHERE email = :email";
@@ -201,7 +201,7 @@ void RemoveUser::delemployee()
 void RemoveUser::deladmin()
 {
     QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE");
-    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
+    db2.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/admin.db");
     db2.open();
 
     QString querya = "DELETE FROM Admins WHERE email = :email";

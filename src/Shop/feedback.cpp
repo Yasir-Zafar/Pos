@@ -1,4 +1,4 @@
-#include "feedback.h"
+#include "../../include/Shop/feedback.h"
 
 #include<QMessageBox>
 #include<QString>

@@ -1,6 +1,6 @@
-#include "user.h"
-#include "dialog.h"
-#include "removeuser.h"
+#include "../../include/User/user.h"
+#include "../../include/User/dialog.h"
+#include "../../include/User/removeuser.h"
 
 User::User(QWidget *parent)
     : QWidget{parent}
@@ -118,7 +118,7 @@ void User::setAdmins()
     tableWidget->setFont(QFont("Arial", 14));
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
+    db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/admin.db");
 
     QSqlQuery query;
     query.exec("SELECT * FROM Admins");
@@ -179,7 +179,7 @@ void User::setEmployees()
     tableWidget_2->setFont(QFont("Arial", 14));
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");
+    db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");
 
     QSqlQuery query;
     query.exec("SELECT * FROM employees");

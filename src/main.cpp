@@ -1,6 +1,6 @@
-#include "mainwindow.h"
-#include "login.h"
-#include "signup_window.h"
+#include "../include/mainwindow.h"
+#include "../include/Login/login.h"
+#include "../include/Login/signup_window.h"
 
 #include <QApplication>
 

@@ -1,9 +1,9 @@
 #ifndef SIGNUP_WINDOW_H
 #define SIGNUP_WINDOW_H
-#include<QtSql>
-#include<QtDebug>
-#include<QFileInfo>
 
+#include <QtSql>
+#include <QtDebug>
+#include <QFileInfo>
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
