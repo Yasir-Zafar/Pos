@@ -37,8 +37,6 @@ private:
 
     QWidget *cartWidget;
     QVBoxLayout *mainLayout;
-    QVBoxLayout *lll;
-    QVBoxLayout* lay;
     QScrollArea *scrollArea;
     QWidget* scrollAreaContentWidgets;
     QVBoxLayout *top;

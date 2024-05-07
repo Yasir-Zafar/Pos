@@ -4,6 +4,7 @@
 Analysis::Analysis(QWidget *parent)
     : QWidget(parent) {
     setupUi();
+    on_pushButton_clicked();
     // setupDb();
 }
 
@@ -18,7 +19,7 @@ void Analysis::setupUi()
     QFrame *frame = new QFrame(this);
     frame->setObjectName("frame");
     frame->setStyleSheet("QFrame#frame { background-color: #ECECEC; border-radius: 20px; }");
-    frame->setContentsMargins(25, 25, 25, 25);
+    frame->setContentsMargins(30, 30, 30, 30);
     QVBoxLayout *mainLayout = new QVBoxLayout(frame);
     mainLayout->setContentsMargins(20, 20, 20, 20);
 
@@ -50,8 +51,8 @@ void Analysis::setupUi()
     label_2->setStyleSheet("text-align: center;");
     label_2->setFont(commonFont);
     label_2->setPalette(commonPalette);
-    label_2->setFixedHeight(60); // Set fixed height for label_2
-    label_2->setAlignment(Qt::AlignCenter); // Center labels vertically
+    label_2->setFixedHeight(60);
+    label_2->setAlignment(Qt::AlignCenter);
 
     leftTopLayout->addWidget(label_2);
     leftTopLayout->addWidget(label);
@@ -62,16 +63,16 @@ void Analysis::setupUi()
                            "background-color: #FFFFFF;");
     label_3->setFont(commonFont);
     label_3->setPalette(commonPalette);
-    label_3->setFixedSize(400, 150); // Set fixed size for label_3
-    label_3->setAlignment(Qt::AlignCenter); // Center labels vertically
+    label_3->setFixedSize(400, 150);
+    label_3->setAlignment(Qt::AlignCenter);
 
     label_4 = new QLabel("Items Sold");
     label_4->setObjectName(QString::fromUtf8("label_4"));
     label_4->setStyleSheet("text-align: center;");
     label_4->setFont(commonFont);
     label_4->setPalette(commonPalette);
-    label_4->setFixedHeight(60); // Set fixed height for label_4
-    label_4->setAlignment(Qt::AlignCenter); // Center labels vertically
+    label_4->setFixedHeight(60);
+    label_4->setAlignment(Qt::AlignCenter);
 
     topLayout->addWidget(label_4);
     topLayout->addWidget(label_3);
@@ -84,22 +85,22 @@ void Analysis::setupUi()
     label_5->setPalette(commonPalette);
     label_5->setFont(commonFont);
     label_5->setPalette(commonPalette);
-    label_5->setFixedSize(400, 150); // Set fixed size for label_
-    label_5->setAlignment(Qt::AlignCenter); // Center labels vertically
+    label_5->setFixedSize(400, 150);
+    label_5->setAlignment(Qt::AlignCenter);
 
     label_6 = new QLabel("Inventory");
     label_6->setObjectName(QString::fromUtf8("label_6"));
     label_6->setStyleSheet("text-align: center;");
     label_6->setFont(commonFont);
     label_6->setPalette(commonPalette);
-    label_6->setFixedHeight(60); // Set fixed height for label_4
-    label_6->setAlignment(Qt::AlignCenter); // Center labels vertically
+    label_6->setFixedHeight(60);
+    label_6->setAlignment(Qt::AlignCenter);
 
     rightTopLayout->addWidget(label_6);
     rightTopLayout->addWidget(label_5);
 
     TopLayout->addLayout(leftTopLayout);
-    TopLayout->addSpacing(100); // Center labels vertically
+    TopLayout->addSpacing(100);
     TopLayout->addLayout(topLayout);
     TopLayout->addSpacing(100);
     TopLayout->addLayout(rightTopLayout);
@@ -114,7 +115,7 @@ void Analysis::setupUi()
     DisplayGraph->setFont(commonFont);
     connect(DisplayGraph, &QPushButton::clicked, this, &Analysis::on_DisplayGraph_clicked);
 
-    pushButton = new QPushButton("LOAD");
+    pushButton = new QPushButton("Update");
     pushButton->setObjectName(QString::fromUtf8("pushButton"));
     pushButton->setStyleSheet("background-color: #4ACCB1;"
                               "border-radius:20px;");
@@ -133,12 +134,10 @@ void Analysis::setupUi()
                               "border-radius:20px;");
 
     QFont font;
-    font.setPointSize(24); // Change the font size as needed
+    font.setPointSize(24);
 
-    // Set the font for the list widget
     listWidget->setFont(font);
-
-    listWidget->setFixedSize(1650, 400);
+    listWidget->setFixedSize(1500, 400);
 
     label_7 = new QLabel("Top 3 Products");
     label_7->setObjectName(QString::fromUtf8("label_7"));
@@ -147,7 +146,7 @@ void Analysis::setupUi()
     label_7->setContentsMargins(0, 0, 0, 0);
 
     bottomLayout->addWidget(label_7);
-    bottomLayout->addWidget(listWidget);
+    bottomLayout->addWidget(listWidget, 0, Qt::AlignHCenter);
     bottomLayout->setContentsMargins(20, 20, 20, 20);
 
     mainLayout->addLayout(TopLayout);

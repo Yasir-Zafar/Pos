@@ -65,9 +65,14 @@ void User::setupUser(){
     adminLayout->addWidget(label_7);
     adminLayout->addWidget(tableWidget);
 
-    pushButton_5->setStyleSheet("QPushButton { border-radius: 15px; border: 5px solid #333; color: #333; padding: 15px } QPushButton:hover { border: 3px solid #28A4A6; }");
-    pushButton_6->setStyleSheet("QPushButton { color: #333; border-radius: 15px; border: 5px solid #333; padding: 15px } QPushButton:hover { border: 3px solid #28A4A6; }");
-    rem_1->setStyleSheet("QPushButton { border-radius: 15px; border: 5px solid #333; color: #f44336; padding: 15px } QPushButton:hover { border: 3px solid #28A4A6; }");
+    pushButton_5->setStyleSheet("QPushButton { background-color: #f0f0f0; border-radius: 15px; border: 5px solid #333; color: #333; padding: 15px }"
+                                "QPushButton:hover { border: 5px solid #28A4A6; }");
+
+    pushButton_6->setStyleSheet("QPushButton { background-color: #f0f0f0; color: #333; border-radius: 15px; border: 5px solid #333; padding: 15px }"
+                                "QPushButton:hover { border: 5px solid #28A4A6; }");
+
+    rem_1->setStyleSheet("QPushButton { background-color: #f0f0f0; border-radius: 15px; border: 5px solid #333; color: #f44336; padding: 15px }"
+                         "QPushButton:hover { border: 5px solid #28A4A6; }");
 
     tableWidget->setStyleSheet("QTableWidget { border: 4px solid #333; border-radius: 10px; }");
     tableWidget_2->setStyleSheet("QTableWidget { border: 4px solid #333; border-radius: 10px; }");
@@ -92,14 +97,12 @@ void User::setAdmins()
 {
     tableWidget->setColumnCount(2);
 
-    // tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QStringList header;
     header << "Username" << "Email";
     tableWidget->setHorizontalHeaderLabels(header);
 
-    // tableWidget->setColumnWidth(0, 330);
-    // tableWidget->setColumnWidth(1, 330);
     tableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     for (int i = 0; i < tableWidget->columnCount(); ++i) {
@@ -112,7 +115,7 @@ void User::setAdmins()
     tableWidget->verticalHeader()->setVisible(false);
 
     tableWidget->horizontalHeader()->setFont(QFont("Arial Rounded", 13, QFont::Bold));
-    tableWidget->setFont(QFont("Arial", 12));
+    tableWidget->setFont(QFont("Arial", 14));
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/admin.db");
@@ -173,7 +176,7 @@ void User::setEmployees()
     tableWidget_2->setHorizontalHeaderLabels(header);
 
     tableWidget_2->horizontalHeader()->setFont(QFont("Arial Rounded", 13, QFont::Bold));
-    tableWidget_2->setFont(QFont("Arial", 12));
+    tableWidget_2->setFont(QFont("Arial", 14));
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/SQL/employees_2.db");

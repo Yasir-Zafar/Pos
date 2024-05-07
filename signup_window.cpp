@@ -101,7 +101,7 @@ void signup_Window::on_pushButton_signup_clicked()
         qry.addBindValue(email);
         qry.addBindValue(username);
         qry.addBindValue(password);
-        qry.addBindValue("");
+        qry.addBindValue("12am-12pm");
 
         if (qry.exec())
         {

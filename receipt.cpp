@@ -1,43 +1,31 @@
 #include "receipt.h"
 
 Receipt::Receipt(QWidget *parent) : QWidget(parent){
-    // Set widget window size
     setFixedSize(800, 420);
 
-    // Create QTableWidget
     QTableWidget *receipttable = new QTableWidget(this);
 
-    // Set widget window size
-    receipttable->setFixedSize(800, 300);
+    receipttable->setFixedSize(780, 300);
 
-    // Hide scroll bars
     receipttable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     receipttable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    // Hide numbering of rows/cols
     receipttable->verticalHeader()->setVisible(false);
 
-    // Set numrow,col
     receipttable->setColumnCount(5);
 
-    // Set the headers for the table
     QStringList headerLabels = {"Name", "Brand", "Rate", "Quantity", "Amount"};
     receipttable->setHorizontalHeaderLabels(headerLabels);
-
-    // Set column sizes
 
     for (int i = 0; i < receipttable->columnCount(); ++i) {
         receipttable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
     }
 
-    // Set font
     QFont font("Arial Rounded MT Bold", 12);
     receipttable->setFont(font);
 
-    // Set edit triggers
     receipttable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    // Adding items
     for (int i = 0; i < itemName.size(); i++)
     {
         int row = receipttable->rowCount();
@@ -61,18 +49,17 @@ Receipt::Receipt(QWidget *parent) : QWidget(parent){
 
     QLabel *totalAmountLabel = new QLabel("Total Amount:", this);
     totalAmountLabel->setFont(QFont("Arial Rounded MT Bold", 12));
-    totalAmountLabel->setGeometry(10, 330, 120, 30);
-
-    QFontMetrics metrics(totalAmountLabel->font());
-    int textWidth = metrics.horizontalAdvance(totalAmountLabel->text());
 
     QLabel *totalAmountLabelValue = new QLabel(" PKR" + QString::number(totalAmount), this);
     totalAmountLabelValue->setFont(QFont("Arial Rounded MT Bold", 12));
-    totalAmountLabelValue->setGeometry(10 + textWidth, 330, 130, 30);
+
+    QHBoxLayout *totalAmountLayout = new QHBoxLayout();
+    totalAmountLayout->addWidget(totalAmountLabel);
+    totalAmountLayout->addWidget(totalAmountLabelValue);
+    totalAmountLayout->setAlignment(Qt::AlignCenter);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(receipttable);
-    layout->addWidget(totalAmountLabel);
-    layout->addWidget(totalAmountLabelValue);
+    layout->addLayout(totalAmountLayout);
     setLayout(layout);
 }

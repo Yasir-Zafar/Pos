@@ -46,7 +46,7 @@ void RemoveUser::setupUi()
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     rembutton_2 = new QPushButton("Cancel");
-    rembutton_1 = new QPushButton("Ok");
+    rembutton_1 = new QPushButton("Okay");
     rembutton_2->setFont(font);
     rembutton_1->setFont(font);
 
