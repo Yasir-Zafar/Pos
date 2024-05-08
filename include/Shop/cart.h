@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QMessageBox>
+#include <QInputDialog>
 #include <QPushButton>
 #include <QScrollArea>
 #include <QVBoxLayout>
@@ -31,6 +32,7 @@ public slots:
     void onSpinBoxValueChanged(int newValue);
     void on_checkout_clicked();
     void on_feedback_clicked();
+    void on_clear_clicked();
 
 private:
     void setupCart();
@@ -52,6 +54,8 @@ private:
     float subtotal;
     Receipt* receipt;
     feedback* feed;
+
+    QPushButton *clearButton;
 };
 
 #endif // CART_H

@@ -15,7 +15,7 @@ void Cart::setupCart() {
     top->setAlignment(Qt::AlignTop);
 
     cartWidget = new QWidget(this);
-    cartWidget->setFixedWidth(300);
+    cartWidget->setFixedWidth(350);
 
     mainLayout = new QVBoxLayout(cartWidget);
     mainLayout->setContentsMargins(20, 20, 20, 20);
@@ -27,25 +27,27 @@ void Cart::setupCart() {
     lll = new QVBoxLayout;
     scrollArea = new QScrollArea(cartWidget);
     scrollArea->setStyleSheet("border-radius: 0px; border: 2px black;");
-    scrollArea->setFixedSize(350, 400);
+    scrollArea->setFixedSize(350, 760);
     scrollAreaContentWidgets = new QWidget(scrollArea);
-    scrollAreaContentWidgets->setMinimumSize(320, 200);
+    scrollAreaContentWidgets->setMinimumSize(320, 800);
     scrollAreaContentWidgets->setLayout(top);
     scrollArea->setWidget(scrollAreaContentWidgets);
-    mainLayout->addWidget(scrollArea);
+    mainLayout->addWidget(scrollArea, 1, Qt::AlignTop);
+    mainLayout->addSpacing(20);
 
     QHBoxLayout *subtotalLayout = new QHBoxLayout();
     QLabel *subtotalLabel = new QLabel("Subtotal:");
-    subtotalLabel->setFont(QFont("Arial Rounded", 12, QFont::Bold));
+    subtotalLabel->setFont(QFont("Arial Rounded", 14, QFont::Bold));
     subtotalLayout->addWidget(subtotalLabel);
 
     subtotalValueLabel = new QLabel(" ");
+    subtotalValueLabel->setFont(QFont("Arial Rounded", 14, QFont::Bold));
     subtotalLayout->addWidget(subtotalValueLabel);
     mainLayout->addLayout(subtotalLayout);
 
     QHBoxLayout *gstLayout = new QHBoxLayout();
     QLabel *gstLabel = new QLabel("GST: ");
-    gstLabel->setFont(QFont("Arial Rounded", 12, QFont::Bold));
+    gstLabel->setFont(QFont("Arial Rounded", 13, QFont::Bold));
     gstLayout->addWidget(gstLabel);
 
     QLabel *gstValueLabel = new QLabel("16%");
@@ -62,6 +64,7 @@ void Cart::setupCart() {
     totalAmountValueLabel = new QLabel(" ");
     totalAmountValueLabel->setFont(QFont("Arial Rounded", 15, QFont::Bold));
     totalAmountLayout->addWidget(totalAmountValueLabel);
+    mainLayout->addSpacing(10);
     mainLayout->addLayout(totalAmountLayout);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
@@ -76,10 +79,17 @@ void Cart::setupCart() {
     checkoutButton->setStyleSheet("QPushButton { background-color: rgb(0, 204, 238); border-radius: 20px; padding: 10px; }");
     connect(checkoutButton, &QPushButton::clicked, this, &Cart::on_checkout_clicked);
 
+    clearButton = new QPushButton("Clear Cart", cartWidget); // Create clear button
+    clearButton->setFont(QFont("Arial Rounded", 12));
+    clearButton->setStyleSheet("QPushButton { background-color: rgb(255, 0, 0); border-radius: 20px; padding: 10px; }");
+    connect(clearButton, &QPushButton::clicked, this, &Cart::on_clear_clicked); // Connect signal to slot
+    buttonLayout->addWidget(clearButton); // Add button to layout
+
     buttonLayout->addWidget(feedbackButton);
     buttonLayout->setSpacing(20);
     buttonLayout->addWidget(checkoutButton);
 
+    mainLayout->addSpacing(20);
     mainLayout->addLayout(buttonLayout);
     cartWidget->setLayout(mainLayout);
 
@@ -137,9 +147,40 @@ void Cart::on_checkout_clicked()
 {
     QMessageBox::StandardButton reply = QMessageBox::question(this, "Member Check", "Are You A Member", QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
-        totalAmount = totalAmount * (0.9);
+        totalAmount *= (0.9);
         totalAmountValueLabel->setText(QString::number(totalAmount));
         QMessageBox::information(this, "Member", "10% Discount added, Keep supporting us!");
+    }
+
+    // Prompt for discount percentage
+    QMessageBox::StandardButton discountReply = QMessageBox::question(this, "Discount", "Would you like to apply a discount?", QMessageBox::Yes | QMessageBox::No);
+    if (discountReply == QMessageBox::Yes) {
+        bool ok;
+        int discountPercent = QInputDialog::getInt(this, "Discount", "Enter discount percentage:", 0, 0, 100, 1, &ok);
+        if (ok) {
+            // Check for invalid discount percentage
+            if (discountPercent < 0 || discountPercent > 100) {
+                QMessageBox::warning(this, "Invalid Discount", "Please enter a valid discount percentage (0-100).");
+                return;
+            }
+
+            // Calculate total amount with discount
+            double discountFactor = 1.0 - (discountPercent / 100.0);
+            totalAmount *= discountFactor;
+            totalAmountValueLabel->setText(QString::number(totalAmount));
+            QMessageBox::information(this, "Discount", QString::number(discountPercent) + "% Discount added.");
+        }
+    }
+
+    // Check for gift card
+    QMessageBox::StandardButton giftCardReply = QMessageBox::question(this, "Gift Card", "Do you have a gift card?", QMessageBox::Yes | QMessageBox::No);
+    if (giftCardReply == QMessageBox::Yes) {
+        totalAmount -= 5000;
+        if (totalAmount < 0) {
+            totalAmount = 0;
+        }
+        totalAmountValueLabel->setText(QString::number(totalAmount));
+        QMessageBox::information(this, "Gift Card", "$5000 deducted from total.");
     }
 
     receipt = new Receipt;
@@ -207,7 +248,25 @@ void Cart::onSpinBoxValueChanged(int i)
     int quant = newWid[i]->counter->value();
     int oldQuantity = itemQuantity[i];
 
-    itemQuantity[i] = quant;
+    QSqlDatabase productsDb = QSqlDatabase::addDatabase("QSQLITE");
+    productsDb.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/products.db");
+    if (productsDb.open()) {
+        qDebug() << "DB is open";
+    }
+    QSqlQuery query(productsDb);
+    QString qu = "SELECT Inventory FROM products WHERE name = '" + itemName[i] + "';";
+    query.exec(qu);
+    if (query.next()) {
+        if (query.value(0).toInt() <= oldQuantity) {
+            QMessageBox::warning(this, "Stock Less", "The amount required exceeds the stock!");
+            newWid[i]->counter->setValue(0);
+            itemQuantity[i] = 0;
+        }
+        else {
+            itemQuantity[i] = quant;
+        }
+    }
+
     subtotal -= (oldQuantity - itemQuantity[i]) * itemPrice[i];
 
     subtotalValueLabel->setText(QString::number(subtotal));
@@ -216,6 +275,24 @@ void Cart::onSpinBoxValueChanged(int i)
 
     totalAmountValueLabel->setText(QString::number(totalAmount));
     qDebug() << "Quantity of Button " << i << " " << itemQuantity[i];
+}
+
+void Cart::on_clear_clicked() {
+    itemName.clear();
+    itemPrice.clear();
+    itemQuantity.clear();
+
+    totalAmount = 0;
+    totalAmountValueLabel->setText(QString::number(totalAmount));
+    subtotal = 0;
+    subtotalValueLabel->setText(QString::number(subtotal));
+
+    for (int i = 0; i < newWid.size(); ++i) {
+        delete newWid[i];
+    }
+
+    newWid.clear();
+    top->update();
 }
 
 Cart::~Cart() {

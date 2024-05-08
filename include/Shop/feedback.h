@@ -12,6 +12,10 @@
 #include <QTextEdit>
 #include <QPushButton>
 
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlError>
+
 class feedback : public QWidget
 {
     Q_OBJECT

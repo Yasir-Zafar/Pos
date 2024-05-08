@@ -59,14 +59,14 @@ void Shop::setupCards() {
 
     QGridLayout* gridLayout = new QGridLayout(cardsWidget);
     gridLayout->setContentsMargins(15, 15, 15, 15);
-    gridLayout->setSpacing(83);
-    gridLayout->setColumnStretch(5, 1);
+    gridLayout->setSpacing(57);
+    gridLayout->setColumnStretch(6, 1);
 
     int row = 0;
     int column = 0;
     for (const Product& product : productsArray) {
         QPushButton* cardButton = new QPushButton;
-        cardButton->setFixedSize(180, 180); // Set the size of each button
+        cardButton->setFixedSize(170, 170);
         QVBoxLayout* buttonLayout = new QVBoxLayout(cardButton);
         buttonLayout->setContentsMargins(10, 10, 10, 10);
         buttonLayout->setSpacing(0);
@@ -104,7 +104,7 @@ void Shop::setupCards() {
         cardButtons.append(cardButton);
 
         column++;
-        if (column == 5) {
+        if (column == 6) {
             row++;
             column = 0;
         }
@@ -113,9 +113,7 @@ void Shop::setupCards() {
     db.close();
 
     cardsWidget->setLayout(gridLayout);
-
     scrollArea->setWidget(cardsWidget);
-
     topBoxLayout->addWidget(scrollArea);
 }
 

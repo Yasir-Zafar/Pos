@@ -9,7 +9,7 @@ feedback::feedback(QWidget *parent)
     : QWidget(parent)
 {
     setStyleSheet("background-color: #FFFFFF;");
-    setFixedSize(600,800);
+    setFixedSize(600,700);
 
     setupUi();
 }
@@ -108,20 +108,70 @@ bool isValidPhoneNumber(QString phoneNumber)
 
 void feedback::on_pushButton_clicked()
 {
+    QString name = name_lineEdit->text();
     QString email = email_lineEdit->text();
+    QString phone = phone_LineEdit->text();
+    QString feedbackText = addFeed->toPlainText();
+    int ratingValue = -1;
 
+    // Validate email and phone
     if (!isvalidEmail(email)) {
         QMessageBox::warning(this, "Feedback", "Invalid email address. Please enter a valid email.");
         return;
     }
-
-    QString phone = phone_LineEdit->text();
 
     if (!isValidPhoneNumber(phone)) {
         QMessageBox::warning(this, "Feedback", "Invalid phone number. Please enter a valid phone number.");
         return;
     }
 
-    QMessageBox::information(this, "feedback", "Thank you for your feedback!");
+    // Get selected rating
+    for (int i = 0; i < 5; ++i) {
+        if (rating[i]->isChecked()) {
+            ratingValue = i + 1;
+            break;
+        }
+    }
+
+    // Check if a rating is selected
+    if (ratingValue == -1) {
+        QMessageBox::warning(this, "Feedback", "Please select a rating.");
+        return;
+    }
+
+    // Create the database if it doesn't exist
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/feedback.db");
+    QSqlQuery query1;
+    query1.exec("CREATE TABLE Feedback (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, phone TEXT, rating INTEGER)");
+    db.close();
+
+    // Open the database
+    if (!db.open()) {
+        QMessageBox::critical(this, "Error", "Failed to open the database: " + db.lastError().text());
+        return;
+    }
+
+    // Insert feedback data into the database
+    QSqlQuery query;
+    query.prepare("INSERT INTO Feedback (name, email, phone, rating) "
+                  "VALUES (:name, :email, :phone, :rating)");
+    query.bindValue(":name", name);
+    query.bindValue(":email", email);
+    query.bindValue(":phone", phone);
+    query.bindValue(":rating", ratingValue);
+
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Error", "Failed to insert feedback into the database: " + query.lastError().text());
+        db.close();
+        return;
+    }
+
+    db.close();
+
+    // Show a confirmation message
+    QMessageBox::information(this, "Feedback", "Thank you for your feedback!");
+
+    // Close the feedback form
     close();
 }
