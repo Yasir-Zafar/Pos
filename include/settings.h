@@ -8,12 +8,16 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 
+#include <QFile>
+#include <QMessageBox>
+
 class Settings : public QWidget {
     Q_OBJECT
 
 public:
     explicit Settings(QWidget *parent = nullptr);
     void setupUI();
+    void backupSQLFiles();
 
 private slots:
     void shutdownApp();
@@ -24,7 +28,6 @@ public slots:
 private:
     QVBoxLayout *mainLayout;
     QPushButton *shutdownButton;
-    QPushButton *updateInventoryButton;
 };
 
 #endif // SETTINGS_H

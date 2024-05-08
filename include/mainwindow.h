@@ -8,6 +8,7 @@
 #include "User/user.h"
 #include "Analysis/analysis.h"
 #include "settings.h"
+#include "itemmanagement.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,6 +34,7 @@ public slots:
     void handleSidebarButton2Click();
     void handleSidebarButton3Click();
     void handleSidebarButton4Click();
+    void handleSidebarButton5Click();
     void handleIsEmployee();
 
 private:
@@ -45,5 +47,6 @@ private:
     User *user;
     Analysis* analysis;
     Settings* settings;
+    ItemManagement* manage;
 };
 #endif // MAINWINDOW_H

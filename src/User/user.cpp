@@ -29,7 +29,6 @@ void User::setupUser(){
     rem_1 = new QPushButton("Remove", this); // button 3
     rem_1->setFont(QFont("Arial Rounded", 12));
 
-    // Create and configure the QTableWidgets
     tableWidget = new QTableWidget(this); // admin
     tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
 
@@ -40,7 +39,6 @@ void User::setupUser(){
 
     QWidget* mainWidget = new QWidget;
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    setStyleSheet("background-color: #ECECEC; border-radius: 20px;");
     mainLayout->setContentsMargins(20, 20, 20, 20);
 
     QHBoxLayout *horizontalLayout = new QHBoxLayout;
@@ -90,6 +88,8 @@ void User::setupUser(){
     mainWidget->setLayout(mainLayout);
     topLayout->addWidget(mainWidget);
 
+    setStyleSheet("background-color: #ECECEC; border-radius: 20px;");
+
     setLayout(topLayout);
 }
 
@@ -109,13 +109,14 @@ void User::setAdmins()
         tableWidget->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
     }
 
-    tableWidget->setHorizontalHeaderLabels(header);
-
     tableWidget->horizontalHeader()->setStretchLastSection(true);
     tableWidget->verticalHeader()->setVisible(false);
 
     tableWidget->horizontalHeader()->setFont(QFont("Arial Rounded", 13, QFont::Bold));
     tableWidget->setFont(QFont("Arial", 14));
+
+    QString styleSheet = "QHeaderView::section { background-color: #f0f0f0; color: #28A4A6; }";
+    tableWidget->horizontalHeader()->setStyleSheet(styleSheet);
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/admin.db");
@@ -146,8 +147,7 @@ void User::setAdmins()
                 tableWidget->setItem(newRow, 0, new QTableWidgetItem(email));
                 tableWidget->setItem(newRow, 1, new QTableWidgetItem(username));
 
-                // Do something with the retrieved data
-                // qDebug() << "Username:" << username << ", Email:" << email;
+                qDebug() << "Username:" << username << ", Email:" << email;
             }
         }
     }
@@ -177,6 +177,9 @@ void User::setEmployees()
 
     tableWidget_2->horizontalHeader()->setFont(QFont("Arial Rounded", 13, QFont::Bold));
     tableWidget_2->setFont(QFont("Arial", 14));
+
+    QString styleSheet = "QHeaderView::section { background-color: #f0f0f0; color: #28A4A6; }";
+    tableWidget_2->horizontalHeader()->setStyleSheet(styleSheet);
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");

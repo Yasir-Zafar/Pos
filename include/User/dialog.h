@@ -35,6 +35,8 @@ private:
     int checklene();
     int checklena();
     bool emailcheck();
+    int checkreptemp();
+    int checkreptadmin();
 
     QFrame *frame;
     QLineEdit *lineEdit_3;

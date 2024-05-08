@@ -38,6 +38,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         include/Shop/feedback.h src/Shop/feedback.cpp
         include/settings.h src/settings.cpp
         include/Analysis/linechart.h src/Analysis/linechart.cpp
+        include/itemmanagement.h src/itemmanagement.cpp
 
 
 

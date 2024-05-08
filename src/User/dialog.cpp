@@ -5,6 +5,80 @@ Dialog::Dialog(QWidget *parent): QDialog(parent){
     setupUi();
 }
 
+int Dialog::checkreptemp()
+{
+    QString email = lineEdit_4->text();
+
+    QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE");
+    db2.setDatabaseName("C:/Users/HP/Desktop/employees_2.db");
+
+    if (!db2.open()) {
+        qDebug() << "Error: Failed to open database:" << db2.lastError().text();
+        return 0;
+    }
+
+    QString checkQuery = "SELECT * FROM employees WHERE email = ?";
+    QSqlQuery check(db2);
+    check.prepare(checkQuery);
+    check.addBindValue(email);
+    if (!check.exec()) {
+        qDebug() << "Error executing query:" << check.lastError().text();
+        return 0;
+    }
+
+    int count = 0;
+    while (check.next()) {
+        count++;
+    }
+    qDebug() << "Number of matching emails:" << count;
+
+    if (count > 0) {
+        QMessageBox::information(this, "Repeat_Email", "Please enter a unique email id.");
+        qDebug() << "Email already exists";
+        return 0;
+    }
+
+    qDebug() << "Email is unique";
+    return 1;
+}
+
+int Dialog::checkreptadmin()
+{
+    QString email = lineEdit_4->text();
+
+    QSqlDatabase db2 = QSqlDatabase::addDatabase("QSQLITE");
+    db2.setDatabaseName("C:/Users/HP/Desktop/admin.db");
+
+    if (!db2.open()) {
+        qDebug() << "Error: Failed to open database:" << db2.lastError().text();
+        return 0;
+    }
+
+    QString checkQuery = "SELECT * FROM Admins WHERE email = ?";
+    QSqlQuery check(db2);
+    check.prepare(checkQuery);
+    check.addBindValue(email);
+    if (!check.exec()) {
+        qDebug() << "Error executing query:" << check.lastError().text();
+        return 0;
+    }
+
+    int count = 0;
+    while (check.next()) {
+        count++;
+    }
+    qDebug() << "Number of matching emails:" << count;
+
+    if (count > 0) {
+        QMessageBox::information(this, "Repeat_Email", "Please enter a unique email id.");
+        qDebug() << "Email already exists";
+        return 0;
+    }
+
+    qDebug() << "Email is unique";
+    return 1;
+}
+
 void Dialog::setupUi()
 {
     resize(659, 488);
@@ -176,7 +250,7 @@ void Dialog::on_pushButton_8_clicked()
     }
     else
     {
-        if(radioButton->isChecked())
+        if(radioButton->isChecked()&&checkreptadmin()==1)
         {
             if(checklena()==1)
             {
@@ -186,7 +260,7 @@ void Dialog::on_pushButton_8_clicked()
             }
 
         }
-        else if(radioButton_2->isChecked())
+        else if(radioButton_2->isChecked()&&checkreptemp()==1)
         {
 
             if(checklene()==1)

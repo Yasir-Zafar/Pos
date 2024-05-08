@@ -17,6 +17,7 @@ signup_Window::signup_Window(QWidget *parent)
 
     QSqlDatabase empDB=QSqlDatabase::addDatabase("QSQLITE");
     empDB.setDatabaseName("/home/boi/Projects/C++/Uni/Pos/Sql/employees_2.db");
+    ui->radioButton_employee->setChecked(true);
 
     if(!empDB.open())
     {

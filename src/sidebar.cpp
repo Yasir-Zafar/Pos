@@ -1,7 +1,12 @@
 #include "../include/sidebar.h"
 
 Sidebar::Sidebar(QWidget* parent)
-    : QWidget(parent), button1( new QPushButton), button2( new QPushButton), button3( new QPushButton), button4( new QPushButton)
+    : QWidget(parent),
+      button1(new QPushButton),
+      button2(new QPushButton),
+      button3(new QPushButton),
+      button4(new QPushButton),
+      button5(new QPushButton)
 {
 }
 
@@ -9,15 +14,13 @@ void Sidebar::setupUI() {
     setContentsMargins(0, 0, 0, 0);
 
     frame = new QFrame(this);
-    frame->setStyleSheet("background-color: #f9f9f9; color: #333333; border-radius: 20px;");
+    frame->setStyleSheet("background-color: #f9f9f9; color: #333; border-radius: 20px;");
     frame->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     frame->setContentsMargins(0, 0, 0, 0);
 
     sidebarLayout = new QVBoxLayout(frame);
     sidebarLayout->setContentsMargins(0, 0, 0, 0);
 
-    QPalette palette;
-    palette.setColor(QPalette::Window, Qt::red);
     setFixedWidth(150);
 
     QLabel* logoLabel = new QLabel;
@@ -31,34 +34,29 @@ void Sidebar::setupUI() {
 
     QSize buttonSize(75, 75);
     QString hoverStyleSheet = "QPushButton { background-color: #f9f9f9; } QPushButton:hover { background-color: #ECECEC; }";
+
     button1 = createSidebarButton("/home/boi/Projects/C++/Uni/Pos/img/shopping-bag.png", buttonSize, hoverStyleSheet);
     button2 = createSidebarButton("/home/boi/Projects/C++/Uni/Pos/img/pie-chart.png", buttonSize, hoverStyleSheet);
     button3 = createSidebarButton("/home/boi/Projects/C++/Uni/Pos/img/user.png", buttonSize, hoverStyleSheet);
+    button5 = createSidebarButton("/home/boi/Projects/C++/Uni/Pos/img/package.png", buttonSize, hoverStyleSheet);
     button4 = createSidebarButton("/home/boi/Projects/C++/Uni/Pos/img/settings.png", buttonSize, hoverStyleSheet);
 
     sidebarLayout->addSpacing(40);
     sidebarLayout->addWidget(logoLabel, 0, Qt::AlignHCenter);
     sidebarLayout->addSpacing(40);
-
-    connect(button1, &QPushButton::clicked, this, &Sidebar::onButton1Clicked);
-    connect(button2, &QPushButton::clicked, this, &Sidebar::onButton2Clicked);
-    connect(button3, &QPushButton::clicked, this, &Sidebar::onButton3Clicked);
-    connect(button4, &QPushButton::clicked, this, &Sidebar::onButton4Clicked);
-
     sidebarLayout->addSpacing(40);
     sidebarLayout->addWidget(button1, 0, Qt::AlignHCenter);
     sidebarLayout->addSpacing(40);
-
     sidebarLayout->addSpacing(40);
     sidebarLayout->addWidget(button2, 0, Qt::AlignHCenter);
     sidebarLayout->addSpacing(40);
-
     sidebarLayout->addSpacing(40);
     sidebarLayout->addWidget(button3, 0, Qt::AlignHCenter);
     sidebarLayout->addSpacing(40);
-
+    sidebarLayout->addSpacing(40);
+    sidebarLayout->addWidget(button5, 0, Qt::AlignHCenter);
+    sidebarLayout->addSpacing(40);
     sidebarLayout->addStretch();
-
     sidebarLayout->addSpacing(40);
     sidebarLayout->addWidget(button4, 0, Qt::AlignHCenter);
     sidebarLayout->addSpacing(40);
@@ -67,9 +65,16 @@ void Sidebar::setupUI() {
     mainLayout->addWidget(frame);
     mainLayout->setContentsMargins(5, 5, 5, 5);
     setLayout(mainLayout);
+
+    connect(button1, &QPushButton::clicked, this, &Sidebar::onButton1Clicked);
+    connect(button2, &QPushButton::clicked, this, &Sidebar::onButton2Clicked);
+    connect(button3, &QPushButton::clicked, this, &Sidebar::onButton3Clicked);
+    connect(button4, &QPushButton::clicked, this, &Sidebar::onButton4Clicked);
+    connect(button5, &QPushButton::clicked, this, &Sidebar::onButton5Clicked);
 }
 
 QPushButton* Sidebar::createSidebarButton(const QString& iconPath, const QSize& buttonSize, const QString& hoverStyleSheet) {
+    // Create a new button, set its icon and size, and apply the hover style sheet
     QPushButton* button = new QPushButton;
     button->setIcon(QIcon(iconPath));
     button->setIconSize(QSize(60, 60));
@@ -80,17 +85,16 @@ QPushButton* Sidebar::createSidebarButton(const QString& iconPath, const QSize& 
 
 void Sidebar::handleEmployeeLogin()
 {
-    if (button2 == nullptr) {
-        return; // Exit the function early if button1 is not initialized
+    // Hide button2 and button3 if they are initialized
+    if (button2 != nullptr) {
+        button2->hide();
     }
-
-    button2->hide();
-
-    if (button3 == nullptr) {
-        return; // Exit the function early if button1 is not initialized
+    if (button3 != nullptr) {
+        button3->hide();
     }
-
-    button3->hide();
+    if (button5 != nullptr) {
+        button5->hide();
+    }
 }
 
 void Sidebar::onButton1Clicked() {
@@ -108,3 +112,8 @@ void Sidebar::onButton3Clicked() {
 void Sidebar::onButton4Clicked() {
     emit button4Clicked();
 }
+
+void Sidebar::onButton5Clicked() {
+    emit button5Clicked();
+}
+

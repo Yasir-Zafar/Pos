@@ -4,7 +4,6 @@
 Analysis::Analysis(QWidget *parent)
     : QWidget(parent) {
     setupUi();
-    on_pushButton_clicked();
     setupDb();
 }
 
@@ -168,10 +167,12 @@ void Analysis::on_pushButton_clicked()
     QSqlQuery sumdata(DB_connection);
 
     QString sum ;
+    int temp = 0;
     sumdata.prepare("SELECT SUM(totalAmount) FROM checkout");
     sumdata.exec();
     if(sumdata.next())
-        sum = sumdata.value(0).toString();
+        temp = sumdata.value(0).toInt();
+    sum = QString::number(temp);
 
     qDebug() << "sum=" << sum;
     label->setText("Rs. " + sum);
@@ -207,6 +208,8 @@ void Analysis::on_pushButton_clicked()
     if(readinventory.next())
         inventory = readinventory.value(0).toString();
     label_5-> setText(inventory);
+
+    listWidget->clear();
 
     QSqlQuery readmaximum(DB_connection_2);
     QString m1 ;
